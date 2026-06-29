@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBSS2643: Decision Support Systems Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Macaron Palette */
+            --pastel-pink: #FFD1DC;
+            --pastel-mint: #B0EACD;
+            --pastel-blue: #AEC6CF;
+            --pastel-lavender: #C3B1E1;
+            --pastel-yellow: #FDFD96;
+            
+            --ink: #111111;
+            --ink-muted: #333333;
+            
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --radius-lg: 32px;
+            --radius-md: 16px;
+            
+            --spring: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender), var(--pastel-blue), var(--pastel-mint));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--ink);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Auras */
+        body::before {
+            content: ''; position: fixed; top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, var(--pastel-yellow) 0%, transparent 70%);
+            filter: blur(80px); opacity: 0.6; z-index: -1;
+            animation: floatAura 20s ease-in-out infinite alternate;
+        }
+        body::after {
+            content: ''; position: fixed; bottom: -10%; right: -10%; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, var(--pastel-pink) 0%, transparent 70%);
+            filter: blur(100px); opacity: 0.5; z-index: -1;
+            animation: floatAura 25s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatAura {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 100px) scale(1.2); }
+        }
+
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; color: var(--ink); }
+        
+        .hero { text-align: center; padding: 40px 20px 20px; position: relative; }
+        .hero h1 { font-size: 2.5rem; margin-top: 20px; font-weight: 800; color: var(--ink); }
+        .hero p { font-size: 1.35rem; font-weight: 600; color: var(--ink); max-width: 600px; margin: 0 auto; background: var(--glass-bg); padding: 10px 20px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid var(--glass-border); }
+        .hero-img-container { margin-top: 30px; }
+        .hero-img-container img { max-width: 250px; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 4px solid rgba(255,255,255,0.7); animation: float 6s ease-in-out infinite; }
+        
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
+        
+        .lang-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            z-index: 10;
+        }
+
+        .grid-container { max-width: 1200px; margin: 40px auto 60px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; position: relative; z-index: 1; }
+        
+        .card { 
+            background: var(--glass-bg); 
+            border-radius: var(--radius-lg); 
+            padding: 35px; 
+            box-shadow: var(--glass-shadow); 
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            transition: all 0.5s var(--spring);
+            text-decoration: none;
+            color: var(--ink);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .grid-container .card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 40px 0 rgba(31, 38, 135, 0.15); background: rgba(255, 255, 255, 0.6); }
+        .card h2 { border-bottom: 2px solid rgba(255,255,255,0.5); padding-bottom: 15px; margin-top: 0; font-size: 1.8rem;}
+        .grid-container .card p { color: var(--ink-muted); margin-bottom: 0; font-size: 1.1rem; line-height: 1.6; font-weight: 600; }
+        
+        .badge { background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender)); color: var(--ink); padding: 6px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; align-self: flex-start; margin-bottom: 20px; font-family: 'Rajdhani', sans-serif; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        
+        .btn { 
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink); 
+            padding: 12px 28px; 
+            border: 2px solid rgba(255,255,255,0.8); 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.4s var(--spring);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .btn:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(195, 177, 225, 0.4); background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender)); }
+
+        /* Translation CSS Rules */
+        .lang-cn { display: none !important; }
+        body.cn-active .lang-en { display: none !important; }
+        body.cn-active .lang-cn { display: block !important; }
+        
+        span.lang-cn { display: none !important; }
+        body.cn-active span.lang-en { display: none !important; }
+        body.cn-active span.lang-cn { display: inline !important; }
+
+        @media (max-width: 768px) {
+            .lang-btn {
+                position: static;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>
+            <span class="lang-en">DBSS2643: Decision Support Systems</span>
+            <span class="lang-cn">DBSS2643: 决策支持系统</span>
+        </h1>
+        <p>
+            <span class="lang-en">Interactive Weekly Study Hub</span>
+            <span class="lang-cn">每周互动式学习中心</span>
+        </p>
+        <button class="btn lang-btn" onclick="toggleLanguage()">🌐 EN / 中文</button>
+        <div class="hero-img-container">
+            <img src="assets/macaron_dss.png" alt="Macaron DSS Concept">
+        </div>
+        <div style="margin-top:20px;">
+            <a href="DSS-Note.html" class="btn" style="text-decoration:none;">
+                <span class="lang-en">Go to Comprehensive Review SPA</span>
+                <span class="lang-cn">进入综合复习笔记本 SPA</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <!-- Week 1 -->
+        <a href="week1.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 1</span>
+                <span class="lang-cn">第 1 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 1: BI & DSS Overview (Part 1)</span>
+                <span class="lang-cn">第 1 章：BI 与 DSS 概述（一）</span>
+            </h2>
+            <p>
+                <span class="lang-en">Changing business environment, computerized decision support, and managerial decision making levels.</span>
+                <span class="lang-cn">快速变化的商业环境、计算机化决策支持、以及管理决策制定的各个层级。</span>
+            </p>
+        </a>
+        
+        <!-- Week 2 -->
+        <a href="week2.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 2</span>
+                <span class="lang-cn">第 2 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 1: BI & DSS Overview (Part 2)</span>
+                <span class="lang-cn">第 1 章：BI 与 DSS 概述（二）</span>
+            </h2>
+            <p>
+                <span class="lang-en">The DSS concept, Business Intelligence framework components, and comparing DSS vs BI.</span>
+                <span class="lang-cn">决策支持系统 (DSS) 概念、商业智能 (BI) 框架构成、以及 DSS 与 BI 的对比。</span>
+            </p>
+        </a>
+
+        <!-- Week 3 -->
+        <a href="week3.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 3</span>
+                <span class="lang-cn">第 3 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 2: Decision Making Foundations (Part 1)</span>
+                <span class="lang-cn">第 2 章：决策制定基础（一）</span>
+            </h2>
+            <p>
+                <span class="lang-en">Herbert Simon's phases of decision-making process and DSS support mechanisms.</span>
+                <span class="lang-cn">决策制定过程的各个阶段以及 DSS 的相应支持机制。</span>
+            </p>
+        </a>
+
+        <!-- Week 4 -->
+        <a href="week4.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 4</span>
+                <span class="lang-cn">第 4 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 2: Decision Making Foundations (Part 2)</span>
+                <span class="lang-cn">第 2 章：决策制定基础（二）</span>
+            </h2>
+            <p>
+                <span class="lang-en">DSS classifications (Model/Data/Document-driven) and core DBMS/MBMS components.</span>
+                <span class="lang-cn">DSS 常见分类（模型/数据/文档驱动型）以及 DBMS 和 MBMS 核心组件。</span>
+            </p>
+        </a>
+
+        <!-- Week 5 -->
+        <a href="week5.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 5</span>
+                <span class="lang-cn">第 5 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 3: Knowledge Management</span>
+                <span class="lang-cn">第 5 章：知识管理</span>
+            </h2>
+            <p>
+                <span class="lang-en">Tacit vs. explicit knowledge, organizational KM approaches, and AI cognitive aids.</span>
+                <span class="lang-cn">隐性与显性知识对比、组织知识管理 (KM) 方法、以及 AI 认知辅助工具。</span>
+            </p>
+        </a>
+
+        <!-- Week 6 -->
+        <a href="week6.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 6</span>
+                <span class="lang-cn">第 6 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 4: Data Warehousing</span>
+                <span class="lang-cn">第 6 章：数据仓库</span>
+            </h2>
+            <p>
+                <span class="lang-en">Role of data warehouses in decision support, ETL processes, and OLAP cube operations.</span>
+                <span class="lang-cn">数据仓库在决策支持中的作用、ETL 过程、以及 OLAP 数据立方体操作。</span>
+            </p>
+        </a>
+
+        <!-- Week 7 -->
+        <a href="week7.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 7</span>
+                <span class="lang-cn">第 7 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 5: Model Components (Part 1)</span>
+                <span class="lang-cn">第 7 章：模型组件（一）</span>
+            </h2>
+            <p>
+                <span class="lang-en">Introduction to decision models, linear programming variables, and Excel Solver.</span>
+                <span class="lang-cn">决策模型介绍、线性规划变量与公式构建、以及 Excel Solver 规划求解。</span>
+            </p>
+        </a>
+
+        <!-- Week 8 -->
+        <a href="week8.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 8</span>
+                <span class="lang-cn">第 8 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 5: Model Components (Part 2)</span>
+                <span class="lang-cn">第 8 章：模型组件（二）</span>
+            </h2>
+            <p>
+                <span class="lang-en">Data mining concepts, Goal Seek optimization, and What-If Scenario analysis.</span>
+                <span class="lang-cn">数据挖掘概念、单变量目标求解 (Goal Seek) 优化、以及 What-If 情景分析。</span>
+            </p>
+        </a>
+
+        <!-- Week 9 -->
+        <a href="week9.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 9</span>
+                <span class="lang-cn">第 9 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 6: User Interface</span>
+                <span class="lang-cn">第 9 章：用户界面</span>
+            </h2>
+            <p>
+                <span class="lang-en">UI goals in decision systems, menu-driven dialogs, and Figma prototyping.</span>
+                <span class="lang-cn">决策系统中的 UI 设计目标、菜单驱动对话机制、以及 Figma 原型设计。</span>
+            </p>
+        </a>
+
+        <!-- Week 10 -->
+        <a href="week10.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 10</span>
+                <span class="lang-cn">第 10 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 7: Designing DSS (Part 1)</span>
+                <span class="lang-cn">第 10 章：设计 DSS（一）</span>
+            </h2>
+            <p>
+                <span class="lang-en">DSS planning considerations, user requirements gathering, and project scoping.</span>
+                <span class="lang-cn">DSS 系统规划考量、用户业务需求收集、以及项目范围界定。</span>
+            </p>
+        </a>
+
+        <!-- Week 11 -->
+        <a href="week11.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 11</span>
+                <span class="lang-cn">第 11 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 7: Designing DSS (Part 2)</span>
+                <span class="lang-cn">第 11 章：设计 DSS（二）</span>
+            </h2>
+            <p>
+                <span class="lang-en">DSS architectural principles, 3-tier logical layers, and system diagrams.</span>
+                <span class="lang-cn">DSS 架构设计原则、经典三层逻辑层级、以及系统部署图绘制。</span>
+            </p>
+        </a>
+
+        <!-- Week 12 -->
+        <a href="week12.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 12</span>
+                <span class="lang-cn">第 12 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 8: UML Modelling (Part 1)</span>
+                <span class="lang-cn">第 12 章：UML 建模技术（一）</span>
+            </h2>
+            <p>
+                <span class="lang-en">UML diagramming use in OO-DSS design, Use Case boundaries, and Sequence diagrams.</span>
+                <span class="lang-cn">UML 建模在面向对象 DSS 开发中的应用、用例图边界、以及顺序图消息流。</span>
+            </p>
+        </a>
+
+        <!-- Week 13 -->
+        <a href="week13.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 13</span>
+                <span class="lang-cn">第 13 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 8: UML Modelling (Part 2)</span>
+                <span class="lang-cn">第 13 章：UML 建模技术（二）</span>
+            </h2>
+            <p>
+                <span class="lang-en">UML Class Diagrams (attributes, private modifiers) and multiplicities.</span>
+                <span class="lang-cn">UML 类图结构设计（包含类属性、私有修饰符）以及多重性规则。</span>
+            </p>
+        </a>
+
+        <!-- Week 14 -->
+        <a href="week14.html" class="card">
+            <span class="badge">
+                <span class="lang-en">Week 14</span>
+                <span class="lang-cn">第 14 周</span>
+            </span>
+            <h2>
+                <span class="lang-en">Chapter 9: Implementation & Evaluation</span>
+                <span class="lang-cn">第 14 章：系统实施与评估</span>
+            </h2>
+            <p>
+                <span class="lang-en">Conversion strategies (parallel running, direct cutover) and UAT evaluation.</span>
+                <span class="lang-cn">系统切换策略（并行、直接切换）、以及用户验收测试 (UAT) 评估指标。</span>
+            </p>
+        </a>
+    </div>
+
+    <script {num}>
+        function toggleLanguage() {
+            document.body.classList.toggle('cn-active');
+        }
+    </script>
+</body>
+</html>

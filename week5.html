@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5: Knowledge Management - DBSS2643</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Macaron Palette */
+            --pastel-pink: #FFD1DC;
+            --pastel-mint: #B0EACD;
+            --pastel-blue: #AEC6CF;
+            --pastel-lavender: #C3B1E1;
+            --pastel-yellow: #FDFD96;
+            
+            --ink: #111111;
+            --ink-muted: #333333;
+            
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --radius-lg: 32px;
+            --radius-md: 16px;
+            
+            --spring: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender), var(--pastel-blue), var(--pastel-mint));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--ink);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Auras */
+        body::before {
+            content: ''; position: fixed; top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, var(--pastel-yellow) 0%, transparent 70%);
+            filter: blur(80px); opacity: 0.6; z-index: -1;
+            animation: floatAura 20s ease-in-out infinite alternate;
+        }
+        body::after {
+            content: ''; position: fixed; bottom: -10%; right: -10%; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, var(--pastel-pink) 0%, transparent 70%);
+            filter: blur(100px); opacity: 0.5; z-index: -1;
+            animation: floatAura 25s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatAura {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 100px) scale(1.2); }
+        }
+
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; color: var(--ink); }
+        
+        .header { text-align: center; padding: 40px 20px 20px; position: relative; }
+        .header h1 { font-size: 2.5rem; margin-top: 20px; font-weight: 800; color: var(--ink); }
+        .nav-link { color: var(--ink-muted); text-decoration: none; font-weight: 700; display: inline-block; transition: all 0.4s var(--spring); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; background: var(--glass-bg); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--glass-border); }
+        .nav-link:hover { color: var(--ink); transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: rgba(255,255,255,0.7); }
+        
+        .lang-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            z-index: 10;
+        }
+
+        .container { max-width: 900px; margin: 20px auto 40px; padding: 0 20px; position: relative; z-index: 1; }
+        
+        .card { 
+            background: var(--glass-bg); 
+            border-radius: var(--radius-lg); 
+            padding: 40px; 
+            box-shadow: var(--glass-shadow); 
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            transition: all 0.5s var(--spring);
+        }
+        .card h2 { border-bottom: 2px solid rgba(255,255,255,0.5); padding-bottom: 15px; margin-top: 0; font-size: 1.8rem;}
+        
+        .step { background: rgba(255,255,255,0.3); padding: 20px; margin-bottom: 15px; border-radius: var(--radius-md); border: 1px solid var(--glass-border); }
+        .step h3 { margin-top: 0; font-size: 1.3rem; }
+        
+        .btn { 
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink); 
+            padding: 12px 28px; 
+            border: 2px solid rgba(255,255,255,0.8); 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.4s var(--spring);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .btn:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(195, 177, 225, 0.4); background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender)); }
+        
+        /* Quiz */
+        .quiz-q { margin-bottom: 25px; }
+        .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        
+        /* Coding */
+        .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
+        .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        
+        /* Tips Section override */
+        .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
+        .card[style*="border-left"]::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--pastel-mint); box-shadow: 0 0 10px var(--pastel-mint); }
+        .card[style*="border-left"] h2 { border-bottom: none; color: #0f5132; }
+        
+        /* SVG Tweaks for Macaron Glassmorphism & High Contrast */
+        svg { background: transparent !important; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.05)); }
+        svg text { font-family: 'Rajdhani', sans-serif !important; font-weight: 700 !important; fill: #111111 !important; }
+        svg [fill="url(#navyGrad)"] { fill: rgba(255,255,255,0.8) !important; stroke: #111111 !important; stroke-width: 2px; }
+        svg [fill="#FFF"] { fill: rgba(255,255,255,0.8) !important; stroke: #111111 !important; stroke-width: 1px; }
+        svg [stroke="#1E3A8A"] { stroke: #111111 !important; stroke-width: 2px !important; }
+        svg [fill="#1E3A8A"] { fill: #111111 !important; }
+        svg [stroke="#FF6B6B"] { stroke: #D81B60 !important; }
+        svg [fill="#FF6B6B"] { fill: #D81B60 !important; }
+
+        /* Interactive Matching Game Styles */
+        .match-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px; }
+        .match-card { background: rgba(255, 255, 255, 0.5); border: 2px dashed rgba(255,255,255,0.8); padding: 20px; border-radius: var(--radius-md); cursor: pointer; text-align: center; font-weight: 700; font-size: 1.15rem; transition: all 0.3s var(--spring); }
+        .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
+        .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
+        .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* Translation CSS Rules */
+        .lang-cn { display: none !important; }
+        body.cn-active .lang-en { display: none !important; }
+        body.cn-active .lang-cn { display: block !important; }
+        
+        span.lang-cn { display: none !important; }
+        body.cn-active span.lang-en { display: none !important; }
+        body.cn-active span.lang-cn { display: inline !important; }
+
+        @media (max-width: 768px) {
+            .lang-btn {
+                position: static;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="nav-link">
+            <span class="lang-en">← Back to Hub</span>
+            <span class="lang-cn">← 返回主页</span>
+        </a>
+        <h1>
+            <span class="lang-en">Week 5: Knowledge Management</span>
+            <span class="lang-cn">第 5 周：知识管理</span>
+        </h1>
+        <button class="btn lang-btn" onclick="toggleLanguage()">🌐 EN / 中文</button>
+    </div>
+
+    <div class="container">
+        <!-- Notes Section -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Step-by-Step Guide</span>
+                <span class="lang-cn">分步指南</span>
+            </h2>
+            <div class="lang-en">
+                <div class='step'><h3>1. Tacit vs. Explicit Knowledge</h3><p>Knowledge in organizations is divided into two types: **Explicit knowledge** (structured, written down in manuals, easily transferable) and **Tacit knowledge** (unstructured, experience-based, difficult to formalize or communicate).</p></div><div class='step'><h3>2. Information Technology in KM</h3><p>IT supports Knowledge Management (KM) through document stores, intranet search, expert directories, and modern cognitive tools like AI chat engines (ChatGPT, Poe, and DeepSeek) which aid in capturing and summarizing tacit knowledge structures.</p></div>
+            </div>
+            <div class="lang-cn">
+                <div class='step'><h3>1. 隐性知识与显性知识</h3><p>组织中的知识分为两类：**显性知识**（结构化的、记录在手册中的、易于传递的）和**隐性知识**（非结构化的、基于个人经验的、难以形式化或沟通传授的）。</p></div><div class='step'><h3>2. 知识管理中的信息技术</h3><p>IT 通过文档存储、内部网搜索、专家目录以及现代认知工具（如 AI 聊天引擎：ChatGPT、Poe 和 DeepSeek）来支持知识管理 (KM)，这些工具有助于捕获和总结隐性知识结构。</p></div>
+            </div>
+        </div>
+
+        <!-- SVG Animation Section -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Concept Visualization</span>
+                <span class="lang-cn">概念可视化</span>
+            </h2>
+            <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
+                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='50' width='200' height='80' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='150' y='95' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Tacit (Personal/Mind)</text><rect x='350' y='50' width='200' height='80' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='450' y='95' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Explicit (Codified/Files)</text><path d='M 250 80 L 350 80' stroke='#1E3A8A' stroke-width='2' fill='none' marker-end='url(#arrow)'/><text x='300' y='70' fill='#111111' font-family='Rajdhani' font-size='12' text-anchor='middle'>Codify</text><path d='M 350 100 L 250 100' stroke='#FF6B6B' stroke-width='2' fill='none' stroke-dasharray='5,5'/><text x='300' y='120' fill='#111111' font-family='Rajdhani' font-size='12' text-anchor='middle'>Internalize</text></svg>
+            </div>
+        </div>
+
+        <!-- Explanation Block (Infographic) -->
+        
+    <div class="card">
+        <h2>
+            <span class="lang-en">Educational Infographic</span>
+            <span class="lang-cn">教学信息图</span>
+        </h2>
+        <p>
+            <span class="lang-en">Visual concept map explaining the key module topic:</span>
+            <span class="lang-cn">解释该模块核心主题的视觉概念图：</span>
+        </p>
+        <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8); margin-top: 15px;">
+            
+    <svg width="100%" height="180" viewBox="0 0 600 180">
+        <rect x="30" y="30" width="240" height="120" rx="15" fill="rgba(255, 209, 220, 0.6)" stroke="#111" stroke-width="2"/>
+        <text x="150" y="65" text-anchor="middle" font-weight="bold" font-size="15">Tacit Knowledge</text>
+        <text x="150" y="95" text-anchor="middle" font-size="13">Experiential &amp; intuitive</text>
+        <text x="150" y="120" text-anchor="middle" font-size="12" fill="#555">e.g. Master craftsman instincts</text>
+
+        <rect x="330" y="30" width="240" height="120" rx="15" fill="rgba(176, 234, 205, 0.6)" stroke="#111" stroke-width="2"/>
+        <text x="450" y="65" text-anchor="middle" font-weight="bold" font-size="15">Explicit Knowledge</text>
+        <text x="450" y="95" text-anchor="middle" font-size="13">Codified &amp; structured</text>
+        <text x="450" y="120" text-anchor="middle" font-size="12" fill="#555">e.g. Manuals &amp; databases</text>
+
+        <path d="M 270 70 L 330 70" stroke="#111" stroke-width="2"/>
+        <text x="300" y="60" text-anchor="middle" font-size="11">Codify</text>
+        <path d="M 330 110 L 270 110" stroke="#111" stroke-width="2" stroke-dasharray="4,4"/>
+        <text x="300" y="125" text-anchor="middle" font-size="11">Learn</text>
+    </svg>
+    
+        </div>
+    </div>
+    
+
+        <!-- Tips Section -->
+        <div class="card" style="border-left: 5px solid #10B981;">
+            <h2>
+                <span class="lang-en">Tips</span>
+                <span class="lang-cn">提示</span>
+            </h2>
+            <div class="lang-en">Understand the difference: Explicit is codified (like a class textbook), Tacit is personal (like a master craftsman's instinct). AI tools help turn tacit knowledge into explicit text.</div>
+            <div class="lang-cn">理解其区别：显性是法定的/公式化的（如教科书），隐性是个人经验的（如大师级工匠的直觉）。AI 工具有助于将隐性知识转化为显性文本。</div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Knowledge Check</span>
+                <span class="lang-cn">知识自测</span>
+            </h2>
+            <div id="quiz-container">
+                <div class='quiz-q'>
+            <p><b>1. 
+                <span class="lang-en">Which knowledge type is documented in files, manuals, and databases?</span>
+                <span class="lang-cn">哪种知识类型记录在文件、手册和数据库中？</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q0' value='0'>
+                <span class="lang-en">Tacit</span>
+                <span class="lang-cn">隐性知识</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='1'>
+                <span class="lang-en">Explicit</span>
+                <span class="lang-cn">显性知识</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='2'>
+                <span class="lang-en">Random</span>
+                <span class="lang-cn">随机知识</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>2. 
+                <span class="lang-en">Tacit knowledge is best characterized as:</span>
+                <span class="lang-cn">隐性知识最典型的特征是：</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q1' value='0'>
+                <span class="lang-en">Easy to transfer via text files</span>
+                <span class="lang-cn">易于通过文本文件传输</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q1' value='1'>
+                <span class="lang-en">Personal, experiential, and hard to codify</span>
+                <span class="lang-cn">个人的、经验的、难以编码的</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q1' value='2'>
+                <span class="lang-en">Stored only in database columns</span>
+                <span class="lang-cn">仅存储在数据库列中</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>3. 
+                <span class="lang-en">How does IT support Knowledge Management?</span>
+                <span class="lang-cn">信息技术 (IT) 如何支持知识管理？</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q2' value='0'>
+                <span class="lang-en">By deleting old data</span>
+                <span class="lang-cn">通过删除旧数据</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='1'>
+                <span class="lang-en">By providing repositories, search systems, and expert directories</span>
+                <span class="lang-cn">通过提供存储库、搜索系统 and 专家指南目录</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='2'>
+                <span class="lang-en">By compiling Java source files</span>
+                <span class="lang-cn">通过编译 Java 源文件</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>4. 
+                <span class="lang-en">Which of these is an example of Explicit knowledge?</span>
+                <span class="lang-cn">以下哪项是显性知识的例子？</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q3' value='0'>
+                <span class="lang-en">A programmer's logic intuition</span>
+                <span class="lang-cn">程序员的逻辑直觉</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q3' value='1'>
+                <span class="lang-en">A printed user instruction manual</span>
+                <span class="lang-cn">印制好的用户操作手册</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q3' value='2'>
+                <span class="lang-en">An employee's gut feeling about a client</span>
+                <span class="lang-cn">员工对客户的直觉感受</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>5. 
+                <span class="lang-en">AI tools like ChatGPT help KM primarily by:</span>
+                <span class="lang-cn">像 ChatGPT 这样的 AI 工具主要通过什么方式帮助知识管理？</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q4' value='0'>
+                <span class="lang-en">Slowing down search queries</span>
+                <span class="lang-cn">减慢搜索查询速度</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q4' value='1'>
+                <span class="lang-en">Structuring and summarizing text to capture tacit ideas</span>
+                <span class="lang-cn">结构化并总结文本以捕获隐性的想法</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q4' value='2'>
+                <span class="lang-en">Replacing human database servers</span>
+                <span class="lang-cn">取代人类数据库服务器</span>
+            </label>
+        </div>
+                <button class="btn" onclick="checkQuiz()">
+                    <span class="lang-en">Submit Answers</span>
+                    <span class="lang-cn">提交答案</span>
+                </button>
+                <div id="quiz-result"></div>
+            </div>
+        </div>
+
+        <!-- Fill in the Blanks -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Fill in the Blanks</span>
+                <span class="lang-cn">填空练习</span>
+            </h2>
+            <p>
+            <span class="lang-en">Knowledge that is experiential and hard to write down is called <input type='text' id='blank0' class='blank-input' style='width:100px;'> knowledge.</span>
+            <span class="lang-cn">基于经验且难以用文字记录的知识被称为 <input type='text' id='blank_cn0' class='blank-input' style='width:100px;'> 知识。</span>
+        </p><p>
+            <span class="lang-en">Knowledge that is structured, codified, and stored in databases is <input type='text' id='blank1' class='blank-input' style='width:100px;'> knowledge.</span>
+            <span class="lang-cn">结构化、编码并存储在数据库中的知识是 <input type='text' id='blank_cn1' class='blank-input' style='width:100px;'> 知识。</span>
+        </p>
+            <button class="btn" onclick="checkBlanks()">
+                <span class="lang-en">Check Answers</span>
+                <span class="lang-cn">检查答案</span>
+            </button>
+            <div id="blanks-result"></div>
+        </div>
+
+        <!-- Coding Activities -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Practical Exercise</span>
+                <span class="lang-cn">实践练习</span>
+            </h2>
+            <div class='step'>
+            <p><b>
+                <span class="lang-en">Task 1: Excel formula to concatenate first name in A2 and last name in B2 with a space separator.</span>
+                <span class="lang-cn">任务 1: Excel 公式：连接 A2 中的名和 B2 中的姓，并用空格分隔。</span>
+            </b></p>
+            <button class="btn" onclick="showCodeAns('w5c0')">
+                <span class="lang-en">Show Answer</span>
+                <span class="lang-cn">显示答案</span>
+            </button>
+            <div class='code-editor' id='code-ans-w5c0' style='display:none;'>=A2 & " " & B2</div>
+        </div><div class='step'>
+            <p><b>
+                <span class="lang-en">Task 2: SQL query to retrieve all articles from 'Articles' where Category is 'BI'.</span>
+                <span class="lang-cn">任务 2: SQL 查询：从 'Articles' 中检索 Category 为 'BI' 的所有文章。</span>
+            </b></p>
+            <button class="btn" onclick="showCodeAns('w5c1')">
+                <span class="lang-en">Show Answer</span>
+                <span class="lang-cn">显示答案</span>
+            </button>
+            <div class='code-editor' id='code-ans-w5c1' style='display:none;'>SELECT * FROM Articles WHERE Category = 'BI';</div>
+        </div><div class='step'>
+            <p><b>
+                <span class="lang-en">Task 3: What prefix is commonly used for chat endpoint calls in AI tool integration?</span>
+                <span class="lang-cn">任务 3: 在 AI 工具集成中，聊天端点调用通常使用什么前缀？</span>
+            </b></p>
+            <button class="btn" onclick="showCodeAns('w5c2')">
+                <span class="lang-en">Show Answer</span>
+                <span class="lang-cn">显示答案</span>
+            </button>
+            <div class='code-editor' id='code-ans-w5c2' style='display:none;'>chat</div>
+        </div>
+        </div>
+
+        <!-- Matching Game -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Matching Game</span>
+                <span class="lang-cn">配对游戏</span>
+            </h2>
+            <p>
+                <span class="lang-en">Match the term on the left with its definition on the right.</span>
+                <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
+            </p>
+            <div class="match-grid">
+                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Tacit Knowledge</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
+            <span class="lang-en">Rule-based system representing expertise</span>
+            <span class="lang-cn">代表专业知识的基于规则的系统</span>
+        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Explicit Knowledge</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
+            <span class="lang-en">Automates cognitive retrieval tasks</span>
+            <span class="lang-cn">自动执行认知检索任务</span>
+        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">AI Agent</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
+            <span class="lang-en">Codified & stored in documents</span>
+            <span class="lang-cn">编码并存储在文档中</span>
+        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">expert system</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
+            <span class="lang-en">Experience-based & hard to document</span>
+            <span class="lang-cn">基于经验且难以文档化</span>
+        </div>
+            </div>
+            <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('cn-active');
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            
+        const q0 = document.querySelector('input[name="q0"]:checked');
+        if (q0 && parseInt(q0.value) === 1) score++;
+        
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        if (q1 && parseInt(q1.value) === 1) score++;
+        
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        if (q2 && parseInt(q2.value) === 1) score++;
+        
+        const q3 = document.querySelector('input[name="q3"]:checked');
+        if (q3 && parseInt(q3.value) === 1) score++;
+        
+        const q4 = document.querySelector('input[name="q4"]:checked');
+        if (q4 && parseInt(q4.value) === 1) score++;
+        
+            document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
+                <span class="lang-en">You scored: ${score} / 5</span>
+                <span class="lang-cn">得分：${score} / 5</span>
+            </span>`;
+        }
+
+        function checkBlanks() {
+            
+        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
+        const answers0 = ['tacit', '隐性', '隐性知识'];
+        if(answers0.includes(b0)) {
+            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
+            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
+        } else {
+            document.getElementById('blank0').style.borderBottomColor = '#C70039';
+            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
+        }
+        
+        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
+        const answers1 = ['explicit', '显性', '显性知识'];
+        if(answers1.includes(b1)) {
+            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
+            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
+        } else {
+            document.getElementById('blank1').style.borderBottomColor = '#C70039';
+            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
+        }
+        
+        }
+
+        function showCodeAns(id) {
+            const el = document.getElementById('code-ans-' + id);
+            el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Match Game Logic
+        let firstCard = null;
+        function selectMatchCard(card) {
+            if (card.classList.contains('matched') || card.classList.contains('selected')) return;
+
+            card.classList.add('selected');
+
+            if (!firstCard) {
+                firstCard = card;
+            } else {
+                const id1 = firstCard.getAttribute('data-id') || firstCard.getAttribute('data-target');
+                const id2 = card.getAttribute('data-id') || card.getAttribute('data-target');
+                const type1 = firstCard.hasAttribute('data-id') ? 'term' : 'def';
+                const type2 = card.hasAttribute('data-id') ? 'term' : 'def';
+
+                if (id1 === id2 && type1 !== type2) {
+                    firstCard.classList.remove('selected');
+                    card.classList.remove('selected');
+                    firstCard.classList.add('matched');
+                    card.classList.add('matched');
+                    firstCard = null;
+                    
+                    checkMatchGameFinish();
+                } else {
+                    const temp = firstCard;
+                    setTimeout(() => {
+                        temp.classList.remove('selected');
+                        card.classList.remove('selected');
+                    }, 500);
+                    firstCard = null;
+                }
+            }
+        }
+
+        function checkMatchGameFinish() {
+            const matchedCards = document.querySelectorAll('.match-card.matched');
+            if (matchedCards.length === 8) {
+                document.getElementById('match-game-res').innerHTML = "Congratulations! All terms matched successfully! 🎉";
+            }
+        }
+    </script>
+</body>
+</html>

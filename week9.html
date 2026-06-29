@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9: User Interface - DBSS2643</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Macaron Palette */
+            --pastel-pink: #FFD1DC;
+            --pastel-mint: #B0EACD;
+            --pastel-blue: #AEC6CF;
+            --pastel-lavender: #C3B1E1;
+            --pastel-yellow: #FDFD96;
+            
+            --ink: #111111;
+            --ink-muted: #333333;
+            
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --radius-lg: 32px;
+            --radius-md: 16px;
+            
+            --spring: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender), var(--pastel-blue), var(--pastel-mint));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--ink);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Auras */
+        body::before {
+            content: ''; position: fixed; top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, var(--pastel-yellow) 0%, transparent 70%);
+            filter: blur(80px); opacity: 0.6; z-index: -1;
+            animation: floatAura 20s ease-in-out infinite alternate;
+        }
+        body::after {
+            content: ''; position: fixed; bottom: -10%; right: -10%; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, var(--pastel-pink) 0%, transparent 70%);
+            filter: blur(100px); opacity: 0.5; z-index: -1;
+            animation: floatAura 25s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatAura {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 100px) scale(1.2); }
+        }
+
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; color: var(--ink); }
+        
+        .header { text-align: center; padding: 40px 20px 20px; position: relative; }
+        .header h1 { font-size: 2.5rem; margin-top: 20px; font-weight: 800; color: var(--ink); }
+        .nav-link { color: var(--ink-muted); text-decoration: none; font-weight: 700; display: inline-block; transition: all 0.4s var(--spring); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; background: var(--glass-bg); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--glass-border); }
+        .nav-link:hover { color: var(--ink); transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: rgba(255,255,255,0.7); }
+        
+        .lang-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            z-index: 10;
+        }
+
+        .container { max-width: 900px; margin: 20px auto 40px; padding: 0 20px; position: relative; z-index: 1; }
+        
+        .card { 
+            background: var(--glass-bg); 
+            border-radius: var(--radius-lg); 
+            padding: 40px; 
+            box-shadow: var(--glass-shadow); 
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            transition: all 0.5s var(--spring);
+        }
+        .card h2 { border-bottom: 2px solid rgba(255,255,255,0.5); padding-bottom: 15px; margin-top: 0; font-size: 1.8rem;}
+        
+        .step { background: rgba(255,255,255,0.3); padding: 20px; margin-bottom: 15px; border-radius: var(--radius-md); border: 1px solid var(--glass-border); }
+        .step h3 { margin-top: 0; font-size: 1.3rem; }
+        
+        .btn { 
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink); 
+            padding: 12px 28px; 
+            border: 2px solid rgba(255,255,255,0.8); 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.4s var(--spring);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .btn:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(195, 177, 225, 0.4); background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender)); }
+        
+        /* Quiz */
+        .quiz-q { margin-bottom: 25px; }
+        .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        
+        /* Coding */
+        .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
+        .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        
+        /* Tips Section override */
+        .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
+        .card[style*="border-left"]::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--pastel-mint); box-shadow: 0 0 10px var(--pastel-mint); }
+        .card[style*="border-left"] h2 { border-bottom: none; color: #0f5132; }
+        
+        /* SVG Tweaks for Macaron Glassmorphism & High Contrast */
+        svg { background: transparent !important; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.05)); }
+        svg text { font-family: 'Rajdhani', sans-serif !important; font-weight: 700 !important; fill: #111111 !important; }
+        svg [fill="url(#navyGrad)"] { fill: rgba(255,255,255,0.8) !important; stroke: #111111 !important; stroke-width: 2px; }
+        svg [fill="#FFF"] { fill: rgba(255,255,255,0.8) !important; stroke: #111111 !important; stroke-width: 1px; }
+        svg [stroke="#1E3A8A"] { stroke: #111111 !important; stroke-width: 2px !important; }
+        svg [fill="#1E3A8A"] { fill: #111111 !important; }
+        svg [stroke="#FF6B6B"] { stroke: #D81B60 !important; }
+        svg [fill="#FF6B6B"] { fill: #D81B60 !important; }
+
+        /* Interactive Matching Game Styles */
+        .match-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px; }
+        .match-card { background: rgba(255, 255, 255, 0.5); border: 2px dashed rgba(255,255,255,0.8); padding: 20px; border-radius: var(--radius-md); cursor: pointer; text-align: center; font-weight: 700; font-size: 1.15rem; transition: all 0.3s var(--spring); }
+        .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
+        .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
+        .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* Translation CSS Rules */
+        .lang-cn { display: none !important; }
+        body.cn-active .lang-en { display: none !important; }
+        body.cn-active .lang-cn { display: block !important; }
+        
+        span.lang-cn { display: none !important; }
+        body.cn-active span.lang-en { display: none !important; }
+        body.cn-active span.lang-cn { display: inline !important; }
+
+        @media (max-width: 768px) {
+            .lang-btn {
+                position: static;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="nav-link">
+            <span class="lang-en">← Back to Hub</span>
+            <span class="lang-cn">← 返回主页</span>
+        </a>
+        <h1>
+            <span class="lang-en">Week 9: User Interface</span>
+            <span class="lang-cn">第 9 周：用户界面</span>
+        </h1>
+        <button class="btn lang-btn" onclick="toggleLanguage()">🌐 EN / 中文</button>
+    </div>
+
+    <div class="container">
+        <!-- Notes Section -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Step-by-Step Guide</span>
+                <span class="lang-cn">分步指南</span>
+            </h2>
+            <div class="lang-en">
+                <div class='step'><h3>1. UI Goals in Decision Support</h3><p>The user interface is the window through which the user interacts with the DBMS and MBMS. Key design goals include: ease of use, consistency, flexibility, control, and reducing the cognitive load on the decision maker.</p></div><div class='step'><h3>2. Dialog Styles and Mechanisms</h3><p>Dialog styles determine how users enter commands and receive data: **Command-line** (text syntax), **Menu-driven** (selection list), or **Graphical User Interface (GUI)** (visual icons and windows). Prototyping tools like Figma/Draw.io help design mockups.</p></div>
+            </div>
+            <div class="lang-cn">
+                <div class='step'><h3>1. 决策支持中的用户界面目标</h3><p>用户界面是用户与 DBMS 和 MBMS 交互的窗口。关键设计目标包括：易用性、一致性、灵活性、控制性以及减轻决策者的认知负荷。</p></div><div class='step'><h3>2. 对话样式与机制</h3><p>对话样式决定了用户如何输入命令和接收数据：**命令行**（文本语法）、**菜单驱动**（选项列表）或**图形用户界面 (GUI)**（可视化图标和窗口）。像 Figma/Draw.io 这样的原型设计工具有助于设计模型。</p></div>
+            </div>
+        </div>
+
+        <!-- SVG Animation Section -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Concept Visualization</span>
+                <span class="lang-cn">概念可视化</span>
+            </h2>
+            <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
+                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='50' width='500' height='100' rx='10' fill='rgba(255,255,255,0.4)' stroke='#1E3A8A' stroke-width='2'/><rect x='70' y='70' width='120' height='60' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='130' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Menu List</text><rect x='240' y='70' width='120' height='60' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='300' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Input Forms</text><rect x='410' y='70' width='120' height='60' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='470' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Visual Charts</text></svg>
+            </div>
+        </div>
+
+        <!-- Explanation Block (Infographic) -->
+        
+    <div class="card">
+        <h2>
+            <span class="lang-en">Educational Infographic</span>
+            <span class="lang-cn">教学信息图</span>
+        </h2>
+        <p>
+            <span class="lang-en">Visual concept map explaining the key module topic:</span>
+            <span class="lang-cn">解释该模块核心主题的视觉概念图：</span>
+        </p>
+        <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8); margin-top: 15px;">
+            
+    <svg width="100%" height="180" viewBox="0 0 600 180">
+        <rect x="20" y="40" width="160" height="100" rx="10" fill="rgba(255, 209, 220, 0.6)" stroke="#111" stroke-width="2"/>
+        <text x="100" y="80" text-anchor="middle" font-weight="bold" font-size="15">Command-Line (CLI)</text>
+        <text x="100" y="110" text-anchor="middle" font-size="12">Text Commands &amp; Syntax</text>
+
+        <rect x="210" y="40" width="180" height="100" rx="10" fill="rgba(195, 177, 225, 0.6)" stroke="#111" stroke-width="2"/>
+        <text x="300" y="80" text-anchor="middle" font-weight="bold" font-size="15">Menu-Driven</text>
+        <text x="300" y="110" text-anchor="middle" font-size="12">Select from Options lists</text>
+
+        <rect x="420" y="40" width="160" height="100" rx="10" fill="rgba(176, 234, 205, 0.6)" stroke="#111" stroke-width="2"/>
+        <text x="500" y="80" text-anchor="middle" font-weight="bold" font-size="15">GUI</text>
+        <text x="500" y="110" text-anchor="middle" font-size="12">Windows, Icons, Charts</text>
+    </svg>
+    
+        </div>
+    </div>
+    
+
+        <!-- Tips Section -->
+        <div class="card" style="border-left: 5px solid #10B981;">
+            <h2>
+                <span class="lang-en">Tips</span>
+                <span class="lang-cn">提示</span>
+            </h2>
+            <div class="lang-en">During UI evaluation, prioritize layout hierarchy and visual contrast. In Web/DSS displays, ensure primary information uses high-contrast text to keep it legible.</div>
+            <div class="lang-cn">在进行 UI 评估时，优先考虑布局层次和视觉对比度。在 Web/DSS 页面展示中，确保主要信息使用高对比度文本以保持清晰易读。</div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Knowledge Check</span>
+                <span class="lang-cn">知识自测</span>
+            </h2>
+            <div id="quiz-container">
+                <div class='quiz-q'>
+            <p><b>1. 
+                <span class="lang-en">Which dialog style relies on selecting choices from a predefined list?</span>
+                <span class="lang-cn">哪种对话样式依赖于从预定义列表中选择选项？</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q0' value='0'>
+                <span class="lang-en">Command Line</span>
+                <span class="lang-cn">命令行</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='1'>
+                <span class="lang-en">Menu-driven</span>
+                <span class="lang-cn">菜单驱动型</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='2'>
+                <span class="lang-en">Natural Language</span>
+                <span class="lang-cn">自然语言型</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>2. 
+                <span class="lang-en">What is the primary role of the User Interface component in a DSS?</span>
+                <span class="lang-cn">在 DSS 中，用户界面组件的首要作用是：</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q1' value='0'>
+                <span class="lang-en">To compile code</span>
+                <span class="lang-cn">编译代码</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q1' value='1'>
+                <span class="lang-en">To connect the user to data and models interactively</span>
+                <span class="lang-cn">交互式连接用户与数据和模型</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q1' value='2'>
+                <span class="lang-en">To store raw data</span>
+                <span class="lang-cn">存储原始数据</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>3. 
+                <span class="lang-en">Which tool is commonly used to build UI layout prototypes?</span>
+                <span class="lang-cn">哪种工具常用于构建用户界面布局原型？</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q2' value='0'>
+                <span class="lang-en">Excel Solver</span>
+                <span class="lang-cn">Excel Solver</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='1'>
+                <span class="lang-en">Figma</span>
+                <span class="lang-cn">Figma</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='2'>
+                <span class="lang-en">JVM</span>
+                <span class="lang-cn">JVM</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>4. 
+                <span class="lang-en">Reducing the 'cognitive load' on a decision maker means:</span>
+                <span class="lang-cn">减轻决策者的“认知负荷”意味着：</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q3' value='0'>
+                <span class="lang-en">Making the UI more complex</span>
+                <span class="lang-cn">让 UI 变得更加复杂</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q3' value='1'>
+                <span class="lang-en">Presenting information clearly to avoid mental exhaustion</span>
+                <span class="lang-cn">清晰地呈现信息以避免精神疲劳</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q3' value='2'>
+                <span class="lang-en">Replacing managers with computers</span>
+                <span class="lang-cn">用计算机取代管理者</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>5. 
+                <span class="lang-en">What is a major benefit of graphical icons over text commands in UI design?</span>
+                <span class="lang-cn">在 UI 设计中，图形化图标相比文本命令的主要好处是：</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q4' value='0'>
+                <span class="lang-en">Icons use more system memory</span>
+                <span class="lang-cn">图标使用更多的系统内存</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q4' value='1'>
+                <span class="lang-en">Icons are faster to recognize and require no syntax training</span>
+                <span class="lang-cn">图标更易于识别且无需语法培训</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q4' value='2'>
+                <span class="lang-en">Icons prevent hardware failures</span>
+                <span class="lang-cn">图标可以防止硬件故障</span>
+            </label>
+        </div>
+                <button class="btn" onclick="checkQuiz()">
+                    <span class="lang-en">Submit Answers</span>
+                    <span class="lang-cn">提交答案</span>
+                </button>
+                <div id="quiz-result"></div>
+            </div>
+        </div>
+
+        <!-- Fill in the Blanks -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Fill in the Blanks</span>
+                <span class="lang-cn">填空练习</span>
+            </h2>
+            <p>
+            <span class="lang-en">The dialogue style that uses predefined lists of options is called a <input type='text' id='blank0' class='blank-input' style='width:100px;'>-driven interface.</span>
+            <span class="lang-cn">使用预定义选项列表的对话样式被称为<input type='text' id='blank_cn0' class='blank-input' style='width:100px;'>驱动界面。</span>
+        </p><p>
+            <span class="lang-en">In UI design, Figma and Draw.io are commonly used for <input type='text' id='blank1' class='blank-input' style='width:100px;'> layouts.</span>
+            <span class="lang-cn">在 UI 设计中，Figma 和 Draw.io 通常用于<input type='text' id='blank_cn1' class='blank-input' style='width:100px;'>布局。</span>
+        </p>
+            <button class="btn" onclick="checkBlanks()">
+                <span class="lang-en">Check Answers</span>
+                <span class="lang-cn">检查答案</span>
+            </button>
+            <div id="blanks-result"></div>
+        </div>
+
+        <!-- Coding Activities -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Practical Exercise</span>
+                <span class="lang-cn">实践练习</span>
+            </h2>
+            <div class='step'>
+            <p><b>
+                <span class="lang-en">Task 1: Write HTML input tag for a standard text field named 'dssName'.</span>
+                <span class="lang-cn">任务 1: 编写一个名为 'dssName' 的标准文本输入字段的 HTML input 标签。</span>
+            </b></p>
+            <button class="btn" onclick="showCodeAns('w9c0')">
+                <span class="lang-en">Show Answer</span>
+                <span class="lang-cn">显示答案</span>
+            </button>
+            <div class='code-editor' id='code-ans-w9c0' style='display:none;'><input type="text" name="dssName"></div>
+        </div><div class='step'>
+            <p><b>
+                <span class="lang-en">Task 2: CSS rule syntax to set body text color to deep black (#111111).</span>
+                <span class="lang-cn">任务 2: CSS 规则语法：将 body 文本颜色设置为深黑色 (#111111)。</span>
+            </b></p>
+            <button class="btn" onclick="showCodeAns('w9c1')">
+                <span class="lang-en">Show Answer</span>
+                <span class="lang-cn">显示答案</span>
+            </button>
+            <div class='code-editor' id='code-ans-w9c1' style='display:none;'>body { color: #111111; }</div>
+        </div><div class='step'>
+            <p><b>
+                <span class="lang-en">Task 3: JavaScript statement to display an alert dialog containing 'Success'.</span>
+                <span class="lang-cn">任务 3: JavaScript 语句：显示包含 'Success' 内容的警报对话框。</span>
+            </b></p>
+            <button class="btn" onclick="showCodeAns('w9c2')">
+                <span class="lang-en">Show Answer</span>
+                <span class="lang-cn">显示答案</span>
+            </button>
+            <div class='code-editor' id='code-ans-w9c2' style='display:none;'>alert("Success");</div>
+        </div>
+        </div>
+
+        <!-- Matching Game -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Matching Game</span>
+                <span class="lang-cn">配对游戏</span>
+            </h2>
+            <p>
+                <span class="lang-en">Match the term on the left with its definition on the right.</span>
+                <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
+            </p>
+            <div class="match-grid">
+                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Command-line</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
+            <span class="lang-en">Requires selecting items from lists</span>
+            <span class="lang-cn">需要从列表中选择项目</span>
+        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Menu-driven</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
+            <span class="lang-en">Collaborative prototyping layout tool</span>
+            <span class="lang-cn">协作原型布局工具</span>
+        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">GUI</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
+            <span class="lang-en">Uses text commands & strict syntax</span>
+            <span class="lang-cn">使用文本命令和严格语法</span>
+        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">Figma</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
+            <span class="lang-en">Graphical interface with windows & icons</span>
+            <span class="lang-cn">带有窗口和图标的图形界面</span>
+        </div>
+            </div>
+            <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('cn-active');
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            
+        const q0 = document.querySelector('input[name="q0"]:checked');
+        if (q0 && parseInt(q0.value) === 1) score++;
+        
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        if (q1 && parseInt(q1.value) === 1) score++;
+        
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        if (q2 && parseInt(q2.value) === 1) score++;
+        
+        const q3 = document.querySelector('input[name="q3"]:checked');
+        if (q3 && parseInt(q3.value) === 1) score++;
+        
+        const q4 = document.querySelector('input[name="q4"]:checked');
+        if (q4 && parseInt(q4.value) === 1) score++;
+        
+            document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
+                <span class="lang-en">You scored: ${score} / 5</span>
+                <span class="lang-cn">得分：${score} / 5</span>
+            </span>`;
+        }
+
+        function checkBlanks() {
+            
+        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
+        const answers0 = ['menu', '菜单', '菜单驱动', '菜单驱动型'];
+        if(answers0.includes(b0)) {
+            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
+            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
+        } else {
+            document.getElementById('blank0').style.borderBottomColor = '#C70039';
+            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
+        }
+        
+        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
+        const answers1 = ['prototyping', '原型', '原型设计', '界面原型'];
+        if(answers1.includes(b1)) {
+            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
+            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
+        } else {
+            document.getElementById('blank1').style.borderBottomColor = '#C70039';
+            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
+        }
+        
+        }
+
+        function showCodeAns(id) {
+            const el = document.getElementById('code-ans-' + id);
+            el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Match Game Logic
+        let firstCard = null;
+        function selectMatchCard(card) {
+            if (card.classList.contains('matched') || card.classList.contains('selected')) return;
+
+            card.classList.add('selected');
+
+            if (!firstCard) {
+                firstCard = card;
+            } else {
+                const id1 = firstCard.getAttribute('data-id') || firstCard.getAttribute('data-target');
+                const id2 = card.getAttribute('data-id') || card.getAttribute('data-target');
+                const type1 = firstCard.hasAttribute('data-id') ? 'term' : 'def';
+                const type2 = card.hasAttribute('data-id') ? 'term' : 'def';
+
+                if (id1 === id2 && type1 !== type2) {
+                    firstCard.classList.remove('selected');
+                    card.classList.remove('selected');
+                    firstCard.classList.add('matched');
+                    card.classList.add('matched');
+                    firstCard = null;
+                    
+                    checkMatchGameFinish();
+                } else {
+                    const temp = firstCard;
+                    setTimeout(() => {
+                        temp.classList.remove('selected');
+                        card.classList.remove('selected');
+                    }, 500);
+                    firstCard = null;
+                }
+            }
+        }
+
+        function checkMatchGameFinish() {
+            const matchedCards = document.querySelectorAll('.match-card.matched');
+            if (matchedCards.length === 8) {
+                document.getElementById('match-game-res').innerHTML = "Congratulations! All terms matched successfully! 🎉";
+            }
+        }
+    </script>
+</body>
+</html>

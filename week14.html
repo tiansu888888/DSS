@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 14: Implementation & Evaluation - DBSS2643</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Macaron Palette */
+            --pastel-pink: #FFD1DC;
+            --pastel-mint: #B0EACD;
+            --pastel-blue: #AEC6CF;
+            --pastel-lavender: #C3B1E1;
+            --pastel-yellow: #FDFD96;
+            
+            --ink: #111111;
+            --ink-muted: #333333;
+            
+            --glass-bg: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --radius-lg: 32px;
+            --radius-md: 16px;
+            
+            --spring: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender), var(--pastel-blue), var(--pastel-mint));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--ink);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Auras */
+        body::before {
+            content: ''; position: fixed; top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, var(--pastel-yellow) 0%, transparent 70%);
+            filter: blur(80px); opacity: 0.6; z-index: -1;
+            animation: floatAura 20s ease-in-out infinite alternate;
+        }
+        body::after {
+            content: ''; position: fixed; bottom: -10%; right: -10%; width: 60vw; height: 60vw;
+            background: radial-gradient(circle, var(--pastel-pink) 0%, transparent 70%);
+            filter: blur(100px); opacity: 0.5; z-index: -1;
+            animation: floatAura 25s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes floatAura {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 100px) scale(1.2); }
+        }
+
+        h1, h2, h3 { font-family: 'Orbitron', sans-serif; color: var(--ink); }
+        
+        .header { text-align: center; padding: 40px 20px 20px; position: relative; }
+        .header h1 { font-size: 2.5rem; margin-top: 20px; font-weight: 800; color: var(--ink); }
+        .nav-link { color: var(--ink-muted); text-decoration: none; font-weight: 700; display: inline-block; transition: all 0.4s var(--spring); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; background: var(--glass-bg); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--glass-border); }
+        .nav-link:hover { color: var(--ink); transform: translateY(-3px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: rgba(255,255,255,0.7); }
+        
+        .lang-btn {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            z-index: 10;
+        }
+
+        .container { max-width: 900px; margin: 20px auto 40px; padding: 0 20px; position: relative; z-index: 1; }
+        
+        .card { 
+            background: var(--glass-bg); 
+            border-radius: var(--radius-lg); 
+            padding: 40px; 
+            box-shadow: var(--glass-shadow); 
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            transition: all 0.5s var(--spring);
+        }
+        .card h2 { border-bottom: 2px solid rgba(255,255,255,0.5); padding-bottom: 15px; margin-top: 0; font-size: 1.8rem;}
+        
+        .step { background: rgba(255,255,255,0.3); padding: 20px; margin-bottom: 15px; border-radius: var(--radius-md); border: 1px solid var(--glass-border); }
+        .step h3 { margin-top: 0; font-size: 1.3rem; }
+        
+        .btn { 
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink); 
+            padding: 12px 28px; 
+            border: 2px solid rgba(255,255,255,0.8); 
+            border-radius: 12px; 
+            cursor: pointer; 
+            font-weight: 700; 
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.4s var(--spring);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .btn:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(195, 177, 225, 0.4); background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender)); }
+        
+        /* Quiz */
+        .quiz-q { margin-bottom: 25px; }
+        .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        
+        /* Coding */
+        .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
+        .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        
+        /* Tips Section override */
+        .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
+        .card[style*="border-left"]::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--pastel-mint); box-shadow: 0 0 10px var(--pastel-mint); }
+        .card[style*="border-left"] h2 { border-bottom: none; color: #0f5132; }
+        
+        /* SVG Tweaks for Macaron Glassmorphism & High Contrast */
+        svg { background: transparent !important; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.05)); }
+        svg text { font-family: 'Rajdhani', sans-serif !important; font-weight: 700 !important; fill: #111111 !important; }
+        svg [fill="url(#navyGrad)"] { fill: rgba(255,255,255,0.8) !important; stroke: #111111 !important; stroke-width: 2px; }
+        svg [fill="#FFF"] { fill: rgba(255,255,255,0.8) !important; stroke: #111111 !important; stroke-width: 1px; }
+        svg [stroke="#1E3A8A"] { stroke: #111111 !important; stroke-width: 2px !important; }
+        svg [fill="#1E3A8A"] { fill: #111111 !important; }
+        svg [stroke="#FF6B6B"] { stroke: #D81B60 !important; }
+        svg [fill="#FF6B6B"] { fill: #D81B60 !important; }
+
+        /* Interactive Matching Game Styles */
+        .match-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px; }
+        .match-card { background: rgba(255, 255, 255, 0.5); border: 2px dashed rgba(255,255,255,0.8); padding: 20px; border-radius: var(--radius-md); cursor: pointer; text-align: center; font-weight: 700; font-size: 1.15rem; transition: all 0.3s var(--spring); }
+        .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
+        .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
+        .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* Translation CSS Rules */
+        .lang-cn { display: none !important; }
+        body.cn-active .lang-en { display: none !important; }
+        body.cn-active .lang-cn { display: block !important; }
+        
+        span.lang-cn { display: none !important; }
+        body.cn-active span.lang-en { display: none !important; }
+        body.cn-active span.lang-cn { display: inline !important; }
+
+        @media (max-width: 768px) {
+            .lang-btn {
+                position: static;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="nav-link">
+            <span class="lang-en">← Back to Hub</span>
+            <span class="lang-cn">← 返回主页</span>
+        </a>
+        <h1>
+            <span class="lang-en">Week 14: Implementation & Evaluation</span>
+            <span class="lang-cn">第 14 周：系统实施与评估</span>
+        </h1>
+        <button class="btn lang-btn" onclick="toggleLanguage()">🌐 EN / 中文</button>
+    </div>
+
+    <div class="container">
+        <!-- Notes Section -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Step-by-Step Guide</span>
+                <span class="lang-cn">分步指南</span>
+            </h2>
+            <div class="lang-en">
+                <div class='step'><h3>1. DSS Implementation Strategies</h3><p>System implementation moves the DSS from development to production. Conversion strategies include: **Direct Cutover** (instant switch), **Parallel Running** (running both concurrently), **Pilot Study** (test group deployment), and **Phased Rollout** (step-by-step).</p></div><div class='step'><h3>2. Evaluation Frameworks</h3><p>DSS evaluation measures system performance and business value. Key metrics include: User Acceptance Testing (UAT), user satisfaction, system utilization rates, decision accuracy, and Return on Investment (ROI).</p></div>
+            </div>
+            <div class="lang-cn">
+                <div class='step'><h3>1. DSS 实施策略</h3><p>系统实施将 DSS 从开发阶段转移到实际生产中。转换策略包括：**直接切口**（立即切换）、**并行运行**（两者同时运行）、**试点研究**（测试组部署）和**分阶段推出**（逐步推进）。</p></div><div class='step'><h3>2. 系统评估框架</h3><p>DSS 评估用于衡量系统性能和业务价值。关键指标包括：用户验收测试 (UAT)、用户满意度、系统利用率、决策准确率和投资回报率 (ROI)。</p></div>
+            </div>
+        </div>
+
+        <!-- SVG Animation Section -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Concept Visualization</span>
+                <span class="lang-cn">概念可视化</span>
+            </h2>
+            <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
+                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='60' width='120' height='80' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='110' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Development</text><rect x='240' y='60' width='120' height='80' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='300' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Implementation</text><rect x='430' y='60' width='120' height='80' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='490' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Evaluation</text><path d='M 170 100 L 240 100' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 360 100 L 430 100' stroke='#FF6B6B' stroke-width='2' fill='none'/></svg>
+            </div>
+        </div>
+
+        <!-- Explanation Block (Infographic) -->
+        
+    <div class="card">
+        <h2>
+            <span class="lang-en">Educational Infographic</span>
+            <span class="lang-cn">教学信息图</span>
+        </h2>
+        <p>
+            <span class="lang-en">Visual concept map explaining the key module topic:</span>
+            <span class="lang-cn">解释该模块核心主题的视觉概念图：</span>
+        </p>
+        <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8); margin-top: 15px;">
+            
+    <svg width="100%" height="180" viewBox="0 0 600 180">
+        <rect x="30" y="30" width="160" height="120" rx="10" fill="rgba(255, 209, 220, 0.6)" stroke="#111" stroke-width="2"/>
+        <text x="110" y="65" text-anchor="middle" font-weight="bold" font-size="16">Direct Cutover</text>
+        <text x="110" y="95" text-anchor="middle" font-size="13">Instant switchover</text>
+        <text x="110" y="125" text-anchor="middle" font-size="11" fill="red">High Risk</text>
+
+        <rect x="220" y="30" width="160" height="120" rx="10" fill="rgba(195, 177, 225, 0.6)" stroke="#111" stroke-width="2"/>
+        <text x="300" y="65" text-anchor="middle" font-weight="bold" font-size="16">Parallel Running</text>
+        <text x="300" y="95" text-anchor="middle" font-size="13">Both run together</text>
+        <text x="300" y="125" text-anchor="middle" font-size="11" fill="green">Safe &amp; Expensive</text>
+
+        <rect x="410" y="30" width="160" height="120" rx="10" fill="rgba(174, 198, 207, 0.6)" stroke="#111" stroke-width="2"/>
+        <text x="490" y="65" text-anchor="middle" font-weight="bold" font-size="16">Phased Rollout</text>
+        <text x="490" y="95" text-anchor="middle" font-size="13">Incremental launch</text>
+        <text x="490" y="125" text-anchor="middle" font-size="11">Manageable Steps</text>
+    </svg>
+    
+        </div>
+    </div>
+    
+
+        <!-- Tips Section -->
+        <div class="card" style="border-left: 5px solid #10B981;">
+            <h2>
+                <span class="lang-en">Tips</span>
+                <span class="lang-cn">提示</span>
+            </h2>
+            <div class="lang-en">Presentation Tips: Explain the business problem first, show the Power BI or Excel DSS solution dashboard, and review the structural UML diagrams.</div>
+            <div class="lang-cn">演示技巧：首先解释业务问题痛点，展示 Power BI 或 Excel 决策系统仪表板，并复盘关键的 UML 结构图。</div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Knowledge Check</span>
+                <span class="lang-cn">知识自测</span>
+            </h2>
+            <div id="quiz-container">
+                <div class='quiz-q'>
+            <p><b>1. 
+                <span class="lang-en">Which system conversion strategy carries the highest risk of database failure?</span>
+                <span class="lang-cn">哪种系统转换策略带来的数据库故障风险最高？</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q0' value='0'>
+                <span class="lang-en">Parallel Run</span>
+                <span class="lang-cn">并行运行</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='1'>
+                <span class="lang-en">Direct Cutover</span>
+                <span class="lang-cn">直接切口 (Direct Cutover)</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='2'>
+                <span class="lang-en">Phased Rollout</span>
+                <span class="lang-cn">分阶段推出</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>2. 
+                <span class="lang-en">What is User Acceptance Testing (UAT) primarily designed to verify?</span>
+                <span class="lang-cn">用户验收测试 (UAT) 的主要设计目的是为了验证：</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q1' value='0'>
+                <span class="lang-en">CPU execution speed</span>
+                <span class="lang-cn">CPU 执行速度</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q1' value='1'>
+                <span class="lang-en">Whether the system meets the business requirements of the users</span>
+                <span class="lang-cn">系统是否满足用户的业务需求</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q1' value='2'>
+                <span class="lang-en">Compiler syntax errors</span>
+                <span class="lang-cn">编译器语法错误</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>3. 
+                <span class="lang-en">A pilot study strategy involves:</span>
+                <span class="lang-cn">试点研究策略包括：</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q2' value='0'>
+                <span class="lang-en">Deleting database tables</span>
+                <span class="lang-cn">删除数据库表</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='1'>
+                <span class="lang-en">Deploying the DSS to a small test group or single department first</span>
+                <span class="lang-cn">先将 DSS 部署到一个小型测试组或单个部门</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='2'>
+                <span class="lang-en">Running no tests</span>
+                <span class="lang-cn">不进行任何测试</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>4. 
+                <span class="lang-en">System evaluation focuses primarily on:</span>
+                <span class="lang-cn">系统评估主要关注于：</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q3' value='0'>
+                <span class="lang-en">Code line counts</span>
+                <span class="lang-cn">代码行数</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q3' value='1'>
+                <span class="lang-en">Measuring system utilization, user satisfaction, and decision quality</span>
+                <span class="lang-cn">衡量系统利用率、用户满意度和决策质量</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q3' value='2'>
+                <span class="lang-en">The background style colors</span>
+                <span class="lang-cn">背景样式颜色</span>
+            </label>
+        </div><div class='quiz-q'>
+            <p><b>5. 
+                <span class="lang-en">Which conversion strategy deploys the system in successive stages?</span>
+                <span class="lang-cn">哪种转换策略分阶段逐步部署系统？</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q4' value='0'>
+                <span class="lang-en">Direct cutover</span>
+                <span class="lang-cn">直接切换</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q4' value='1'>
+                <span class="lang-en">Phased rollout</span>
+                <span class="lang-cn">分阶段推出 (Phased rollout)</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q4' value='2'>
+                <span class="lang-en">Parallel run</span>
+                <span class="lang-cn">并行运行</span>
+            </label>
+        </div>
+                <button class="btn" onclick="checkQuiz()">
+                    <span class="lang-en">Submit Answers</span>
+                    <span class="lang-cn">提交答案</span>
+                </button>
+                <div id="quiz-result"></div>
+            </div>
+        </div>
+
+        <!-- Fill in the Blanks -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Fill in the Blanks</span>
+                <span class="lang-cn">填空练习</span>
+            </h2>
+            <p>
+            <span class="lang-en">Checking if a user entered a valid number before processing it is called Input <input type='text' id='blank0' class='blank-input' style='width:100px;'>.</span>
+            <span class="lang-cn">在处理输入之前检查用户输入的是否是有效数字被称为输入 <input type='text' id='blank_cn0' class='blank-input' style='width:100px;'>。</span>
+        </p><p>
+            <span class="lang-en">A Code <input type='text' id='blank1' class='blank-input' style='width:100px;'> is when peers evaluate your source code for quality and errors.</span>
+            <span class="lang-cn">同行对你的源代码质量和错误进行评估被称为代码 <input type='text' id='blank_cn1' class='blank-input' style='width:100px;'>。</span>
+        </p>
+            <button class="btn" onclick="checkBlanks()">
+                <span class="lang-en">Check Answers</span>
+                <span class="lang-cn">检查答案</span>
+            </button>
+            <div id="blanks-result"></div>
+        </div>
+
+        <!-- Coding Activities -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Practical Exercise</span>
+                <span class="lang-cn">实践练习</span>
+            </h2>
+            <div class='step'>
+            <p><b>
+                <span class="lang-en">Task 1: SQL query to update 'Status' to 'Evaluated' in 'Systems' table.</span>
+                <span class="lang-cn">任务 1: SQL 查询：更新 'Systems' 表中的 'Status' 值为 'Evaluated'。</span>
+            </b></p>
+            <button class="btn" onclick="showCodeAns('w14c0')">
+                <span class="lang-en">Show Answer</span>
+                <span class="lang-cn">显示答案</span>
+            </button>
+            <div class='code-editor' id='code-ans-w14c0' style='display:none;'>UPDATE Systems SET Status = 'Evaluated';</div>
+        </div><div class='step'>
+            <p><b>
+                <span class="lang-en">Task 2: Excel formula to return today's current date.</span>
+                <span class="lang-cn">任务 2: Excel 公式：返回今天的当前日期。</span>
+            </b></p>
+            <button class="btn" onclick="showCodeAns('w14c1')">
+                <span class="lang-en">Show Answer</span>
+                <span class="lang-cn">显示答案</span>
+            </button>
+            <div class='code-editor' id='code-ans-w14c1' style='display:none;'>=TODAY()</div>
+        </div><div class='step'>
+            <p><b>
+                <span class="lang-en">Task 3: JavaScript call statement to reload the current window page.</span>
+                <span class="lang-cn">任务 3: JavaScript 调用语句：重新加载当前窗口页面。</span>
+            </b></p>
+            <button class="btn" onclick="showCodeAns('w14c2')">
+                <span class="lang-en">Show Answer</span>
+                <span class="lang-cn">显示答案</span>
+            </button>
+            <div class='code-editor' id='code-ans-w14c2' style='display:none;'>location.reload();</div>
+        </div>
+        </div>
+
+        <!-- Matching Game -->
+        <div class="card">
+            <h2>
+                <span class="lang-en">Matching Game</span>
+                <span class="lang-cn">配对游戏</span>
+            </h2>
+            <p>
+                <span class="lang-en">Match the term on the left with its definition on the right.</span>
+                <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
+            </p>
+            <div class="match-grid">
+                <div class="match-card" data-id="2" onclick="selectMatchCard(this)">Parallel Run</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
+            <span class="lang-en">Immediate switch to new system</span>
+            <span class="lang-cn">立即切换到新系统（高风险）</span>
+        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">Phased Rollout</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
+            <span class="lang-en">Running both systems simultaneously</span>
+            <span class="lang-cn">两个系统同时并行运行</span>
+        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Pilot Study</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
+            <span class="lang-en">Step-by-Step incremental deployment</span>
+            <span class="lang-cn">按模块或部门分步部署</span>
+        </div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Direct Cutover</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
+            <span class="lang-en">Test group deployment first</span>
+            <span class="lang-cn">先在一小群测试组中部署</span>
+        </div>
+            </div>
+            <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
+        </div>
+    </div>
+
+    <script>
+        function toggleLanguage() {
+            document.body.classList.toggle('cn-active');
+        }
+
+        function checkQuiz() {
+            let score = 0;
+            
+        const q0 = document.querySelector('input[name="q0"]:checked');
+        if (q0 && parseInt(q0.value) === 1) score++;
+        
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        if (q1 && parseInt(q1.value) === 1) score++;
+        
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        if (q2 && parseInt(q2.value) === 1) score++;
+        
+        const q3 = document.querySelector('input[name="q3"]:checked');
+        if (q3 && parseInt(q3.value) === 1) score++;
+        
+        const q4 = document.querySelector('input[name="q4"]:checked');
+        if (q4 && parseInt(q4.value) === 1) score++;
+        
+            document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
+                <span class="lang-en">You scored: ${score} / 5</span>
+                <span class="lang-cn">得分：${score} / 5</span>
+            </span>`;
+        }
+
+        function checkBlanks() {
+            
+        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
+        const answers0 = ['validation', '验证', '数据验证', '输入验证'];
+        if(answers0.includes(b0)) {
+            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
+            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
+        } else {
+            document.getElementById('blank0').style.borderBottomColor = '#C70039';
+            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
+        }
+        
+        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
+        const answers1 = ['review', '评审', '审查', '评估', '代码评审'];
+        if(answers1.includes(b1)) {
+            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
+            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
+        } else {
+            document.getElementById('blank1').style.borderBottomColor = '#C70039';
+            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
+        }
+        
+        }
+
+        function showCodeAns(id) {
+            const el = document.getElementById('code-ans-' + id);
+            el.style.display = el.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Match Game Logic
+        let firstCard = null;
+        function selectMatchCard(card) {
+            if (card.classList.contains('matched') || card.classList.contains('selected')) return;
+
+            card.classList.add('selected');
+
+            if (!firstCard) {
+                firstCard = card;
+            } else {
+                const id1 = firstCard.getAttribute('data-id') || firstCard.getAttribute('data-target');
+                const id2 = card.getAttribute('data-id') || card.getAttribute('data-target');
+                const type1 = firstCard.hasAttribute('data-id') ? 'term' : 'def';
+                const type2 = card.hasAttribute('data-id') ? 'term' : 'def';
+
+                if (id1 === id2 && type1 !== type2) {
+                    firstCard.classList.remove('selected');
+                    card.classList.remove('selected');
+                    firstCard.classList.add('matched');
+                    card.classList.add('matched');
+                    firstCard = null;
+                    
+                    checkMatchGameFinish();
+                } else {
+                    const temp = firstCard;
+                    setTimeout(() => {
+                        temp.classList.remove('selected');
+                        card.classList.remove('selected');
+                    }, 500);
+                    firstCard = null;
+                }
+            }
+        }
+
+        function checkMatchGameFinish() {
+            const matchedCards = document.querySelectorAll('.match-card.matched');
+            if (matchedCards.length === 8) {
+                document.getElementById('match-game-res').innerHTML = "Congratulations! All terms matched successfully! 🎉";
+            }
+        }
+    </script>
+</body>
+</html>
