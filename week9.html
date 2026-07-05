@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>State user interface design goals for decision support.</li><li>Explain dialog styles and communication mechanisms.</li><li>Design custom dashboard layouts based on usability principles.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>阐述决策支持系统用户界面的设计目标。</li><li>解释对话风格与人机交互通信机制。</li><li>基于可用性原则设计自定义仪表板布局。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,94 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. UI Goals in Decision Support</h3><p>The user interface is the window through which the user interacts with the DBMS and MBMS. Key design goals include: ease of use, consistency, flexibility, control, and reducing the cognitive load on the decision maker.</p></div><div class='step'><h3>2. Dialog Styles and Mechanisms</h3><p>Dialog styles determine how users enter commands and receive data: **Command-line** (text syntax), **Menu-driven** (selection list), or **Graphical User Interface (GUI)** (visual icons and windows). Prototyping tools like Figma/Draw.io help design mockups.</p></div>
+                <div class='step'><h3>6.1 Goals of User Interface</h3><div><ul><li><b>Usability:</b> Focuses on how easy and intuitive a system is to navigate for the user.</li><li><b>Utility:</b> Focuses on whether the system provides the actual functions required to solve the manager's business problem.</li><li><b>Error Prevention:</b> Clear layouts and input validation to stop incorrect data entry before models execute.</li><li><b>Cognitive Load Reduction:</b> Limiting dashboard clutter to prevent information fatigue.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Apple Store Operations</h4><ul><li>Apple designs Store Manager dashboards with extreme usability constraints.</li><li>KPIs are represented by simple, high-contrast visual status indicators so managers can scan performance in seconds without reading data tables.</li></ul><p><strong>Reference:</strong> <a href="https://developer.apple.com/design/human-interface-guidelines/" target="_blank">Apple Human Interface Design Guidelines</a></p></div></div></div><div class='step'><h3>6.2 Mechanism of User Interface</h3><div><ul><li><b>Command Line:</b> Direct text commands (fastest for experts but has a high learning curve).</li><li><b>Menu-driven:</b> Selection from structured lists (prevents syntax errors, easy for novices).</li><li><b>Form-fill:</b> Guided input text fields (ideal for database entry and parameter constraints).</li><li><b>Graphical User Interface (GUI):</b> Uses icons, windows, menus, and drag-and-drop operations (highly interactive).</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Bloomberg L.P.</h4><ul><li>The Bloomberg Terminal combines a <b>Command Line</b> mechanism (using quick code commands like "AAPL <Equity> GO") with graphical chart UIs to allow financial traders to execute trades instantly.</li></ul><p><strong>Reference:</strong> <a href="https://www.bloomberg.com/professional/solution/bloomberg-terminal/" target="_blank">Bloomberg Terminal Interface and Operations</a></p></div></div></div><div class='step'><h3>6.3 User Interface Components</h3><div><ul><li><b>Navigation Elements:</b> Sidebars, dropdown menus, tabs, and navigation hierarchies.</li><li><b>Input Components:</b> Parameter sliders, file upload grids, radio selections, and text boxes.</li><li><b>Output Visualization:</b> Real-time charts, indicators, progress circles, and layout layouts.</li><li><b>Figma Prototyping:</b> Collaborative vector design tool used to draft, wireframe, and test UI dialog paths before code generation.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Airbnb</h4><ul><li>Airbnb designers test search filter dialog sequences (e.g., date picker -> guest count -> price slider) in Figma mockups.</li><li>They analyze user click heatmaps to eliminate navigation friction before developers write the front-end components.</li></ul><p><strong>Reference:</strong> <a href="https://airbnb.design/building-a-visual-language/" target="_blank">Building a Visual Language at Airbnb</a></p></div></div></div>
+            <div class="card">
+                <h2>Comparison of Dialog Styles</h2>
+                <table>
+                    <tr>
+                        <th>Dialog Style</th>
+                        <th>Ease of Learning</th>
+                        <th>Control Level</th>
+                        <th>Best Scenarios</th>
+                        <th>Disadvantages</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Command-Line (CLI)</strong></td>
+                        <td>Very Low</td>
+                        <td>Extremely High</td>
+                        <td>Systems programmers, rapid scripts</td>
+                        <td>Steep learning curve, syntax error-prone</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Menu-Driven</strong></td>
+                        <td>High</td>
+                        <td>Moderate</td>
+                        <td>Kiosks, structured workflows</td>
+                        <td>Slow navigation, nested structures</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Graphical (GUI)</strong></td>
+                        <td>Very High</td>
+                        <td>High</td>
+                        <td>Executive dashboards, data analysis</td>
+                        <td>Consumes server power, hard to program</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>Core Usability Goals in DSS UI</h4>
+                    <ul>
+                        <li><strong>Minimized Memory Load:</strong> Users should not have to remember data across screens.</li>
+                        <li><strong>Consistency:</strong> Fonts, buttons, colors, and layout grid must follow clear patterns.</li>
+                        <li><strong>Actionable Feedback:</strong> The system must show loading states and error notifications.</li>
+                    </ul>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. 决策支持中的用户界面目标</h3><p>用户界面是用户与 DBMS 和 MBMS 交互的窗口。关键设计目标包括：易用性、一致性、灵活性、控制性以及减轻决策者的认知负荷。</p></div><div class='step'><h3>2. 对话样式与机制</h3><p>对话样式决定了用户如何输入命令和接收数据：**命令行**（文本语法）、**菜单驱动**（选项列表）或**图形用户界面 (GUI)**（可视化图标和窗口）。像 Figma/Draw.io 这样的原型设计工具有助于设计模型。</p></div>
+                <div class='step'><h3>6.1 用户界面的目标</h3><div><ul><li><b>易用性 (Usability)：</b> 侧重于系统对用户而言导航的简便性与直观性。</li><li><b>实用性 (Utility)：</b> 侧重于系统是否提供了解决管理者业务问题所需的实际功能。</li><li><b>防错机制：</b> 清晰的布局和输入验证，以在模型执行前拦截错误数据。</li><li><b>降低认知负荷：</b> 限制仪表板的杂乱程度，防止信息疲劳。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：苹果零售店运营 (Apple Retail)</h4><ul><li>Apple 设计的门店经理仪表板具有极高的易用性限制。</li><li>KPI 使用简单的、高对比度的视觉状态指示器，使经理能够在几秒钟内浏览业绩，而无需阅读详细数据表。</li></ul><p><strong>参考链接：</strong> <a href="https://developer.apple.com/design/human-interface-guidelines/" target="_blank">Apple 人机交互指南</a></p></div></div></div><div class='step'><h3>6.2 用户界面的对话机制与交互风格</h3><div><ul><li><b>命令行界面 (Command Line)：</b> 直接输入文本命令（对专家最快，但学习曲线高）。</li><li><b>菜单驱动界面 (Menu-driven)：</b> 从结构化列表中进行选择（防止语法错误，对新手友好）。</li><li><b>表单填充界面 (Form-fill)：</b> 引导式的输入文本框（非常适合数据库录入和参数限制）。</li><li><b>图形用户界面 (GUI)：</b> 使用图标、窗口、菜单和拖拽操作（高度互动）。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：彭博社 (Bloomberg Terminal)</h4><ul><li>彭博终端融合了<b>命令行</b>机制（使用快速代码命令如“AAPL <Equity> GO”）与图形化走势图表界面，使金融交易员能够瞬间执行交易决策。</li></ul><p><strong>参考链接：</strong> <a href="https://www.bloomberg.com/professional/solution/bloomberg-terminal/" target="_blank">彭博终端界面与运营</a></p></div></div></div><div class='step'><h3>6.3 用户界面关键组件</h3><div><ul><li><b>导航元素：</b> 侧边栏、下拉菜单、选项卡以及层级导航结构。</li><li><b>输入组件：</b> 参数滑动条、文件上传拖拽网格、单选按钮和输入文本框。</li><li><b>输出可视化：</b> 实时图表、仪表盘指针、进度指示圈和布局排版。</li><li><b>Figma 原型开发：</b> 协同式矢量设计工具，用于在代码开发前进行草图勾勒、线框图设计和 UI 对话路径测试。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：爱彼迎 (Airbnb)</h4><ul><li>Airbnb 设计师在 Figma 原型中测试搜索过滤器的对话顺序（如日期选择 -> 房客数量 -> 价格滑块）。</li><li>他们在开发人员编写前端组件之前，分析用户点击热图以消除导航阻碍。</li></ul><p><strong>参考链接：</strong> <a href="https://airbnb.design/building-a-visual-language/" target="_blank">在 Airbnb 构建视觉设计语言</a></p></div></div></div>
+            <div class="card">
+                <h2>人机交互对话风格对比</h2>
+                <table>
+                    <tr>
+                        <th>对话交互风格</th>
+                        <th>易学易用度</th>
+                        <th>控制灵活度</th>
+                        <th>最佳应用场景</th>
+                        <th>主要缺点</th>
+                    </tr>
+                    <tr>
+                        <td><strong>命令行界面 (CLI)</strong></td>
+                        <td>非常低</td>
+                        <td>极高</td>
+                        <td>系统程序员、快速批处理脚本</td>
+                        <td>学习曲线陡峭、易犯语法错误</td>
+                    </tr>
+                    <tr>
+                        <td><strong>菜单驱动界面</strong></td>
+                        <td>高</td>
+                        <td>中等程度</td>
+                        <td>自主终端、高度结构化的流程</td>
+                        <td>导航相对缓慢、层级嵌套深</td>
+                    </tr>
+                    <tr>
+                        <td><strong>图形界面 (GUI)</strong></td>
+                        <td>非常高</td>
+                        <td>高</td>
+                        <td>企业决策仪表板、多维数据分析</td>
+                        <td>消耗较多服务器资源、开发较复杂</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>DSS 界面核心可用性目标</h4>
+                    <ul>
+                        <li><strong>最小化记忆负荷：</strong> 用户无需在不同屏幕间记忆信息。</li>
+                        <li><strong>一致性原则：</strong> 字体、按钮、配色和布局网格必须遵循清晰统一的设计规范。</li>
+                        <li><strong>即时且明确的反馈：</strong> 系统在执行计算时必须展示加载状态，并在异常时给出明确提示。</li>
+                    </ul>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +435,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='50' width='500' height='100' rx='10' fill='rgba(255,255,255,0.4)' stroke='#1E3A8A' stroke-width='2'/><rect x='70' y='70' width='120' height='60' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='130' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Menu List</text><rect x='240' y='70' width='120' height='60' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='300' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Input Forms</text><rect x='410' y='70' width='120' height='60' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='470' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Visual Charts</text></svg>
+                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='30' y='30' width='540' height='140' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><rect x='45' y='45' width='120' height='110' rx='3' fill='#B0EACD' stroke='#1E3A8A'/><text x='105' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Navigation</text><rect x='180' y='45' width='220' height='110' rx='3' fill='#AEC6CF' stroke='#1E3A8A'/><text x='290' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Input Form</text><rect x='415' y='45' width='140' height='110' rx='3' fill='#FFD1DC' stroke='#1E3A8A'/><text x='485' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Output Charts</text></svg>
             </div>
         </div>
 
@@ -239,8 +476,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">During UI evaluation, prioritize layout hierarchy and visual contrast. In Web/DSS displays, ensure primary information uses high-contrast text to keep it legible.</div>
-            <div class="lang-cn">在进行 UI 评估时，优先考虑布局层次和视觉对比度。在 Web/DSS 页面展示中，确保主要信息使用高对比度文本以保持清晰易读。</div>
+            <div class="lang-en">GUI stands for Graphical User Interface. Remember that Figma is used to prototype and test interfaces before any actual code development.</div>
+            <div class="lang-cn">GUI 代表图形用户界面。记住，Figma 用于在实际编码开发之前对界面进行原型设计和测试。</div>
         </div>
 
         <!-- Quiz Section -->
@@ -250,96 +487,98 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">Which dialog style relies on selecting choices from a predefined list?</span>
-                <span class="lang-cn">哪种对话样式依赖于从预定义列表中选择选项？</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">The user interface goal that focuses on preventing user errors is called:</span>
+                <span class="lang-cn">专注于防止用户操作错误的 UI 设计目标被称为：</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Command Line</span>
-                <span class="lang-cn">命令行</span>
+                <span class="lang-en">Usability</span>
+                <span class="lang-cn">易用性</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='1'>
-                <span class="lang-en">Menu-driven</span>
-                <span class="lang-cn">菜单驱动型</span>
+                <span class="lang-en">Utility</span>
+                <span class="lang-cn">实用性</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='2'>
-                <span class="lang-en">Natural Language</span>
-                <span class="lang-cn">自然语言型</span>
+                <span class="lang-en">Error Prevention</span>
+                <span class="lang-cn">防错机制</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='3'>
+                <span class="lang-en">Usability and Utility</span>
+                <span class="lang-cn">易用性与实用性</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">What is the primary role of the User Interface component in a DSS?</span>
-                <span class="lang-cn">在 DSS 中，用户界面组件的首要作用是：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w9_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w9_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 3</span>
+                    <span class="lang-cn">正确选项：选项 3</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">Which UI mechanism is easiest for novice users to avoid syntax entry errors?</span>
+                <span class="lang-cn">哪种 UI 对话机制最方便新手用户避免语法输入错误？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q1' value='0'>
-                <span class="lang-en">To compile code</span>
-                <span class="lang-cn">编译代码</span>
+                <span class="lang-en">Command line</span>
+                <span class="lang-cn">命令行</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='1'>
-                <span class="lang-en">To connect the user to data and models interactively</span>
-                <span class="lang-cn">交互式连接用户与数据和模型</span>
+                <span class="lang-en">Menu-driven dialog</span>
+                <span class="lang-cn">菜单驱动型对话</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='2'>
-                <span class="lang-en">To store raw data</span>
-                <span class="lang-cn">存储原始数据</span>
+                <span class="lang-en">API programming</span>
+                <span class="lang-cn">API 编程</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">Which tool is commonly used to build UI layout prototypes?</span>
-                <span class="lang-cn">哪种工具常用于构建用户界面布局原型？</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w9_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w9_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">Figma is primarily used during which stage of DSS development?</span>
+                <span class="lang-cn">Figma 主要用于 DSS 开发的哪个阶段？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q2' value='0'>
-                <span class="lang-en">Excel Solver</span>
-                <span class="lang-cn">Excel Solver</span>
+                <span class="lang-en">Coding</span>
+                <span class="lang-cn">编码阶段</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='1'>
-                <span class="lang-en">Figma</span>
-                <span class="lang-cn">Figma</span>
+                <span class="lang-en">UI Prototyping</span>
+                <span class="lang-cn">UI 原型设计</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='2'>
-                <span class="lang-en">JVM</span>
-                <span class="lang-cn">JVM</span>
+                <span class="lang-en">Database optimization</span>
+                <span class="lang-cn">数据库优化</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='3'>
+                <span class="lang-en">UAT evaluation</span>
+                <span class="lang-cn">UAT 评估</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">Reducing the 'cognitive load' on a decision maker means:</span>
-                <span class="lang-cn">减轻决策者的“认知负荷”意味着：</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
-                <span class="lang-en">Making the UI more complex</span>
-                <span class="lang-cn">让 UI 变得更加复杂</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">Presenting information clearly to avoid mental exhaustion</span>
-                <span class="lang-cn">清晰地呈现信息以避免精神疲劳</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">Replacing managers with computers</span>
-                <span class="lang-cn">用计算机取代管理者</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">What is a major benefit of graphical icons over text commands in UI design?</span>
-                <span class="lang-cn">在 UI 设计中，图形化图标相比文本命令的主要好处是：</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">Icons use more system memory</span>
-                <span class="lang-cn">图标使用更多的系统内存</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
-                <span class="lang-en">Icons are faster to recognize and require no syntax training</span>
-                <span class="lang-cn">图标更易于识别且无需语法培训</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Icons prevent hardware failures</span>
-                <span class="lang-cn">图标可以防止硬件故障</span>
-            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w9_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w9_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -349,25 +588,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en">The dialogue style that uses predefined lists of options is called a <input type='text' id='blank0' class='blank-input' style='width:100px;'>-driven interface.</span>
-            <span class="lang-cn">使用预定义选项列表的对话样式被称为<input type='text' id='blank_cn0' class='blank-input' style='width:100px;'>驱动界面。</span>
-        </p><p>
-            <span class="lang-en">In UI design, Figma and Draw.io are commonly used for <input type='text' id='blank1' class='blank-input' style='width:100px;'> layouts.</span>
-            <span class="lang-cn">在 UI 设计中，Figma 和 Draw.io 通常用于<input type='text' id='blank_cn1' class='blank-input' style='width:100px;'>布局。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -408,6 +629,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I can list key user interface design goals.</li><li><input type='checkbox'> I know the pros and cons of CLI, Menu-driven, and GUI dialog styles.</li><li><input type='checkbox'> I understand the layout requirements for executive-level dashboards.</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我能列出用户界面的主要设计目标。</li><li><input type='checkbox'> 我知道 CLI、菜单驱动和 GUI 对话风格的优缺点。</li><li><input type='checkbox'> 我理解高级决策者仪表板的布局设计要求。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>Goals of User Interface:</strong> <ul><li><b>Usability:</b> Focuses on how easy and intuitive a system is to navig...</li><li><strong>Mechanism of User Interface:</strong> <ul><li><b>Command Line:</b> Direct text commands (fastest for experts but has a...</li><li><strong>User Interface Components:</strong> <ul><li><b>Navigation Elements:</b> Sidebars, dropdown menus, tabs, and navigati...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>用户界面的目标:</strong> <ul><li><b>易用性 (Usability)：</b> 侧重于系统对用户而言导航的简便性与直观性。</li><li><b>实用性 (Utility)：<...</li><li><strong>用户界面的对话机制与交互风格:</strong> <ul><li><b>命令行界面 (Command Line)：</b> 直接输入文本命令（对专家最快，但学习曲线高）。</li><li><b>菜单驱动界面 (...</li><li><strong>用户界面关键组件:</strong> <ul><li><b>导航元素：</b> 侧边栏、下拉菜单、选项卡以及层级导航结构。</li><li><b>输入组件：</b> 参数滑动条、文件上传拖拽网格、单...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">UI dialog represents the conversation between the user and the system's analytical engine.</p>
+                    <p class="lang-cn" style="display: none;">用户界面对话本质上代表了用户与系统分析引擎之间的信息沟通。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -419,19 +675,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Command-line</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Requires selecting items from lists</span>
-            <span class="lang-cn">需要从列表中选择项目</span>
-        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Menu-driven</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Collaborative prototyping layout tool</span>
-            <span class="lang-cn">协作原型布局工具</span>
-        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">GUI</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Uses text commands & strict syntax</span>
-            <span class="lang-cn">使用文本命令和严格语法</span>
-        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">Figma</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Graphical interface with windows & icons</span>
-            <span class="lang-cn">带有窗口和图标的图形界面</span>
-        </div>
+                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Usability</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">Focuses on providing the actual functions to solve issues</span><span class="lang-cn">专注于提供解决问题的实际功能</span></div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Utility</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Collaborative interface design and wireframe tool</span><span class="lang-cn">协作式的界面设计和线框图工具</span></div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Menu-driven</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">Focuses on the ease of system navigation and learning</span><span class="lang-cn">专注于系统导航和学习的简易度</span></div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">Figma</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">Dialog mechanism relying on selecting items from lists</span><span class="lang-cn">依赖于从列表中选择项目的对话机制</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -446,7 +690,7 @@
             let score = 0;
             
         const q0 = document.querySelector('input[name="q0"]:checked');
-        if (q0 && parseInt(q0.value) === 1) score++;
+        if (q0 && parseInt(q0.value) === 2) score++;
         
         const q1 = document.querySelector('input[name="q1"]:checked');
         if (q1 && parseInt(q1.value) === 1) score++;
@@ -454,40 +698,17 @@
         const q2 = document.querySelector('input[name="q2"]:checked');
         if (q2 && parseInt(q2.value) === 1) score++;
         
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 1) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 1) score++;
-        
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
                 <span class="lang-cn">得分：${score} / 5</span>
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['menu', '菜单', '菜单驱动', '菜单驱动型'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['prototyping', '原型', '原型设计', '界面原型'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {

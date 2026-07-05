@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>Differentiate between Tacit and Explicit Knowledge.</li><li>Explain Knowledge Management (KM) processes and cycles.</li><li>Identify the role of Information Technology in KM.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>区分隐性知识与显性知识。</li><li>解释知识管理 (KM) 的过程和循环周期。</li><li>识别信息技术在知识管理中的作用。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,90 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. Tacit vs. Explicit Knowledge</h3><p>Knowledge in organizations is divided into two types: **Explicit knowledge** (structured, written down in manuals, easily transferable) and **Tacit knowledge** (unstructured, experience-based, difficult to formalize or communicate).</p></div><div class='step'><h3>2. Information Technology in KM</h3><p>IT supports Knowledge Management (KM) through document stores, intranet search, expert directories, and modern cognitive tools like AI chat engines (ChatGPT, Poe, and DeepSeek) which aid in capturing and summarizing tacit knowledge structures.</p></div>
+                <div class='step'><h3>3.1 Concepts and Definition of Knowledge</h3><div><ul><li><b>Explicit Knowledge:</b> Codified, structured knowledge that can be written down, stored in documents, and easily shared (e.g., SOP manuals, reports).</li><li><b>Tacit Knowledge:</b> Highly personal, context-specific, and experiential knowledge. It resides in human minds and is difficult to formalize or transfer (e.g., negotiation skills, coding intuition).</li><li><b>Knowledge Management (KM):</b> A systematic process to acquire, organize, store, share, and apply knowledge to enhance corporate performance.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Toyota</h4><ul><li>Toyota captures tacit manufacturing experience from senior factory mechanics and codifies it into explicit "Global Production Standards" manuals.</li><li>This allows new plants globally to adopt optimized assembly processes immediately.</li></ul><p><strong>Reference:</strong> <a href="https://hbr.org/2008/03/the-toyota-production-system-rules-in-use" target="_blank">Toyota Production System Rules in Use</a></p></div></div></div><div class='step'><h3>3.2 Approaches to Knowledge Management</h3><div><ul><li><b>Process-Centric/Technical Approach:</b> Focuses on the codification of explicit knowledge in electronic repositories, search engines, and document management systems.</li><li><b>Practice-Centric/Social Approach:</b> Focuses on facilitating human sharing of tacit knowledge via Communities of Practice (CoPs), mentor networks, and brainstorming sessions.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: McKinsey & Company</h4><ul><li>McKinsey uses a <b>Process-Centric</b> repository ("PDD" database) containing anonymized client reports.</li><li>Simultaneously, they use a <b>Practice-Centric</b> approach by sponsoring internal "expert networks" connecting junior analysts to global partners directly.</li></ul><p><strong>Reference:</strong> <a href="https://hbr.org/1999/03/whats-your-strategy-for-managing-knowledge" target="_blank">McKinsey Knowledge Management Strategy</a></p></div></div></div><div class='step'><h3>3.3 Information Technology in Knowledge Management</h3><div><ul><li><b>Knowledge Discovery:</b> Using data mining, web scraping, and text analysis to extract patterns.</li><li><b>Knowledge Repositories:</b> Databases and intranet portals designed to catalog explicit documents.</li><li><b>Collaboration Aids:</b> Intranets, Microsoft Teams, and enterprise social networks to share skills.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Siemens</h4><ul><li>Siemens built "ShareNet", a global database repository allowing engineers to publish case resolutions.</li><li>Search engines and peer-rating functions make it easy to find high-quality technical answers.</li></ul><p><strong>Reference:</strong> <a href="https://hbr.org/2003/03/whats-your-strategy-for-managing-knowledge" target="_blank">Siemens ShareNet Knowledge Portal</a></p></div></div></div>
+            <div class="card">
+                <h2>Comparison Table: Tacit vs. Explicit Knowledge</h2>
+                <table>
+                    <tr>
+                        <th>Dimension</th>
+                        <th>Tacit Knowledge</th>
+                        <th>Explicit Knowledge</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Definition</strong></td>
+                        <td>Personal, context-specific, and hard to formalize.</td>
+                        <td>Codified, structured, and easy to document.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Storage</strong></td>
+                        <td>Resides in people's minds, experiences, and intuitions.</td>
+                        <td>Stored in books, manuals, databases, and files.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Transferability</strong></td>
+                        <td>High effort; requires face-to-face interaction, apprenticeship.</td>
+                        <td>Low effort; easily copied and emailed globally.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IT Support</strong></td>
+                        <td>Expert directories, chat spaces, community portals.</td>
+                        <td>Document Management Systems, wikis, database indexes.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Example</strong></td>
+                        <td>A senior chef's seasoning technique.</td>
+                        <td>A written cookie recipe with exact grams.</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>The SECI Model</h4>
+                    <p>Knowledge creation flows between these two forms via: <strong>Socialization</strong> (Tacit to Tacit), <strong>Externalization</strong> (Tacit to Explicit), <strong>Combination</strong> (Explicit to Explicit), and <strong>Internalization</strong> (Explicit to Tacit).</p>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. 隐性知识与显性知识</h3><p>组织中的知识分为两类：**显性知识**（结构化的、记录在手册中的、易于传递的）和**隐性知识**（非结构化的、基于个人经验的、难以形式化或沟通传授的）。</p></div><div class='step'><h3>2. 知识管理中的信息技术</h3><p>IT 通过文档存储、内部网搜索、专家目录以及现代认知工具（如 AI 聊天引擎：ChatGPT、Poe 和 DeepSeek）来支持知识管理 (KM)，这些工具有助于捕获和总结隐性知识结构。</p></div>
+                <div class='step'><h3>3.1 知识的概念与定义</h3><div><ul><li><b>显性知识 (Explicit)：</b> 编码化的、结构化的知识，可以写下来、存储在文档中并轻松共享（例如 SOP 手册、报告）。</li><li><b>隐性知识 (Tacit)：</b> 高度个性化、特定情境和经验的知识。它存在于人的大脑中，难以形式化或转让（例如谈判技巧、编程直觉）。</li><li><b>知识管理 (KM)：</b> 一个系统化的过程，用于获取、组织、存储、共享和应用知识，以提高公司业绩。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：丰田汽车 (Toyota)</h4><ul><li>丰田捕获资深工厂技师的隐性制造经验，并将其编入显性的“全球生产标准”手册中。</li><li>这使全球新工厂能够立即采用优化的装配流程。</li></ul><p><strong>参考链接：</strong> <a href="https://hbr.org/2008/03/the-toyota-production-system-rules-in-use" target="_blank">丰田生产系统使用规则</a></p></div></div></div><div class='step'><h3>3.2 知识管理实施方法</h3><div><ul><li><b>以过程为中心的方法（技术路线）：</b> 侧重于将显性知识编码化存入电子仓库、搜索引擎和文档管理系统中。</li><li><b>以实践为中心的方法（社交路线）：</b> 侧重于通过实践社区 (CoP)、导师网络和头脑风暴会议促进隐性知识的人际共享。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：麦肯锡 (McKinsey & Company)</h4><ul><li>麦肯锡使用<b>以过程为中心</b>的知识库（“PDD”数据库），内含脱敏后的客户报告。</li><li>同时，他们赞助内部“专家网络”，直接将初级分析师与全球合伙人联系起来，这体现了<b>以实践为中心</b>的方法。</li></ul><p><strong>参考链接：</strong> <a href="https://hbr.org/1999/03/whats-your-strategy-for-managing-knowledge" target="_blank">麦肯锡知识管理策略</a></p></div></div></div><div class='step'><h3>3.3 信息技术在知识管理中的角色</h3><div><ul><li><b>知识发现 (Discovery)：</b> 使用数据挖掘、网页抓取和文本分析来提取未知模式。</li><li><b>知识仓库 (Repositories)：</b> 旨在对显性文档进行编目的数据库和内网门户。</li><li><b>协作辅助 (Collaboration)：</b> 企业内网、Microsoft Teams 和企业社交网络，以便分享技能。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：西门子 (Siemens)</h4><ul><li>西门子构建了“ShareNet”，这是一个全球数据库仓库，允许工程师发布案例解决方案。</li><li>搜索引擎和同行评级功能使工程师能够轻松找到高质量的技术解答。</li></ul><p><strong>参考链接：</strong> <a href="https://hbr.org/2003/03/whats-your-strategy-for-managing-knowledge" target="_blank">西门子 ShareNet 知识门户</a></p></div></div></div>
+            <div class="card">
+                <h2>对比表：隐性知识与显性知识</h2>
+                <table>
+                    <tr>
+                        <th>比较维度</th>
+                        <th>隐性知识 (Tacit)</th>
+                        <th>显性知识 (Explicit)</th>
+                    </tr>
+                    <tr>
+                        <td><strong>核心定义</strong></td>
+                        <td>个人的、因人而异的、难以公式化和文字表达的知识。</td>
+                        <td>规范化的、结构化的、易于记录和传授的知识。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>存储介质</strong></td>
+                        <td>存在于人们的脑海、个人经验和直觉中。</td>
+                        <td>存储于书籍、手册、数据库和各类电子文档中。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>传播难度</strong></td>
+                        <td>传播难度高；需要面对面交流、学徒制传帮带。</td>
+                        <td>传播极易；可轻松复制并在全球范围内通过邮件发送。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>IT 支持方式</strong></td>
+                        <td>专家目录、论坛聊天空间、实践社区门户。</td>
+                        <td>文档管理系统、企业维基、数据库检索索引。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>经典示例</strong></td>
+                        <td>资深大厨烹饪时的调味火候手感。</td>
+                        <td>写明了精确克数的书面饼干烘焙配方。</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>SECI 模型</h4>
+                    <p>知识在这两种形式之间流动创造：<strong>社会化</strong>（隐性到隐性）、<strong>外部化</strong>（隐性到显性）、<strong>组合化</strong>（显性到显性）以及<strong>内部化</strong>（显性到隐性）。</p>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +431,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='50' width='200' height='80' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='150' y='95' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Tacit (Personal/Mind)</text><rect x='350' y='50' width='200' height='80' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='450' y='95' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Explicit (Codified/Files)</text><path d='M 250 80 L 350 80' stroke='#1E3A8A' stroke-width='2' fill='none' marker-end='url(#arrow)'/><text x='300' y='70' fill='#111111' font-family='Rajdhani' font-size='12' text-anchor='middle'>Codify</text><path d='M 350 100 L 250 100' stroke='#FF6B6B' stroke-width='2' fill='none' stroke-dasharray='5,5'/><text x='300' y='120' fill='#111111' font-family='Rajdhani' font-size='12' text-anchor='middle'>Internalize</text></svg>
+                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='50' width='200' height='100' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='150' y='100' fill='#111111' font-family='Rajdhani' font-size='18' font-weight='bold' text-anchor='middle'>Tacit Knowledge</text><rect x='350' y='50' width='200' height='100' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='450' y='100' fill='#111111' font-family='Rajdhani' font-size='18' font-weight='bold' text-anchor='middle'>Explicit Knowledge</text><path d='M 250 80 L 350 80' stroke='#1E3A8A' stroke-dasharray='4' stroke-width='2' fill='none'/><text x='300' y='70' fill='#1E3A8A' font-family='Rajdhani' font-size='12' text-anchor='middle'>Codify</text><path d='M 350 120 L 250 120' stroke='#FF6B6B' stroke-dasharray='4' stroke-width='2' fill='none'/><text x='300' y='140' fill='#FF6B6B' font-family='Rajdhani' font-size='12' text-anchor='middle'>Socialize</text></svg>
             </div>
         </div>
 
@@ -242,8 +475,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">Understand the difference: Explicit is codified (like a class textbook), Tacit is personal (like a master craftsman's instinct). AI tools help turn tacit knowledge into explicit text.</div>
-            <div class="lang-cn">理解其区别：显性是法定的/公式化的（如教科书），隐性是个人经验的（如大师级工匠的直觉）。AI 工具有助于将隐性知识转化为显性文本。</div>
+            <div class="lang-en">Always contrast Tacit (human head) vs Explicit (paper/digital) knowledge. This is a favorite topic in exams!</div>
+            <div class="lang-cn">务必对比隐性（人脑）与显性（纸质/数字）知识。这是考试中最热门的主题！</div>
         </div>
 
         <!-- Quiz Section -->
@@ -253,96 +486,90 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">Which knowledge type is documented in files, manuals, and databases?</span>
-                <span class="lang-cn">哪种知识类型记录在文件、手册和数据库中？</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">Standard operating procedures (SOPs) written in a manual are examples of:</span>
+                <span class="lang-cn">在手册中编写的标准作业程序 (SOP) 是以下哪项的示例：</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Tacit</span>
+                <span class="lang-en">Tacit Knowledge</span>
                 <span class="lang-cn">隐性知识</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='1'>
-                <span class="lang-en">Explicit</span>
+                <span class="lang-en">Explicit Knowledge</span>
                 <span class="lang-cn">显性知识</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='2'>
-                <span class="lang-en">Random</span>
-                <span class="lang-cn">随机知识</span>
+                <span class="lang-en">Heuristics</span>
+                <span class="lang-cn">启发式算法</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">Tacit knowledge is best characterized as:</span>
-                <span class="lang-cn">隐性知识最典型的特征是：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w5_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w5_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">Communities of Practice (CoPs) are primary tools in which approach to KM?</span>
+                <span class="lang-cn">实践社区 (CoPs) 是哪种 KM 实施方法的主要工具？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q1' value='0'>
-                <span class="lang-en">Easy to transfer via text files</span>
-                <span class="lang-cn">易于通过文本文件传输</span>
+                <span class="lang-en">Process-Centric Approach</span>
+                <span class="lang-cn">以过程为中心的方法</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='1'>
-                <span class="lang-en">Personal, experiential, and hard to codify</span>
-                <span class="lang-cn">个人的、经验的、难以编码的</span>
+                <span class="lang-en">Practice-Centric Approach</span>
+                <span class="lang-cn">以实践为中心的方法</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='2'>
-                <span class="lang-en">Stored only in database columns</span>
-                <span class="lang-cn">仅存储在数据库列中</span>
+                <span class="lang-en">Model-driven Approach</span>
+                <span class="lang-cn">模型驱动方法</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">How does IT support Knowledge Management?</span>
-                <span class="lang-cn">信息技术 (IT) 如何支持知识管理？</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w5_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w5_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">Which of the following is difficult to formalize and share electronically?</span>
+                <span class="lang-cn">以下哪项难以形式化并进行电子化分享？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q2' value='0'>
-                <span class="lang-en">By deleting old data</span>
-                <span class="lang-cn">通过删除旧数据</span>
+                <span class="lang-en">Tacit Knowledge</span>
+                <span class="lang-cn">隐性知识</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='1'>
-                <span class="lang-en">By providing repositories, search systems, and expert directories</span>
-                <span class="lang-cn">通过提供存储库、搜索系统 and 专家指南目录</span>
+                <span class="lang-en">Explicit Knowledge</span>
+                <span class="lang-cn">显性知识</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='2'>
-                <span class="lang-en">By compiling Java source files</span>
-                <span class="lang-cn">通过编译 Java 源文件</span>
+                <span class="lang-en">Data Warehouses</span>
+                <span class="lang-cn">数据仓库</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">Which of these is an example of Explicit knowledge?</span>
-                <span class="lang-cn">以下哪项是显性知识的例子？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
-                <span class="lang-en">A programmer's logic intuition</span>
-                <span class="lang-cn">程序员的逻辑直觉</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">A printed user instruction manual</span>
-                <span class="lang-cn">印制好的用户操作手册</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">An employee's gut feeling about a client</span>
-                <span class="lang-cn">员工对客户的直觉感受</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">AI tools like ChatGPT help KM primarily by:</span>
-                <span class="lang-cn">像 ChatGPT 这样的 AI 工具主要通过什么方式帮助知识管理？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">Slowing down search queries</span>
-                <span class="lang-cn">减慢搜索查询速度</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
-                <span class="lang-en">Structuring and summarizing text to capture tacit ideas</span>
-                <span class="lang-cn">结构化并总结文本以捕获隐性的想法</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Replacing human database servers</span>
-                <span class="lang-cn">取代人类数据库服务器</span>
-            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w5_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w5_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -352,25 +579,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en">Knowledge that is experiential and hard to write down is called <input type='text' id='blank0' class='blank-input' style='width:100px;'> knowledge.</span>
-            <span class="lang-cn">基于经验且难以用文字记录的知识被称为 <input type='text' id='blank_cn0' class='blank-input' style='width:100px;'> 知识。</span>
-        </p><p>
-            <span class="lang-en">Knowledge that is structured, codified, and stored in databases is <input type='text' id='blank1' class='blank-input' style='width:100px;'> knowledge.</span>
-            <span class="lang-cn">结构化、编码并存储在数据库中的知识是 <input type='text' id='blank_cn1' class='blank-input' style='width:100px;'> 知识。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -411,6 +620,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I can define and contrast Tacit and Explicit knowledge.</li><li><input type='checkbox'> I understand the four quadrants of the SECI model.</li><li><input type='checkbox'> I can describe how enterprise databases support the KM cycle.</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我能定义并对比隐性知识与显性知识。</li><li><input type='checkbox'> 我理解 SECI 模型的四个象限。</li><li><input type='checkbox'> 我能描述企业数据库如何支持知识管理循环。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>Concepts and Definition of Knowledge:</strong> <ul><li><b>Explicit Knowledge:</b> Codified, structured knowledge that can be wr...</li><li><strong>Approaches to Knowledge Management:</strong> <ul><li><b>Process-Centric/Technical Approach:</b> Focuses on the codification o...</li><li><strong>Information Technology in Knowledge Management:</strong> <ul><li><b>Knowledge Discovery:</b> Using data mining, web scraping, and text an...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>知识的概念与定义:</strong> <ul><li><b>显性知识 (Explicit)：</b> 编码化的、结构化的知识，可以写下来、存储在文档中并轻松共享（例如 SOP 手册、报告）。</li...</li><li><strong>知识管理实施方法:</strong> <ul><li><b>以过程为中心的方法（技术路线）：</b> 侧重于将显性知识编码化存入电子仓库、搜索引擎和文档管理系统中。</li><li><b>以实践为中...</li><li><strong>信息技术在知识管理中的角色:</strong> <ul><li><b>知识发现 (Discovery)：</b> 使用数据挖掘、网页抓取和文本分析来提取未知模式。</li><li><b>知识仓库 (Repos...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">Understand how generative AI (like LLMs) helps externalize tacit knowledge by generating summaries.</p>
+                    <p class="lang-cn" style="display: none;">理解生成式 AI（如大语言模型）如何通过自动生成摘要来帮助将隐性知识外部化。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -422,19 +666,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Tacit Knowledge</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Rule-based system representing expertise</span>
-            <span class="lang-cn">代表专业知识的基于规则的系统</span>
-        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Explicit Knowledge</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Automates cognitive retrieval tasks</span>
-            <span class="lang-cn">自动执行认知检索任务</span>
-        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">AI Agent</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Codified & stored in documents</span>
-            <span class="lang-cn">编码并存储在文档中</span>
-        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">expert system</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Experience-based & hard to document</span>
-            <span class="lang-cn">基于经验且难以文档化</span>
-        </div>
+                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Tacit Knowledge</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">Codifying and storing documents in IT repositories</span><span class="lang-cn">将文档编码并存储在 IT 知识库中</span></div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Explicit Knowledge</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Connecting human experts to share experiences</span><span class="lang-cn">连接人类专家以分享经验</span></div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">Practice-Centric</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">Documented, structured, and codified facts</span><span class="lang-cn">文档化的、结构化的和编码的事实</span></div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Process-Centric</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">Experiential, uncodified human intuition</span><span class="lang-cn">经验性的、未编码的人类直觉</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -455,13 +687,7 @@
         if (q1 && parseInt(q1.value) === 1) score++;
         
         const q2 = document.querySelector('input[name="q2"]:checked');
-        if (q2 && parseInt(q2.value) === 1) score++;
-        
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 1) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 1) score++;
+        if (q2 && parseInt(q2.value) === 0) score++;
         
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
@@ -469,28 +695,11 @@
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['tacit', '隐性', '隐性知识'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['explicit', '显性', '显性知识'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {

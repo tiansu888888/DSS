@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>Classify DSS based on Power's taxonomy.</li><li>Explain the three core subsystems of DSS architecture.</li><li>Identify the roles of Data and Model Management.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>根据 Power 分类法对 DSS 进行分类。</li><li>解释 DSS 架构的三个核心子系统。</li><li>识别数据与模型管理的作用。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,114 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. DSS Classifications</h3><p>DSS can be classified based on dominant technology driver: **Model-driven** (uses mathematical optimization models), **Data-driven** (queries warehouse data), **Document-driven** (analyzes text catalogs), **Communication-driven** (group collaboration), or **Knowledge-driven** (uses rule bases).</p></div><div class='step'><h3>2. Components of DSS</h3><p>A standard Decision Support System architecture consists of three fundamental components: the **Database Management System (DBMS)**, the **Model Base Management System (MBMS)**, and the **User Interface (Dialog System)**.</p></div>
+                <div class='step'><h3>2.4 DSS Classifications</h3><div><ul><li><b>Model-driven DSS:</b> Uses mathematical, financial, or simulation models to perform analysis. User interacts with inputs to see output shifts.</li><li><b>Data-driven DSS:</b> Accesses and queries large historical databases or data warehouses to find trends.</li><li><b>Document-driven DSS:</b> Integrates structured and unstructured documents (e.g., policy manuals, corporate reports) to answer queries.</li><li><b>Communication-driven DSS:</b> Supports group collaboration, shared whiteboard design, and meetings.</li><li><b>Knowledge-driven DSS:</b> Provides specialized cognitive rules and expert problem-solving heuristics.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: United Airlines</h4><ul><li>United Airlines uses a <b>Model-driven DSS</b> running linear programming mathematical algorithms to optimize passenger scheduling.</li><li>The model takes aircraft size, crew rules, and flight routes to calculate crew assignments.</li></ul><p><strong>Reference:</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/United-Airlines-Optimizes-Staffing" target="_blank">United Airlines Staffing Optimization</a></p></div></div></div><div class='step'><h3>2.5 Components of DSS</h3><div><ul><li><b>Data Management Subsystem:</b> Includes the database, Database Management System (DBMS), data directory, and query facilities.</li><li><b>Model Management Subsystem:</b> Includes the model base, Model Base Management System (MBMS), model directory, and model execution.</li><li><b>User Interface Subsystem:</b> Handles dialog and interaction between the user and the system (e.g., input forms, graphical dashboard charts).</li><li><b>Knowledge Management Subsystem:</b> Optional component providing reasoning logic to assist other subsystems.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Procter & Gamble (P&G)</h4><ul><li>P&G's supply chain DSS integrates a <b>DBMS</b> (storing sales logs), an <b>MBMS</b> (forecasting replenishment demand), and a web UI dashboard.</li><li>This integration allows supply chain planners to run inventory predictions directly from the UI.</li></ul><p><strong>Reference:</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/Procter-Gamble-Inventory-Optimization" target="_blank">P&G Inventory Optimization Success</a></p></div></div></div>
+            <div class="card">
+                <h2>Power's DSS Classifications</h2>
+                <table>
+                    <tr>
+                        <th>DSS Type</th>
+                        <th>Dominant Driver</th>
+                        <th>Target Users</th>
+                        <th>Typical Examples</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Model-Driven</strong></td>
+                        <td>Mathematical & analytical models</td>
+                        <td>Analysts, managers</td>
+                        <td>Excel Solver, linear optimization scheduler</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data-Driven</strong></td>
+                        <td>Access to and manipulation of data</td>
+                        <td>Business managers</td>
+                        <td>OLAP dashboards, data warehouses</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Document-Driven</strong></td>
+                        <td>Unstructured text & file retrieval</td>
+                        <td>Knowledge workers</td>
+                        <td>Corporate intranet policies database, search engine</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Communication-Driven</strong></td>
+                        <td>Group collaboration & messaging</td>
+                        <td>Project teams</td>
+                        <td>Microsoft Teams, shared whiteboards, zoom rooms</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Knowledge-Driven</strong></td>
+                        <td>Expert rules & recommendation engine</td>
+                        <td>Specialists, clients</td>
+                        <td>Medical diagnostics system, AI loan screening</td>
+                    </tr>
+                </table>
+                <div class="key-terms">
+                    <div class="term-card">
+                        <strong>DBMS (Data Management)</strong>
+                        <p>Contains the databases, schemas, and queries handling data storage and retrieval.</p>
+                    </div>
+                    <div class="term-card">
+                        <strong>MBMS (Model Management)</strong>
+                        <p>Stores and coordinates optimization, descriptive, and analytical models used for computations.</p>
+                    </div>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. 决策支持系统 (DSS) 分类</h3><p>DSS 可以根据主导技术驱动分类为：**模型驱动**（使用数学优化模型）、**数据驱动**（查询数据仓库）、**文档驱动**（分析文本目录）、**通信驱动**（群组协作）或**知识驱动**（使用规则库）。</p></div><div class='step'><h3>2. DSS 核心组件</h3><p>标准的决策支持系统架构由三个核心组件组成：**数据库管理系统 (DBMS)**、**模型库管理系统 (MBMS)** 和**用户界面（对话系统）**。</p></div>
+                <div class='step'><h3>2.4 决策支持系统 (DSS) 分类 (Daniel Power)</h3><div><ul><li><b>模型驱动型 DSS：</b> 使用数学、财务或模拟模型来进行分析。用户与输入数据交互以观察输出的变化。</li><li><b>数据驱动型 DSS：</b> 访问和查询大型历史数据库或数据仓库以发现趋势。</li><li><b>文档驱动型 DSS：</b> 整合结构化和非结构化文档（例如政策手册、公司报告）以回答查询。</li><li><b>通信驱动型 DSS：</b> 支持团队协作、共享白板设计和会议。</li><li><b>知识驱动型 DSS：</b> 提供专门的认知规则和专家解决问题的启发式算法。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：美联航 (United Airlines)</h4><ul><li>联合航空使用<b>模型驱动型 DSS</b>运行线性规划数学算法来优化机组人员排班。</li><li>该模型结合飞机尺寸、机组规则和飞行路线来计算最优排班安排。</li></ul><p><strong>参考链接：</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/United-Airlines-Optimizes-Staffing" target="_blank">美联航员工排班优化</a></p></div></div></div><div class='step'><h3>2.5 决策支持系统 (DSS) 核心组件</h3><div><ul><li><b>数据管理子系统：</b> 包括数据库、数据库管理系统 (DBMS)、数据字典和数据查询设施。</li><li><b>模型管理子系统：</b> 包括模型库、模型库管理系统 (MBMS)、模型字典和模型执行控制。</li><li><b>用户界面子系统：</b> 处理用户与系统之间的对话和交互（例如输入表单、图形化仪表板图表）。</li><li><b>知识管理子系统：</b> 可选组件，提供推理逻辑以协助其他子系统。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：宝洁公司 (P&G)</h4><ul><li>宝洁的供应链 DSS 整合了 <b>DBMS</b>（存储销售日志）、<b>MBMS</b>（预测补货需求）和 Web 界面仪表板。</li><li>这种集成使供应链计划人员能够直接从用户界面运行库存预测。</li></ul><p><strong>参考链接：</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/Procter-Gamble-Inventory-Optimization" target="_blank">宝洁库存优化成功案例</a></p></div></div></div>
+            <div class="card">
+                <h2>Power 的 DSS 门类分类法</h2>
+                <table>
+                    <tr>
+                        <th>DSS 类型</th>
+                        <th>主导驱动技术</th>
+                        <th>目标用户</th>
+                        <th>典型示例</th>
+                    </tr>
+                    <tr>
+                        <td><strong>模型驱动型</strong></td>
+                        <td>数学与分析计算模型</td>
+                        <td>分析师、部门经理</td>
+                        <td>Excel Solver 规划求解器、线性规划排程器</td>
+                    </tr>
+                    <tr>
+                        <td><strong>数据驱动型</strong></td>
+                        <td>数据访问与多维操作</td>
+                        <td>业务经理</td>
+                        <td>OLAP 报表仪表板、数据仓库系统</td>
+                    </tr>
+                    <tr>
+                        <td><strong>文档驱动型</strong></td>
+                        <td>非结构化文本与文件检索</td>
+                        <td>知识工作者</td>
+                        <td>企业内网制度库、搜索引擎系统</td>
+                    </tr>
+                    <tr>
+                        <td><strong>通信驱动型</strong></td>
+                        <td>群组协作与信息交互</td>
+                        <td>项目团队</td>
+                        <td>Microsoft Teams、共享白板、视频会议系统</td>
+                    </tr>
+                    <tr>
+                        <td><strong>知识驱动型</strong></td>
+                        <td>专家系统规则与推荐引擎</td>
+                        <td>专业人员、客户</td>
+                        <td>医疗诊断辅助系统、AI 贷款自动审批系统</td>
+                    </tr>
+                </table>
+                <div class="key-terms">
+                    <div class="term-card">
+                        <strong>DBMS 数据管理子系统</strong>
+                        <p>包含数据库、数据模式和查询，负责数据的存储与提取。</p>
+                    </div>
+                    <div class="term-card">
+                        <strong>MBMS 模型管理子系统</strong>
+                        <p>存储并协调用于计算的优化模型、描述模型和分析模型。</p>
+                    </div>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +455,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='220' viewBox='0 0 600 220'><rect x='200' y='30' width='200' height='50' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='300' y='60' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>User Interface (Dialog)</text><rect x='80' y='140' width='160' height='50' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='160' y='170' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>DBMS (Data Base)</text><rect x='360' y='140' width='160' height='50' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='440' y='170' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>MBMS (Model Base)</text><path d='M 300 80 L 160 140' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 300 80 L 440 140' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 240 165 L 360 165' stroke='#FF6B6B' stroke-width='2' fill='none' stroke-dasharray='5,5'/></svg>
+                <svg width='100%' max-width='600' height='220' viewBox='0 0 600 220'><rect x='50' y='130' width='120' height='60' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='110' y='165' fill='#111111' font-family='Rajdhani' font-size='15' font-weight='bold' text-anchor='middle'>1. DBMS (Data)</text><rect x='240' y='130' width='120' height='60' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='300' y='165' fill='#111111' font-family='Rajdhani' font-size='15' font-weight='bold' text-anchor='middle'>2. MBMS (Models)</text><rect x='430' y='130' width='120' height='60' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='490' y='165' fill='#111111' font-family='Rajdhani' font-size='15' font-weight='bold' text-anchor='middle'>3. KBMS (Rules)</text><rect x='240' y='20' width='120' height='60' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='300' y='55' fill='#111111' font-family='Rajdhani' font-size='15' font-weight='bold' text-anchor='middle'>User Interface</text><path d='M 110 130 L 110 90 L 240 50' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 300 130 L 300 80' stroke='#FF6B6B' stroke-width='2' fill='none'/><path d='M 490 130 L 490 90 L 360 50' stroke='#1E3A8A' stroke-width='2' fill='none'/></svg>
             </div>
         </div>
 
@@ -239,8 +496,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">Case Study Preparation: Be ready to categorize a business scenario into one of the 5 DSS types. If it queries databases, it is Data-driven; if it uses Excel Solver, it is Model-driven.</div>
-            <div class="lang-cn">案例分析准备：准备好将特定业务场景归入 5 种 DSS 类型之一。如果是查询数据库，则为数据驱动；如果使用 Excel Solver，则为模型驱动。</div>
+            <div class="lang-en">Be ready to identify the DBMS vs MBMS components. Remember that User Interface is the key dialog component connecting them to the manager.</div>
+            <div class="lang-cn">随时准备识别 DBMS 与 MBMS 组件。记住，用户界面是连接它们与管理者的核心对话组件。</div>
         </div>
 
         <!-- Quiz Section -->
@@ -250,96 +507,90 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">Which DSS type relies heavily on mathematical programming and optimization models?</span>
-                <span class="lang-cn">哪种类型的 DSS 严重依赖数学规划和优化模型？</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">A DSS that relies on mathematical and simulation models is classified as:</span>
+                <span class="lang-cn">依赖于数学和模拟模型的 DSS 被分类为：</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Data-driven</span>
-                <span class="lang-cn">数据驱动型</span>
+                <span class="lang-en">Model-driven DSS</span>
+                <span class="lang-cn">模型驱动型 DSS</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='1'>
-                <span class="lang-en">Model-driven</span>
-                <span class="lang-cn">模型驱动型</span>
+                <span class="lang-en">Data-driven DSS</span>
+                <span class="lang-cn">数据驱动型 DSS</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='2'>
-                <span class="lang-en">Communication-driven</span>
-                <span class="lang-cn">通信驱动型</span>
+                <span class="lang-en">Document-driven DSS</span>
+                <span class="lang-cn">文档驱动型 DSS</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">What are the three main components of a DSS?</span>
-                <span class="lang-cn">DSS 的三个主要组成部分是什么？</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w4_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w4_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">Which subsystem coordinates the execution and updating of mathematical formulas in a DSS?</span>
+                <span class="lang-cn">在 DSS 中，哪个子系统协调数学公式的执行和更新？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q1' value='0'>
-                <span class="lang-en">CPU, Keyboard, Mouse</span>
-                <span class="lang-cn">CPU、键盘、鼠标</span>
+                <span class="lang-en">Data Management Subsystem (DBMS)</span>
+                <span class="lang-cn">数据管理子系统 (DBMS)</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='1'>
-                <span class="lang-en">Data, Model, User Interface</span>
-                <span class="lang-cn">数据、模型、用户界面</span>
+                <span class="lang-en">Model Management Subsystem (MBMS)</span>
+                <span class="lang-cn">模型管理子系统 (MBMS)</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='2'>
-                <span class="lang-en">Scanner, Printer, JVM</span>
-                <span class="lang-cn">扫描仪、打印机、JVM</span>
+                <span class="lang-en">User Interface Subsystem</span>
+                <span class="lang-cn">用户界面子系统</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">A group decision room supporting communication is a...</span>
-                <span class="lang-cn">支持团队沟通的群组决策室属于什么类型？</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w4_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w4_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">Daniel Power's DSS taxonomy contains how many dominant categories?</span>
+                <span class="lang-cn">Daniel Power 的 DSS 分类学包含多少个主要类别？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q2' value='0'>
-                <span class="lang-en">Communication-driven DSS</span>
-                <span class="lang-cn">通信驱动型 DSS</span>
+                <span class="lang-en">3</span>
+                <span class="lang-cn">3</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='1'>
-                <span class="lang-en">Document-driven DSS</span>
-                <span class="lang-cn">文档驱动型 DSS</span>
+                <span class="lang-en">5</span>
+                <span class="lang-cn">5</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='2'>
-                <span class="lang-en">Knowledge-driven DSS</span>
-                <span class="lang-cn">知识驱动型 DSS</span>
+                <span class="lang-en">7</span>
+                <span class="lang-cn">7</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">Which system component manages the mathematical formulas and analysis rules?</span>
-                <span class="lang-cn">哪个 system 组件负责管理数学公式和分析规则？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
-                <span class="lang-en">DBMS (Database)</span>
-                <span class="lang-cn">DBMS（数据库）</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">MBMS (Model Base)</span>
-                <span class="lang-cn">MBMS（模型库）</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">User Interface</span>
-                <span class="lang-cn">用户界面</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">A document-driven DSS primarily searches and analyzes:</span>
-                <span class="lang-cn">文档驱动型 DSS 主要搜索和分析：</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">Relational tables</span>
-                <span class="lang-cn">关系型表</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
-                <span class="lang-en">Structured numbers</span>
-                <span class="lang-cn">结构化数字</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Unstructured text documents and files</span>
-                <span class="lang-cn">非结构化文本文档和文件</span>
-            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w4_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w4_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -349,25 +600,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en">The three core components of a DSS are data, model, and <input type='text' id='blank0' class='blank-input' style='width:100px;'>.</span>
-            <span class="lang-cn">DSS 的三个核心组件是数据、模型和 <input type='text' id='blank_cn0' class='blank-input' style='width:100px;'>。</span>
-        </p><p>
-            <span class="lang-en">A DSS that focuses on mathematical models and optimization is <input type='text' id='blank1' class='blank-input' style='width:100px;'>-driven.</span>
-            <span class="lang-cn">专注于数学模型和优化的 DSS 是由 <input type='text' id='blank_cn1' class='blank-input' style='width:100px;'> 驱动的。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -408,6 +641,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I can name and describe the 5 types of DSS in Power's taxonomy.</li><li><input type='checkbox'> I understand the roles of the Database, Model Base, and User Interface subsystems.</li><li><input type='checkbox'> I can identify which type of DSS is appropriate for a given business scenario.</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我能命名并描述 Power 分类法中的 5 种 DSS 类型。</li><li><input type='checkbox'> 我理解数据库、模型库和用户界面这三个子系统的作用。</li><li><input type='checkbox'> 我能针对给定的业务场景识别最适合的 DSS 类型。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>DSS Classifications:</strong> <ul><li><b>Model-driven DSS:</b> Uses mathematical, financial, or simulation mod...</li><li><strong>Components of DSS:</strong> <ul><li><b>Data Management Subsystem:</b> Includes the database, Database Manage...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>决策支持系统 (DSS) 分类 (Daniel Power):</strong> <ul><li><b>模型驱动型 DSS：</b> 使用数学、财务或模拟模型来进行分析。用户与输入数据交互以观察输出的变化。</li><li><b>数据驱动型 ...</li><li><strong>决策支持系统 (DSS) 核心组件:</strong> <ul><li><b>数据管理子系统：</b> 包括数据库、数据库管理系统 (DBMS)、数据字典和数据查询设施。</li><li><b>模型管理子系统：</b...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">Be ready to formulate standard DFDs showing interactions between DBMS and MBMS.</p>
+                    <p class="lang-cn" style="display: none;">准备好绘制展示 DBMS 和 MBMS 交互的标准 DFD 数据流图。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -419,19 +687,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="3" onclick="selectMatchCard(this)">Document-Driven</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Manages text catalogs</span>
-            <span class="lang-cn">管理文本文档目录</span>
-        </div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Model-Driven</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Utilizes optimization models</span>
-            <span class="lang-cn">利用优化模型进行分析</span>
-        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">Communication-Driven</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Queries warehouse databases</span>
-            <span class="lang-cn">查询数据仓库数据库</span>
-        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Data-Driven</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Supports group collaboration</span>
-            <span class="lang-cn">支持群组在线协作</span>
-        </div>
+                <div class="match-card" data-id="3" onclick="selectMatchCard(this)">DBMS</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">Manages database tables and query filters</span><span class="lang-cn">管理数据库表和查询过滤器</span></div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Model-driven DSS</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">Analytical support using simulation or optimization formulas</span><span class="lang-cn">使用模拟或优化公式的分析支持</span></div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">MBMS</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">Accesses database queries to extract historical metrics</span><span class="lang-cn">访问数据库查询以提取历史指标</span></div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Data-driven DSS</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Coordinates model creation and goal-seeking execution</span><span class="lang-cn">协调模型创建和目标求解执行</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -446,19 +702,13 @@
             let score = 0;
             
         const q0 = document.querySelector('input[name="q0"]:checked');
-        if (q0 && parseInt(q0.value) === 1) score++;
+        if (q0 && parseInt(q0.value) === 0) score++;
         
         const q1 = document.querySelector('input[name="q1"]:checked');
         if (q1 && parseInt(q1.value) === 1) score++;
         
         const q2 = document.querySelector('input[name="q2"]:checked');
-        if (q2 && parseInt(q2.value) === 0) score++;
-        
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 1) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 2) score++;
+        if (q2 && parseInt(q2.value) === 1) score++;
         
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
@@ -466,28 +716,11 @@
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['user interface', '用户界面', '界面'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['model', '模型', '模型驱动', '模型驱动型'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {

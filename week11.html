@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>Apply DSS design principles to system architectures.</li><li>Map system components to the 3-Tier logical architecture.</li><li>Explain system reengineering strategies.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>将 DSS 设计原则应用于系统架构开发中。</li><li>将系统组件映射到三层逻辑架构上。</li><li>解释系统重构和业务重组策略。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,78 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. DSS Design Principles</h3><p>DSS design focuses on modularity, scalability, and loose coupling. Designers must map the components (database, model, dialog) to system nodes, planning how data flows from sources to models and out to the user dashboard.</p></div><div class='step'><h3>2. Multi-Tier Architectures</h3><p>A classic DSS implementation utilizes a **3-Tier Architecture**: **Presentation Tier** (web client UI), **Application/Logic Tier** (analytical calculations, model bases), and **Data Tier** (data warehouses and databases).</p></div>
+                <div class='step'><h3>7.2 DSS Design and Reengineering</h3><div><ul><li><b>3-Tier Logical Architecture:</b>  <ul>    <li><b>Client Tier (Presentation):</b> The browser, dashboard UI, and web portal where managers enter queries and view charts.</li>    <li><b>Application Tier (Logic/Models):</b> The server hosting MBMS engines, processing algorithms, and calculating optimization formulas.</li>    <li><b>Data Tier (Storage):</b> The DBMS, relational databases, and data warehouse holding raw and integrated data tables.</li>  </ul></li><li><b>Business Process Reengineering (BPR):</b> Redesigning organizational processes to align with the new computerized decision structures, eliminating manual bottlenecks.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Spotify</h4><ul><li>Spotify's recommendations rely on a 3-tier architecture:</li><li><b>Client:</b> Mobile/Web player UI displaying recommendation lists.</li><li><b>Application Server:</b> Complex machine learning models filtering candidate songs.</li><li><b>Data Tier:</b> Massive distributed databases storing song audio and metadata.</li></ul><p><strong>Reference:</strong> <a href="https://engineering.atspotify.com/2014/03/spotify-architecture/" target="_blank">Spotify Recommendation Systems Architecture</a></p></div></div></div>
+            <div class="card">
+                <h2>Logical 3-Tier Architecture</h2>
+                <table>
+                    <tr>
+                        <th>Logical Tier</th>
+                        <th>Responsibilities</th>
+                        <th>Typical Component Technologies</th>
+                        <th>Interaction flow</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Presentation Tier</strong></td>
+                        <td>User interaction, rendering views, taking commands</td>
+                        <td>HTML5, JavaScript, CSS3 web client dashboards</td>
+                        <td>User clicks a button &rarr; sends HTTP request to App Tier</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Application Tier</strong></td>
+                        <td>Business rules, mathematical modeling calculations, solver invocation</td>
+                        <td>Java servlet, Python solver algorithms, MBMS middleware</td>
+                        <td>Invokes LP solver and formats results &rarr; returns JSON data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Tier</strong></td>
+                        <td>Persistent data storage, transaction logs, metadata warehousing</td>
+                        <td>PostgreSQL database, enterprise warehouse, DBMS engines</td>
+                        <td>Executes SQL query to pull sales records &rarr; returns dataset</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>Decoupling for Scalability</h4>
+                    <p>By separating the Presentation, Application, and Data layers, a change in database structure (Data tier) does not break user interaction screens (Presentation tier), enabling loose-coupling.</p>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. DSS 设计原则</h3><p>DSS 设计侧重于模块化、可扩展性和松耦合。设计人员必须将组件（数据库、模型、对话）映射到系统节点，规划数据如何从源流向模型并输出到用户仪表板。</p></div><div class='step'><h3>2. 多层系统架构</h3><p>经典的 DSS 实现利用了**三层架构**：**表示层**（Web 客户端 UI）、**应用/逻辑层**（分析计算、模型库）和**数据层**（数据仓库和数据库）。</p></div>
+                <div class='step'><h3>7.2 DSS 架构设计与三层逻辑架构</h3><div><ul><li><b>三层逻辑架构：</b>  <ul>    <li><b>客户端层（表示层 - Client Tier）：</b> 浏览器、仪表板界面和 Web 门户，管理者在此输入查询并查看图表。</li>    <li><b>应用层（逻辑/模型层 - Application Tier）：</b> 托管 MBMS 引擎、运行处理算法和计算优化公式的服务器。</li>    <li><b>数据层（存储层 - Data Tier）：</b> 包含 DBMS、关系数据库和存储原始及集成数据表的数据仓库。</li>  </ul></li><li><b>业务流程重组 (BPR)：</b> 重新设计组织工作流程以适应新的计算机化决策结构，消除传统的手工瓶颈。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：声田 (Spotify)</h4><ul><li>Spotify 的音乐推荐算法依赖于其经典的三层架构：</li><li><b>表示层：</b> 手机与网页播放器界面，显示推荐歌曲列表。</li><li><b>应用层：</b> 复杂的机器学习算法服务器，运行协同过滤歌曲筛选。</li><li><b>数据层：</b> 存放亿级歌曲音频文件与用户历史播放记录的分布式数据库。</li></ul><p><strong>参考链接：</strong> <a href="https://engineering.atspotify.com/2014/03/spotify-architecture/" target="_blank">Spotify推荐系统技术架构</a></p></div></div></div>
+            <div class="card">
+                <h2>逻辑三层架构模型</h2>
+                <table>
+                    <tr>
+                        <th>逻辑架构分层</th>
+                        <th>核心功能职责</th>
+                        <th>典型技术栈</th>
+                        <th>消息数据交互流</th>
+                    </tr>
+                    <tr>
+                        <td><strong>表示层 (Presentation)</strong></td>
+                        <td>用户交互交互、渲染视图界面、捕获用户命令</td>
+                        <td>HTML5、JavaScript、CSS3 网页仪表板客户端</td>
+                        <td>用户点击分析按钮 &rarr; 向应用层发送 HTTP 请求</td>
+                    </tr>
+                    <tr>
+                        <td><strong>应用层 (Application)</strong></td>
+                        <td>运行业务逻辑、执行数学模型计算、调用求解器</td>
+                        <td>Java Web、Python 求解器模型算法、MBMS 中间件</td>
+                        <td>调用规划求解算法，计算并将数据格式化为 JSON 传回</td>
+                    </tr>
+                    <tr>
+                        <td><strong>数据层 (Data)</strong></td>
+                        <td>持久化数据存储、事务运行日志、元数据仓库</td>
+                        <td>PostgreSQL、Oracle 关系数据库、数据仓库引擎</td>
+                        <td>执行 SQL 查询以拉取历史记录 &rarr; 返回结果数据集</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>松耦合与系统可扩展性</h4>
+                    <p>通过分离表示层、应用层和数据层，即使修改了数据库字段结构（数据层），也不会直接导致用户前端界面（表示层）发生崩溃，实现了系统架构的松耦合设计。</p>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +419,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='220' viewBox='0 0 600 220'><rect x='200' y='20' width='200' height='40' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='300' y='45' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Presentation (Web UI)</text><rect x='200' y='90' width='200' height='40' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='300' y='115' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Application (Logic/MBMS)</text><rect x='200' y='160' width='200' height='40' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='300' y='185' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Data (Warehouse/DBMS)</text><path d='M 300 60 L 300 90' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 300 130 L 300 160' stroke='#FF6B6B' stroke-width='2' fill='none'/></svg>
+                <svg width='100%' max-width='600' height='220' viewBox='0 0 600 220'><rect x='200' y='10' width='200' height='45' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='300' y='38' fill='#111111' font-family='Rajdhani' font-size='15' font-weight='bold' text-anchor='middle'>1. Client (Web UI)</text><rect x='200' y='85' width='200' height='45' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='300' y='113' fill='#111111' font-family='Rajdhani' font-size='15' font-weight='bold' text-anchor='middle'>2. App Server (Models)</text><rect x='200' y='160' width='200' height='45' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='300' y='188' fill='#111111' font-family='Rajdhani' font-size='15' font-weight='bold' text-anchor='middle'>3. Database (Data Tier)</text><path d='M 300 55 L 300 85' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 300 130 L 300 160' stroke='#FF6B6B' stroke-width='2' fill='none'/></svg>
             </div>
         </div>
 
@@ -241,8 +462,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">UML planning preparation: Learn the difference between logical architecture (components) and physical architecture (servers/nodes). 3-tier is logical, client-server is physical.</div>
-            <div class="lang-cn">UML 规划准备：了解逻辑架构（组件）与物理架构（服务器/节点）之间的区别。三层是逻辑架构，客户端-服务器是物理架构。</div>
+            <div class="lang-en">A 3-tier architecture decouples Client, Application Server, and Database. This prevents server crashes if too many users access the database directly.</div>
+            <div class="lang-cn">三层架构将客户端、应用服务器和数据库进行解耦。这可以防止如果过多用户直接访问数据库时导致数据库崩溃。</div>
         </div>
 
         <!-- Quiz Section -->
@@ -252,96 +473,90 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">Which tier in a 3-tier architecture handles data storage and database queries?</span>
-                <span class="lang-cn">三层架构中的哪一层负责数据存储和数据库查询？</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">The user interface dashboard resides in which logical tier?</span>
+                <span class="lang-cn">用户界面仪表板驻留在哪个逻辑层？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Presentation Tier</span>
-                <span class="lang-cn">表示层</span>
+                <span class="lang-en">Client/Presentation Tier</span>
+                <span class="lang-cn">客户端/表示层</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='1'>
-                <span class="lang-en">Application Tier</span>
-                <span class="lang-cn">应用层</span>
+                <span class="lang-en">Application/Logic Tier</span>
+                <span class="lang-cn">应用/逻辑层</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='2'>
                 <span class="lang-en">Data Tier</span>
                 <span class="lang-cn">数据层</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">Presentation Tier deals primarily with:</span>
-                <span class="lang-cn">表示层主要处理：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w11_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w11_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">Which logical tier performs mathematical model logic and calculations?</span>
+                <span class="lang-cn">哪个逻辑层执行数学模型逻辑和计算？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q1' value='0'>
-                <span class="lang-en">Running SQL joins</span>
-                <span class="lang-cn">运行 SQL 连接</span>
+                <span class="lang-en">Client/Presentation Tier</span>
+                <span class="lang-cn">客户端/表示层</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='1'>
-                <span class="lang-en">Mathematical optimization models</span>
-                <span class="lang-cn">数学优化模型</span>
+                <span class="lang-en">Application/Logic Tier</span>
+                <span class="lang-cn">应用/逻辑层</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='2'>
-                <span class="lang-en">Rendering user interface components and widgets</span>
-                <span class="lang-cn">渲染用户界面组件和控件</span>
+                <span class="lang-en">Data Tier</span>
+                <span class="lang-cn">数据层</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">What is the primary benefit of a modular DSS design?</span>
-                <span class="lang-cn">模块化 DSS 设计的主要好处是什么？</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w11_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w11_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">The database and data warehouse tables reside in which tier?</span>
+                <span class="lang-cn">数据库和数据仓库表驻留在哪个层中？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q2' value='0'>
-                <span class="lang-en">It increases system compile time</span>
-                <span class="lang-cn">它增加了系统编译时间</span>
+                <span class="lang-en">Client/Presentation Tier</span>
+                <span class="lang-cn">客户端/表示层</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='1'>
-                <span class="lang-en">Components can be updated or replaced independently without breaking the system</span>
-                <span class="lang-cn">组件可以独立更新或替换而不会破坏系统</span>
+                <span class="lang-en">Application/Logic Tier</span>
+                <span class="lang-cn">应用/逻辑层</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='2'>
-                <span class="lang-en">It does not require databases</span>
-                <span class="lang-cn">它不需要数据库</span>
+                <span class="lang-en">Data Tier</span>
+                <span class="lang-cn">数据层</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">Designing a system with 'loose coupling' means:</span>
-                <span class="lang-cn">设计“松耦合”的系统意味着：</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
-                <span class="lang-en">Classes depend heavily on each other</span>
-                <span class="lang-cn">类与类之间严重依赖</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">Minimal dependencies between classes or components</span>
-                <span class="lang-cn">类或组件之间的依赖最小化</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">System parameters are loosely defined</span>
-                <span class="lang-cn">系统参数定义松散</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">Which document shows the physical layout of servers and clients in a DSS?</span>
-                <span class="lang-cn">哪个文档展示了 DSS 中服务器和客户端的物理布局？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">Use Case Diagram</span>
-                <span class="lang-cn">用例图</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
-                <span class="lang-en">Architecture/Deployment diagram</span>
-                <span class="lang-cn">架构/部署图</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Class list</span>
-                <span class="lang-cn">类列表</span>
-            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w11_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w11_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 3</span>
+                    <span class="lang-cn">正确选项：选项 3</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -351,25 +566,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en">A 3-tier architecture divides a system into Presentation, Application, and <input type='text' id='blank0' class='blank-input' style='width:100px;'> tiers.</span>
-            <span class="lang-cn">三层架构将系统划分为表示层、应用层和 <input type='text' id='blank_cn0' class='blank-input' style='width:100px;'> 层。</span>
-        </p><p>
-            <span class="lang-en">System <input type='text' id='blank1' class='blank-input' style='width:100px;'> refers to the structural blueprint of software components.</span>
-            <span class="lang-cn">系统 <input type='text' id='blank_cn1' class='blank-input' style='width:100px;'> 指的是软件组件的结构蓝图。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -410,6 +607,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I can explain DSS modularity and loose-coupling design principles.</li><li><input type='checkbox'> I understand the difference between Presentation, Application, and Data tiers.</li><li><input type='checkbox'> I can map DSS subsystems into 3-tier configurations.</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我能解释 DSS 模块化与松耦合的设计原则。</li><li><input type='checkbox'> 我理解表示层、应用层和数据层之间的核心区别与职责分工。</li><li><input type='checkbox'> 我能将完整的 DSS 子系统映射为三层网络配置结构。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>DSS Design and Reengineering:</strong> <ul><li><b>3-Tier Logical Architecture:</b>  <ul>    <li><b>Client Tier (Present...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>DSS 架构设计与三层逻辑架构:</strong> <ul><li><b>三层逻辑架构：</b>  <ul>    <li><b>客户端层（表示层 - Client Tier）：</b> 浏览器、仪表板界面和 W...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">Be prepared to draw 3-tier mapping diagrams in Draw.io showing database connection points.</p>
+                    <p class="lang-cn" style="display: none;">准备好在 Draw.io 中绘制展示数据库连接点和业务逻辑路由的逻辑三层映射图。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -421,19 +653,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Presentation Tier</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Executes models and logic rules</span>
-            <span class="lang-cn">执行模型和逻辑规则</span>
-        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Application Tier</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Handles dashboard UI display</span>
-            <span class="lang-cn">负责仪表板 UI 显示</span>
-        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Data Tier</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Stores warehouse tables and files</span>
-            <span class="lang-cn">存储仓库表和文件</span>
-        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">3-Tier Architecture</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Classic logical system division</span>
-            <span class="lang-cn">经典逻辑系统划分方式</span>
-        </div>
+                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Client Tier</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">The server hosting calculation formulas and MBMS models</span><span class="lang-cn">托管计算公式和 MBMS 模型的服务器</span></div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Application Tier</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">The graphical dashboard rendering in the browser</span><span class="lang-cn">在浏览器中渲染的图形仪表板</span></div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Data Tier</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">The database servers storing transaction data tables</span><span class="lang-cn">存储交易数据表的数据库服务器</span></div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">BPR</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Fundamental redesign of business processes for computerization</span><span class="lang-cn">为实现计算机化对业务流程进行的根本性重新设计</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -448,19 +668,13 @@
             let score = 0;
             
         const q0 = document.querySelector('input[name="q0"]:checked');
-        if (q0 && parseInt(q0.value) === 2) score++;
+        if (q0 && parseInt(q0.value) === 0) score++;
         
         const q1 = document.querySelector('input[name="q1"]:checked');
-        if (q1 && parseInt(q1.value) === 2) score++;
+        if (q1 && parseInt(q1.value) === 1) score++;
         
         const q2 = document.querySelector('input[name="q2"]:checked');
-        if (q2 && parseInt(q2.value) === 1) score++;
-        
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 1) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 1) score++;
+        if (q2 && parseInt(q2.value) === 2) score++;
         
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
@@ -468,28 +682,11 @@
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['data', '数据', '数据层'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['architecture', '架构', '系统架构', '结构'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {

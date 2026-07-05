@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>Describe Herbert Simon's decision-making process phases.</li><li>Explain how information systems support each decision phase.</li><li>Define DSS capabilities in handling unstructured decisions.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>描述赫伯特·西蒙的决策制定过程阶段。</li><li>解释信息系统如何支持每个决策阶段。</li><li>定义 DSS 处理非结构化决策的能力。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,90 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. Herbert Simon's Decision Process</h3><p>Herbert Simon defined four fundamental phases of decision-making: <b>Intelligence</b> (scanning env to find problems), <b>Design</b> (developing alternative solutions), <b>Choice</b> (selecting an alternative), and <b>Implementation</b> (putting solution into action).</p></div><div class='step'><h3>2. DSS Support Mechanisms</h3><p>Decision Support Systems provide tailored support for each phase: Intelligence (data queries, OLAP, data mining), Design (mathematical modeling, forecasting), Choice (decision matrices, multi-criteria analysis), and Implementation (reporting).</p></div>
+                <div class='step'><h3>2.1 Phases of Decision Making Process</h3><div><ul><li><b>Intelligence Phase:</b> Searching the environment to identify problem conditions or opportunities. Involves organizational objectives and problem classification.</li><li><b>Design Phase:</b> Formulating, developing, and analyzing alternative courses of action. Involves building cognitive or mathematical models of the problem.</li><li><b>Choice Phase:</b> Selecting the best alternative course of action from those developed in the design phase. Includes evaluation and risk analysis.</li><li><b>Implementation Phase:</b> Putting the selected decision into action and tracking execution. Feedback loops return to previous phases if issues arise.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Netflix</h4><ul><li><b>Intelligence:</b> Netflix detects a drop in subscriber engagement in a specific genre.</li><li><b>Design:</b> Content teams model alternative show concepts, target audiences, and budgets.</li><li><b>Choice:</b> Executive algorithms select the project with the highest predicted ROI.</li><li><b>Implementation:</b> Producing the show, launching it, and monitoring viewership logs.</li></ul><p><strong>Reference:</strong> <a href="https://hbr.org/2018/11/how-netflix-uses-analytics-to-select-movies" target="_blank">How Netflix Uses Analytics to Select Movies</a></p></div></div></div><div class='step'><h3>2.2 How Decisions are Supported</h3><div><ul><li><b>Supporting Intelligence:</b> Supported by Data Warehouses, OLAP query systems, data mining, and web search filters to find root causes.</li><li><b>Supporting Design:</b> Supported by mathematical modeling toolkits (such as Excel Solver), brainstorming tools, and simulation engines.</li><li><b>Supporting Choice:</b> Supported by multi-criteria decision models, decision matrix calculators, and What-If analytics.</li><li><b>Supporting Implementation:</b> Supported by reporting dashboards, communication modules, and project management portals.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Uber</h4><ul><li><b>Intelligence:</b> Surge pricing algorithms identify high demand spikes in specific zones using GPS telemetry.</li><li><b>Design:</b> Surge simulators generate alternative price multipliers to balance demand.</li><li><b>Choice:</b> Algorithms select the optimal multiplier that optimizes trip matching.</li><li><b>Implementation:</b> Dynamic price is pushed to passenger and driver apps immediately.</li></ul><p><strong>Reference:</strong> <a href="https://www.uber.com/en-MY/blog/uber-realtime-ride-booking-architecture/" target="_blank">Uber Real-Time Dynamic Matching Systems</a></p></div></div></div><div class='step'><h3>2.3 Decision Support System Capabilities</h3><div><ul><li><b>Individual & Group Support:</b> Assists individual managers as well as cooperative committees.</li><li><b>Sequence Decisions:</b> Supports a series of interrelated choices made over time.</li><li><b>Model Integration:</b> Provides direct access to mathematical, financial, and simulation models.</li><li><b>User Control:</b> Gives decision-makers full control over the inputs and model selection.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Ford Motor Company</h4><ul><li>Ford design engineers use collaborative design-support systems to model vehicle aerodynamics.</li><li>The DSS supports sequential choices (weight changes -> drag changes -> fuel changes) while giving the engineer final design approval.</li></ul><p><strong>Reference:</strong> <a href="https://hbr.org/2006/07/competitor-intelligence-at-ford" target="_blank">Decision Intelligence at Ford Motor Company</a></p></div></div></div>
+            <div class="card">
+                <h2>Simon's Decision-Making Phases</h2>
+                <table>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Objective</th>
+                        <th>IT Tool Support</th>
+                        <th>Real-World Example</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Intelligence</strong></td>
+                        <td>Identify the problem or opportunity</td>
+                        <td>Data queries, OLAP, web alerts, anomaly detection</td>
+                        <td>Detecting a sudden drops in store sales via sales dashboards</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Design</strong></td>
+                        <td>Formulate alternative courses of action</td>
+                        <td>Simulation models, brainstorming tools, forecasting</td>
+                        <td>Generating three alternative staffing schedules in Excel</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Choice</strong></td>
+                        <td>Select the best alternative from the options</td>
+                        <td>Decision matrices, optimization algorithms, solver</td>
+                        <td>Using linear programming solver to pick the highest profit mix</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Implementation</strong></td>
+                        <td>Execute the decision and monitor results</td>
+                        <td>Project management tools, KPI reports, follow-up logs</td>
+                        <td>Deploying the schedule and tracking weekly labor cost savings</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>The Choice Phase Support</h4>
+                    <p>During the Choice phase, DSS provides solvers and optimization algorithms to compare alternatives objectively, reducing cognitive bias and emotional decision-making.</p>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. 别特·西蒙决策过程</h3><p>赫伯特·西蒙定义了决策制定的四个基本阶段：<b>情报阶段</b>（扫描环境发现问题）、<b>设计阶段</b>（开发备选方案）、<b>抉择阶段</b>（选择备选方案）和<b>实施阶段</b>（将方案付诸行动）。</p></div><div class='step'><h3>2. DSS 支持机制</h3><p>决策支持系统针对每个阶段提供定制支持：情报阶段（数据查询、OLAP、数据挖掘）、设计阶段（数学建模、预测）、抉择阶段（决策矩阵、多准则分析）和实施阶段（报表报告）。</p></div>
+                <div class='step'><h3>2.1 决策制定过程阶段 (Herbert Simon)</h3><div><ul><li><b>情报阶段 (Intelligence)：</b> 搜索环境以确定问题条件或机会。涉及确定组织目标与问题分类。</li><li><b>设计阶段 (Design)：</b> 构思、开发和分析可能的备选行动方案。涉及建立问题的认知或数学模型。</li><li><b>选择阶段 (Choice)：</b> 从设计阶段开发的备选方案中选择最佳的行动方案。包括方案评估与风险分析。</li><li><b>实施阶段 (Implementation)：</b> 将所选决策付诸行动并跟踪执行情况。如果出现问题，反馈循环将返回之前的阶段。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：网飞 (Netflix)</h4><ul><li><b>情报阶段：</b> Netflix 检测到特定流派的订阅用户参与度有所下降。</li><li><b>设计阶段：</b> 内容团队针对备选剧集概念、目标受众和预算进行建模。</li><li><b>选择阶段：</b> 高管算法选择预测投资回报率 (ROI) 最高的项目。</li><li><b>实施阶段：</b> 制作剧集、上线并监控收视率数据。</li></ul><p><strong>参考链接：</strong> <a href="https://hbr.org/2018/11/how-netflix-uses-analytics-to-select-movies" target="_blank">Netflix如何利用分析来选择电影</a></p></div></div></div><div class='step'><h3>2.2 决策如何获得系统支持</h3><div><ul><li><b>支持情报阶段：</b> 通过数据仓库、OLAP 查询系统、数据挖掘和网页搜索过滤器来查找根源问题。</li><li><b>支持设计阶段：</b> 通过数学建模工具箱（如 Excel Solver）、头脑风暴工具和模拟引擎提供支持。</li><li><b>支持选择阶段：</b> 通过多准则决策模型、决策矩阵计算器和 What-If 分析提供支持。</li><li><b>支持实施阶段：</b> 通过汇报仪表板、沟通模块和项目管理门户提供支持。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：优步 (Uber)</h4><ul><li><b>情报支持：</b> 动态调价算法利用 GPS 遥测数据识别特定区域的高需求峰值。</li><li><b>设计支持：</b> 价格模拟器生成不同的价格倍数方案以平衡供需。</li><li><b>选择支持：</b> 算法选择最佳倍数，以最大化乘客和司机的匹配率。</li><li><b>实施支持：</b> 动态价格立即推送到乘客和司机端的应用界面。</li></ul><p><strong>参考链接：</strong> <a href="https://www.uber.com/en-MY/blog/uber-realtime-ride-booking-architecture/" target="_blank">Uber实时动态匹配系统</a></p></div></div></div><div class='step'><h3>2.3 决策支持系统 (DSS) 核心能力</h3><div><ul><li><b>个人与团队支持：</b> 既能协助单体管理者，也能支持合作型的决策委员会。</li><li><b>序列决策能力：</b> 支持随时间推移做出的一系列相互关联的选择。</li><li><b>模型整合力：</b> 允许直接调用数学、财务和模拟决策模型。</li><li><b>用户控制权：</b> 给予决策者对输入数据和模型选择的最终控制权。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：福特汽车 (Ford)</h4><ul><li>福特设计工程师使用协同设计支持系统来对车辆空气动力学进行建模。</li><li>该 DSS 支持序列选择（重量改变 -> 阻力改变 -> 燃油效率改变），同时赋予工程师最终设计决定权。</li></ul><p><strong>参考链接：</strong> <a href="https://hbr.org/2006/07/competitor-intelligence-at-ford" target="_blank">福特汽车公司的决策智能</a></p></div></div></div>
+            <div class="card">
+                <h2>西蒙决策制定阶段</h2>
+                <table>
+                    <tr>
+                        <th>阶段</th>
+                        <th>核心目标</th>
+                        <th>IT 工具支持</th>
+                        <th>实际应用示例</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. 情报阶段 (Intelligence)</strong></td>
+                        <td>发现并定义问题或机遇</td>
+                        <td>数据查询、OLAP、网页提醒、异常检测</td>
+                        <td>通过销售仪表板检测到门店销售额突然下降</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. 设计阶段 (Design)</strong></td>
+                        <td>构想各种备选行动方案</td>
+                        <td>模拟模型、头脑风暴工具、趋势预测</td>
+                        <td>在 Excel 中生成三种不同的员工排班备选方案</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. 抉择阶段 (Choice)</strong></td>
+                        <td>评估方案并选出最佳方案</td>
+                        <td>决策矩阵、优化算法、规划求解器</td>
+                        <td>使用线性规划求解器选择利润最高的组合</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. 实施阶段 (Implementation)</strong></td>
+                        <td>执行决策并持续监控结果</td>
+                        <td>项目管理工具、KPI 报表、跟踪日志</td>
+                        <td>部署排班方案并追踪每周节省的人工成本</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>抉择阶段的支持</h4>
+                    <p>在抉择阶段，DSS 提供了求解器和优化算法，以便客观地比较各种方案，减少认知偏差和情感化决策。</p>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +431,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='220' viewBox='0 0 600 220'><circle cx='80' cy='110' r='45' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='80' y='115' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Intelligence</text><circle cx='220' cy='110' r='45' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='220' y='115' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Design</text><circle cx='380' cy='110' r='45' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='380' y='115' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Choice</text><circle cx='520' cy='110' r='45' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='520' y='115' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Implementation</text><path d='M 125 110 L 175 110' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 265 110 L 335 110' stroke='#FF6B6B' stroke-width='2' fill='none'/><path d='M 425 110 L 475 110' stroke='#1E3A8A' stroke-width='2' fill='none'/></svg>
+                <svg width='100%' max-width='600' height='220' viewBox='0 0 600 220'><circle cx='100' cy='110' r='45' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='100' y='115' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>1. Intelligence</text><circle cx='230' cy='110' r='45' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='230' y='115' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>2. Design</text><circle cx='360' cy='110' r='45' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='360' y='115' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>3. Choice</text><circle cx='490' cy='110' r='45' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='490' y='115' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>4. Implement</text><path d='M 145 110 L 185 110' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 275 110 L 315 110' stroke='#FF6B6B' stroke-width='2' fill='none'/><path d='M 405 110 L 445 110' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 490 65 C 490 20, 100 20, 100 65' stroke='#FF6B6B' stroke-dasharray='4' stroke-width='2' fill='none'/></svg>
             </div>
         </div>
 
@@ -243,8 +476,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">Memorize the order of Simon's four phases (Intelligence -> Design -> Choice -> Implementation). This is a guaranteed exam topic for structured questions!</div>
-            <div class="lang-cn">记住西蒙决策四个阶段的顺序（情报 -> 设计 -> 抉择 -> 实施）。这是结构化考试大题的必考点！</div>
+            <div class="lang-en">Understand Herbert Simon's phases (Intelligence, Design, Choice, Implementation). Remember that a decision loop can go back to previous phases at any time.</div>
+            <div class="lang-cn">理解赫伯特·西蒙的决策阶段（情报、设计、选择、实施）。记住，决策循环可以随时返回先前的阶段。</div>
         </div>
 
         <!-- Quiz Section -->
@@ -254,96 +487,94 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">Which phase of Simon's decision process involves identifying problems and scanning the environment?</span>
-                <span class="lang-cn">西蒙决策过程的哪个阶段涉及发现问题和扫描环境？</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">Who formulated the four phases of the decision-making process?</span>
+                <span class="lang-cn">谁提出了决策制定过程的四个阶段？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Intelligence</span>
-                <span class="lang-cn">情报阶段</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q0' value='1'>
-                <span class="lang-en">Design</span>
-                <span class="lang-cn">设计阶段</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q0' value='2'>
-                <span class="lang-en">Choice</span>
-                <span class="lang-cn">抉择阶段</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">What is the primary activity in the 'Design' phase?</span>
-                <span class="lang-cn">在“设计”阶段，最主要的活动是什么？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q1' value='0'>
-                <span class="lang-en">Selecting the best option</span>
-                <span class="lang-cn">选择最佳方案</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q1' value='1'>
-                <span class="lang-en">Developing and analyzing alternative solutions</span>
-                <span class="lang-cn">开发并分析备选方案</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q1' value='2'>
-                <span class="lang-en">Installing software</span>
-                <span class="lang-cn">安装软件</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">A decision matrix is primarily used in which decision phase?</span>
-                <span class="lang-cn">决策矩阵主要用于决策的哪个阶段？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q2' value='0'>
-                <span class="lang-en">Intelligence</span>
-                <span class="lang-cn">情报阶段</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q2' value='1'>
-                <span class="lang-en">Choice</span>
-                <span class="lang-cn">抉择阶段</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q2' value='2'>
-                <span class="lang-en">Design</span>
-                <span class="lang-cn">设计阶段</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">Who formulated the four phases of the decision-making process?</span>
-                <span class="lang-cn">是谁系统地阐述了决策制定过程的四个阶段？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
                 <span class="lang-en">Herbert Simon</span>
                 <span class="lang-cn">赫伯特·西蒙</span>
             </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">Alan Turing</span>
-                <span class="lang-cn">艾伦·图灵</span>
+                <input type='radio' name='q0' value='1'>
+                <span class="lang-en">Daniel Power</span>
+                <span class="lang-cn">丹尼尔·鲍尔</span>
             </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">John von Neumann</span>
-                <span class="lang-cn">约翰·分·诺伊曼</span>
+                <input type='radio' name='q0' value='2'>
+                <span class="lang-en">Bill Inmon</span>
+                <span class="lang-cn">比尔·恩门</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">What is the final phase of Simon's decision-making process?</span>
-                <span class="lang-cn">西蒙决策制定过程的最后一个阶段是什么？</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w3_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w3_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">Which phase of decision making focuses on finding the problem or opportunity?</span>
+                <span class="lang-cn">决策制定的哪个阶段侧重于发现问题或机会？</span>
             </b></p>
             <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">Choice</span>
-                <span class="lang-cn">抉择阶段</span>
+                <input type='radio' name='q1' value='0'>
+                <span class="lang-en">Intelligence</span>
+                <span class="lang-cn">情报阶段</span>
             </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
+                <input type='radio' name='q1' value='1'>
+                <span class="lang-en">Design</span>
+                <span class="lang-cn">设计阶段</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q1' value='2'>
+                <span class="lang-en">Choice</span>
+                <span class="lang-cn">选择阶段</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q1' value='3'>
                 <span class="lang-en">Implementation</span>
                 <span class="lang-cn">实施阶段</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Maintenance</span>
-                <span class="lang-cn">维护阶段</span>
             </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w3_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w3_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">If a chosen solution fails to resolve the problem during the implementation phase, the system should:</span>
+                <span class="lang-cn">如果在实施阶段所选方案未能解决问题，系统应该：</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q2' value='0'>
+                <span class="lang-en">Halt permanently</span>
+                <span class="lang-cn">永久停机</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='1'>
+                <span class="lang-en">Loop back to previous phases (Intelligence or Design)</span>
+                <span class="lang-cn">循环返回先前的阶段（情报或设计）</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='2'>
+                <span class="lang-en">Ignore the feedback and continue</span>
+                <span class="lang-cn">忽略反馈并继续</span>
+            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w3_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w3_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -353,25 +584,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en">Simon's four phases of decision making are Intelligence, Design, Choice, and <input type='text' id='blank0' class='blank-input' style='width:100px;'>.</span>
-            <span class="lang-cn">西蒙决策制定的四个阶段是情报、设计、抉择和 <input type='text' id='blank_cn0' class='blank-input' style='width:100px;'>。</span>
-        </p><p>
-            <span class="lang-en">In the <input type='text' id='blank1' class='blank-input' style='width:100px;'> phase, we identify the business problem and gather data.</span>
-            <span class="lang-cn">在 <input type='text' id='blank_cn1' class='blank-input' style='width:100px;'> 阶段，我们识别业务问题并收集数据。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -412,6 +625,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I can list the four phases of Herbert Simon's decision model in order.</li><li><input type='checkbox'> I know how DSS supports each phase: Intelligence, Design, Choice, Implementation.</li><li><input type='checkbox'> I understand the difference between structured, semi-structured, and unstructured problems.</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我能按顺序罗列赫伯特·西蒙决策模型的四个阶段。</li><li><input type='checkbox'> 我知道 DSS 如何支持每个阶段：情报、设计、抉择、实施。</li><li><input type='checkbox'> 我理解结构化、半结构化和非结构化问题之间的区别。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>Phases of Decision Making Process:</strong> <ul><li><b>Intelligence Phase:</b> Searching the environment to identify problem...</li><li><strong>How Decisions are Supported:</strong> <ul><li><b>Supporting Intelligence:</b> Supported by Data Warehouses, OLAP query...</li><li><strong>Decision Support System Capabilities:</strong> <ul><li><b>Individual & Group Support:</b> Assists individual managers as well a...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>决策制定过程阶段 (Herbert Simon):</strong> <ul><li><b>情报阶段 (Intelligence)：</b> 搜索环境以确定问题条件或机会。涉及确定组织目标与问题分类。</li><li><b>设计阶...</li><li><strong>决策如何获得系统支持:</strong> <ul><li><b>支持情报阶段：</b> 通过数据仓库、OLAP 查询系统、数据挖掘和网页搜索过滤器来查找根源问题。</li><li><b>支持设计阶段：<...</li><li><strong>决策支持系统 (DSS) 核心能力:</strong> <ul><li><b>个人与团队支持：</b> 既能协助单体管理者，也能支持合作型的决策委员会。</li><li><b>序列决策能力：</b> 支持随时间推移做...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">Intelligence is the scanning phase to find the problem, do not confuse it with AI.</p>
+                    <p class="lang-cn" style="display: none;">情报阶段 (Intelligence) 是指寻找问题的扫描阶段，不要与人工智能 (AI) 混淆。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -423,19 +671,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="4" onclick="selectMatchCard(this)">Implementation</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Scanning environment for problems</span>
-            <span class="lang-cn">扫描环境寻找问题</span>
-        </div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Intelligence</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Formulating alternative solutions</span>
-            <span class="lang-cn">构想并制定备选方案</span>
-        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Choice</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Putting the chosen solution into action</span>
-            <span class="lang-cn">将选定的方案付诸实际行动</span>
-        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Design</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Evaluating and selecting an option</span>
-            <span class="lang-cn">评估并挑选一个最佳选项</span>
-        </div>
+                <div class="match-card" data-id="4" onclick="selectMatchCard(this)">Implementation Phase</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">Identify problem conditions and opportunities</span><span class="lang-cn">识别问题条件和机会</span></div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Intelligence Phase</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">Build models and generate alternative courses of action</span><span class="lang-cn">构建模型并生成备选行动方案</span></div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Choice Phase</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Execute the decision and monitor results</span><span class="lang-cn">执行决策并监控结果</span></div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Design Phase</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">Select the best alternative using decision criteria</span><span class="lang-cn">利用决策标准选择最佳备选方案</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -453,16 +689,10 @@
         if (q0 && parseInt(q0.value) === 0) score++;
         
         const q1 = document.querySelector('input[name="q1"]:checked');
-        if (q1 && parseInt(q1.value) === 1) score++;
+        if (q1 && parseInt(q1.value) === 0) score++;
         
         const q2 = document.querySelector('input[name="q2"]:checked');
         if (q2 && parseInt(q2.value) === 1) score++;
-        
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 0) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 1) score++;
         
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
@@ -470,28 +700,11 @@
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['implementation', '实施', '实施阶段', '执行', '执行阶段'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['intelligence', '情报', '情报阶段'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {

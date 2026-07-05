@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>Classify analytical models in decision support.</li><li>Identify decision variables, objective functions, and constraints.</li><li>Formulate linear programming equations.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>对决策支持中的分析模型进行分类。</li><li>识别决策变量、目标函数和约束条件。</li><li>构建线性规划数学方程。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,86 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. Optimization Models</h3><p>Models represent a simplified reality. Optimization models help decision makers find the best possible solution. Linear programming is a common optimization technique used to maximize profits or minimize costs under resource limitations.</p></div><div class='step'><h3>2. Decision Variables and Constraints</h3><p>Linear programming formulations require identifying: the **Objective Function** (the mathematical expression to maximize/minimize), **Decision Variables** (unknown values to solve), and **Constraints** (inequality limits representing boundaries).</p></div>
+                <div class='step'><h3>5.1 Model and Analytic</h3><div><ul><li><b>Decision Model Definition:</b> A simplified mathematical representation of a real-world business situation to evaluate alternative actions.</li><li><b>Core Modeling Variables:</b>  <ul>    <li><b>Decision Variables:</b> Factors under the manager's control (e.g., production quantity, pricing).</li>    <li><b>Uncontrollable Variables:</b> Factors outside manager's control (e.g., inflation rate, competitor pricing, tax rates).</li>    <li><b>Result Variables:</b> Measures of the model's performance (e.g., total profit, customer satisfaction rate).</li>  </ul></li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Delta Air Lines</h4><ul><li>Delta uses refueling models to control variables:</li><li><b>Decision Variables:</b> Fuel quantity to purchase in each city hub.</li><li><b>Uncontrollable Variables:</b> Current spot fuel market price per city.</li><li><b>Result Variables:</b> Total annual operational fuel costs.</li></ul><p><strong>Reference:</strong> <a href="https://hbr.org/2012/10/how-delta-decides-to-buy-fuel" target="_blank">How Delta Manages Jet Fuel Costs</a></p></div></div></div><div class='step'><h3>5.2 Options for Models</h3><div><ul><li><b>Optimization Models:</b> Find the best possible solution to a problem under constraints (e.g., using Linear Programming and Excel Solver).</li><li><b>Predictive Models:</b> Project future trends based on historical patterns (e.g., regression forecasting).</li><li><b>Descriptive Models:</b> Simulate operations to observe behavioral results without identifying a single optimal path (e.g., queue simulation).</li><li><b>Heuristics:</b> Rule-of-thumb models for situations where complete math models are unavailable.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Zara</h4><ul><li>Zara uses <b>Optimization Models</b> (specifically, constrained linear programming) to allocate inventories to stores globally.</li><li>The model optimizes stock distribution while factoring in shipping limits and display constraints.</li></ul><p><strong>Reference:</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/Zara-Uses-O.R.-to-Support-Retail-Operations" target="_blank">Zara Constrained Global Inventory Optimization</a></p></div></div></div><div class='step'><h3>5.3 Problems of Models</h3><div><ul><li><b>Simplification Bias:</b> Mathematical models may oversimplify complex market dynamics, leading to inaccurate results.</li><li><b>Assumption Risks:</b> Models rely on static assumptions that fail when unexpected structural shifts happen.</li><li><b>Data Quality (GIGO):</b> "Garbage In, Garbage Out" - poor input data renders model outcomes useless.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Long-Term Capital Management (LTCM)</h4><ul><li>The hedge fund LTCM used sophisticated Nobel-prize-winning risk models to guide investments.</li><li>However, their models assumed static market volatility, causing a complete fund collapse when Russia defaulted in 1998.</li></ul><p><strong>Reference:</strong> <a href="https://hbr.org/1999/09/hedge-funds-and-financial-models-lessons-from-ltcm" target="_blank">Financial Models Lessons from LTCM Collapse</a></p></div></div></div>
+            <div class="card">
+                <h2>Decision Model Categories</h2>
+                <table>
+                    <tr>
+                        <th>Model Class</th>
+                        <th>Mathematical Focus</th>
+                        <th>Solver Goal</th>
+                        <th>Typical Use Cases</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Optimization</strong></td>
+                        <td>Finds the single best solution</td>
+                        <td>Maximize profit or minimize cost</td>
+                        <td>Linear Programming (LP) product mix</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Descriptive</strong></td>
+                        <td>Simulates reality, shows what is happening</td>
+                        <td>No optimization; lists outcomes</td>
+                        <td>Monte Carlo risk simulation, queue models</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Predictive</strong></td>
+                        <td>Estimates future outcomes</td>
+                        <td>Predict value or classify trend</td>
+                        <td>Regression analysis, demand forecasting</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>Linear Programming (LP) Core Elements</h4>
+                    <ul>
+                        <li><strong>Decision Variables:</strong> The unknowns to solve for (e.g., x1 = quantity of Table, x2 = quantity of Chair).</li>
+                        <li><strong>Objective Function:</strong> The goal equation to Maximize or Minimize (e.g., Maximize Profit = 50x1 + 30x2).</li>
+                        <li><strong>Constraints:</strong> Inequalities representing resource limits (e.g., Labor: 2x1 + 1x2 &le; 100 hours).</li>
+                    </ul>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. 优化模型</h3><p>模型代表简化的现实。优化模型帮助决策者找到最佳解决方案。线性规划是常用的优化技术，用于在资源限制下实现利润最大化或成本最小化。</p></div><div class='step'><h3>2. 决策变量与约束条件</h3><p>线性规划公式构建需要确定：**目标函数**（实现最大化/最小化的数学表达式）、**决策变量**（待求解的未知值）和**约束条件**（代表物理限制的不等式边界）。</p></div>
+                <div class='step'><h3>5.1 模型与业务分析</h3><div><ul><li><b>决策模型定义：</b> 现实商业情境的简化数学表达，用于评估不同的行动方案。</li><li><b>三大核心模型变量：</b>  <ul>    <li><b>决策变量 (Decision)：</b> 管理者控制下的因素（例如生产数量、产品定价）。</li>    <li><b>不可控变量 (Uncontrollable)：</b> 管理者无法控制的外部因素（例如通货膨胀率、竞争对手定价、税率）。</li>    <li><b>结果变量 (Result)：</b> 衡量模型绩效的指标（例如总利润、客户满意率）。</li>  </ul></li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：达美航空 (Delta Air Lines)</h4><ul><li>达美航空使用加油决策模型来控制变量：</li><li><b>决策变量：</b> 在每个城市枢纽购买的燃料数量。</li><li><b>不可控变量：</b> 每个城市目前的燃料市场现货价格。</li><li><b>结果变量：</b> 年度总燃油运营成本。</li></ul><p><strong>参考链接：</strong> <a href="https://hbr.org/2012/10/how-delta-decides-to-buy-fuel" target="_blank">达美航空如何控制喷气燃料成本</a></p></div></div></div><div class='step'><h3>5.2 模型类别与选择</h3><div><ul><li><b>优化模型 (Optimization)：</b> 在约束条件下寻找问题的最佳解决方案（例如，使用线性规划与 Excel Solver 求解）。</li><li><b>预测模型 (Predictive)：</b> 基于历史模式预测未来趋势（例如回归预测分析）。</li><li><b>描述性模型 (Descriptive)：</b> 模拟业务运行以观察行为结果，但不指出单一的最佳路径（例如，排队系统模拟）。</li><li><b>启发式模型 (Heuristics)：</b> 适用于无法建立完整数学模型时的经验法则模型。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：飒拉 (Zara)</h4><ul><li>Zara 使用<b>优化模型</b>（具体为约束线性规划）将库存分配到全球的零售门店。</li><li>该模型在考虑运输限制和陈列约束的同时，优化了库存分配。</li></ul><p><strong>参考链接：</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/Zara-Uses-O.R.-to-Support-Retail-Operations" target="_blank">Zara 全球约束库存优化</a></p></div></div></div><div class='step'><h3>5.3 决策建模中的问题与局限</h3><div><ul><li><b>简化偏差：</b> 数学模型可能会过度简化复杂的市场动态，导致结果不准确。</li><li><b>假设风险：</b> 模型依赖于静态假设，当发生意外的结构性转变时，这些假设会失效。</li><li><b>数据质量风险 (GIGO)：</b> “垃圾进，垃圾出” - 劣质的输入数据会使模型生成的结果毫无价值。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：长期资本管理公司 (LTCM)</h4><ul><li>对冲基金 LTCM 使用获得诺贝尔奖的复杂风险模型来指导投资。</li><li>然而，他们的模型假设市场波动率是静态的，导致在 1998 年俄罗斯债务违约时基金发生彻底崩溃。</li></ul><p><strong>参考链接：</strong> <a href="https://hbr.org/1999/09/hedge-funds-and-financial-models-lessons-from-ltcm" target="_blank">对冲基金与金融模型：LTCM 的教训</a></p></div></div></div>
+            <div class="card">
+                <h2>决策模型大分类</h2>
+                <table>
+                    <tr>
+                        <th>模型类别</th>
+                        <th>数学侧重点</th>
+                        <th>求解目标</th>
+                        <th>典型应用场景</th>
+                    </tr>
+                    <tr>
+                        <td><strong>优化模型</strong></td>
+                        <td>寻找唯一的最佳数学解</td>
+                        <td>利润最大化或成本最小化</td>
+                        <td>线性规划 (LP) 产品组合决策</td>
+                    </tr>
+                    <tr>
+                        <td><strong>描述性模型</strong></td>
+                        <td>模拟现实，展示系统运行状态</td>
+                        <td>不自动寻找最优解，仅列出结果</td>
+                        <td>蒙特卡洛风险模拟、排队论模型</td>
+                    </tr>
+                    <tr>
+                        <td><strong>预测模型</strong></td>
+                        <td>评估未来发展趋势和结果</td>
+                        <td>预测数值或对趋势分类</td>
+                        <td>回归分析、未来产品需求预测</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>线性规划 (LP) 三大核心要素</h4>
+                    <ul>
+                        <li><strong>决策变量 (Decision Variables)：</strong> 待求解的未知变量（如 x1 = 桌子的生产数量，x2 = 椅子生产数量）。</li>
+                        <li><strong>目标函数 (Objective Function)：</strong> 最大化或最小化的目标公式（如 最大化利润 = 50x1 + 30x2）。</li>
+                        <li><strong>约束条件 (Constraints)：</strong> 表示资源限制的不等式方程（如 人工工时限制：2x1 + 1x2 &le; 100 小时）。</li>
+                    </ul>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +427,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='200' y='30' width='200' height='50' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='300' y='60' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Objective: Max Profit</text><rect x='80' y='120' width='180' height='50' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='170' y='150' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Variables (Units Produced)</text><rect x='340' y='120' width='180' height='50' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='430' y='150' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Constraints (Labour &lt;= 40h)</text><path d='M 300 80 L 170 120' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 300 80 L 430 120' stroke='#1E3A8A' stroke-width='2' fill='none'/></svg>
+                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='30' y='20' width='130' height='60' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='95' y='55' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>1. Decision Var (X)</text><rect x='30' y='120' width='130' height='60' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='95' y='155' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>2. Uncontrollable Var</text><rect x='230' y='70' width='130' height='60' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='295' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Mathematical Model</text><rect x='430' y='70' width='130' height='60' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='495' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>3. Result Var (Y)</text><path d='M 160 50 L 230 85' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 160 150 L 230 115' stroke='#FF6B6B' stroke-width='2' fill='none'/><path d='M 360 100 L 430 100' stroke='#1E3A8A' stroke-width='2' fill='none'/></svg>
             </div>
         </div>
 
@@ -242,8 +471,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">Excel Solver Setup: Objective cell must contain a formula. Changing cells are decision variables. Constraints are added to limit the values. Set solving method to Simplex LP for linear problems.</div>
-            <div class="lang-cn">Excel Solver 设置：目标单元格必须包含公式。可变单元格是决策变量。添加约束条件来限制数值。线性问题应将求解方法设置为单体规划 Simplex LP。</div>
+            <div class="lang-en">Differentiate Decision variables (pricing, quantity under your control) from Uncontrollable variables (inflation, competitors outside your control). This is a highly frequent test topic!</div>
+            <div class="lang-cn">区分决策变量（控制下的定价、生产量）与不可控变量（超出控制的通货膨胀率、竞争对手价格）。这是非常高频的考点！</div>
         </div>
 
         <!-- Quiz Section -->
@@ -253,96 +482,90 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">In linear programming, the goal we want to maximize or minimize is called the:</span>
-                <span class="lang-cn">在线性规划中，我们想要最大化或最小化的目标被称为：</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">Inflation rate and tax rate are examples of which variables?</span>
+                <span class="lang-cn">通货膨胀率和税率是哪种变量的示例？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Decision Variable</span>
+                <span class="lang-en">Decision Variables</span>
                 <span class="lang-cn">决策变量</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='1'>
-                <span class="lang-en">Objective Function</span>
-                <span class="lang-cn">目标函数</span>
+                <span class="lang-en">Uncontrollable Variables</span>
+                <span class="lang-cn">不可控变量</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='2'>
-                <span class="lang-en">Constraint Limit</span>
-                <span class="lang-cn">约束限制条件</span>
+                <span class="lang-en">Result Variables</span>
+                <span class="lang-cn">结果变量</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">Constraints in optimization models represent:</span>
-                <span class="lang-cn">优化模型中的约束条件代表：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w7_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w7_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">What modeling category finds the best choice under mathematical constraints?</span>
+                <span class="lang-cn">哪种模型类别在数学约束条件下寻找最佳选择？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q1' value='0'>
-                <span class="lang-en">Limits on resources or boundaries</span>
-                <span class="lang-cn">资源或边界的限制</span>
+                <span class="lang-en">Optimization Model</span>
+                <span class="lang-cn">优化模型</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='1'>
-                <span class="lang-en">The values we want to solve</span>
-                <span class="lang-cn">我们要解决的数值</span>
+                <span class="lang-en">Predictive Model</span>
+                <span class="lang-cn">预测模型</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='2'>
-                <span class="lang-en">The speed of the processor</span>
-                <span class="lang-cn">处理器的速度</span>
+                <span class="lang-en">Descriptive Model</span>
+                <span class="lang-cn">描述性模型</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">Which Excel add-in tool is used to solve linear programming problems?</span>
-                <span class="lang-cn">哪个 Excel 加载项工具用于求解线性规划问题？</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w7_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w7_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">The term GIGO in decision support modeling stands for:</span>
+                <span class="lang-cn">决策支持建模中的术语 GIGO 代表什么？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q2' value='0'>
-                <span class="lang-en">Pivot Table</span>
-                <span class="lang-cn">透视表</span>
+                <span class="lang-en">Go In, Go Out</span>
+                <span class="lang-cn">进，出</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='1'>
-                <span class="lang-en">Solver</span>
-                <span class="lang-cn">规划求解 (Solver)</span>
+                <span class="lang-en">Garbage In, Garbage Out</span>
+                <span class="lang-cn">垃圾进，垃圾出</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='2'>
-                <span class="lang-en">Goal Seek</span>
-                <span class="lang-cn">单变量求解 (Goal Seek)</span>
+                <span class="lang-en">Global Input, Global Output</span>
+                <span class="lang-cn">全局输入，全局输出</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">Decision variables represent:</span>
-                <span class="lang-cn">决策变量代表：</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
-                <span class="lang-en">Constant parameters that never change</span>
-                <span class="lang-cn">永远不改变的常数参数</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">The quantities/values to determine to achieve the objective</span>
-                <span class="lang-cn">为实现目标而需要确定的数量/数值</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">System errors</span>
-                <span class="lang-cn">系统误差</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">For linear programming, which solving algorithm should be selected in Excel Solver?</span>
-                <span class="lang-cn">对于线性规划，Excel 规划求解中应选择哪种求解算法？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">GRG Nonlinear</span>
-                <span class="lang-cn">GRG 非线性</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
-                <span class="lang-en">Simplex LP</span>
-                <span class="lang-cn">Simplex LP（单纯形）</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Evolutionary</span>
-                <span class="lang-cn">演化算法</span>
-            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w7_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w7_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -352,25 +575,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en">Linear programming involves finding the <input type='text' id='blank0' class='blank-input' style='width:100px;'> or minimum value of an objective function.</span>
-            <span class="lang-cn">线性规划涉及寻找目标函数的最大值或 <input type='text' id='blank_cn0' class='blank-input' style='width:100px;'> 值。</span>
-        </p><p>
-            <span class="lang-en">In Excel Solver, limits placed on decision variables are called <input type='text' id='blank1' class='blank-input' style='width:100px;'>.</span>
-            <span class="lang-cn">在 Excel 规划求解中，施加在决策变量上的限制条件称为 <input type='text' id='blank_cn1' class='blank-input' style='width:100px;'>。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -411,6 +616,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I can distinguish between Optimization, Descriptive, and Predictive models.</li><li><input type='checkbox'> I can define Decision Variables, Constraints, and Objective Functions.</li><li><input type='checkbox'> I can formulate a complete linear programming mathematical model.</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我能区分优化模型、描述模型和预测模型。</li><li><input type='checkbox'> 我能定义决策变量、约束条件和目标函数。</li><li><input type='checkbox'> 我能构建完整的线性规划数学模型方程式。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>Model and Analytic:</strong> <ul><li><b>Decision Model Definition:</b> A simplified mathematical representati...</li><li><strong>Options for Models:</strong> <ul><li><b>Optimization Models:</b> Find the best possible solution to a problem...</li><li><strong>Problems of Models:</strong> <ul><li><b>Simplification Bias:</b> Mathematical models may oversimplify complex...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>模型与业务分析:</strong> <ul><li><b>决策模型定义：</b> 现实商业情境的简化数学表达，用于评估不同的行动方案。</li><li><b>三大核心模型变量：</b>  <ul>...</li><li><strong>模型类别与选择:</strong> <ul><li><b>优化模型 (Optimization)：</b> 在约束条件下寻找问题的最佳解决方案（例如，使用线性规划与 Excel Solver 求解...</li><li><strong>决策建模中的问题与局限:</strong> <ul><li><b>简化偏差：</b> 数学模型可能会过度简化复杂的市场动态，导致结果不准确。</li><li><b>假设风险：</b> 模型依赖于静态假设，...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">Be prepared to solve basic linear models using graphical methods or Excel Solver.</p>
+                    <p class="lang-cn" style="display: none;">准备好使用图解法或 Excel 规划求解插件求解基础线性规划模型。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -422,19 +662,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="4" onclick="selectMatchCard(this)">Solver</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Values the solver will calculate</span>
-            <span class="lang-cn">规划求解器将计算的数值</span>
-        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Decision Variables</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Inequalities representing limitations</span>
-            <span class="lang-cn">代表物理限制的不等式</span>
-        </div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Objective Function</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Excel optimization add-in engine</span>
-            <span class="lang-cn">Excel 优化求解器引擎</span>
-        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Constraints</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Expression to maximize/minimize</span>
-            <span class="lang-cn">实现最大化/最小化的表达式</span>
-        </div>
+                <div class="match-card" data-id="4" onclick="selectMatchCard(this)">GIGO</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">Inputs outside management control (e.g. inflation)</span><span class="lang-cn">管理层无法控制的输入（如通货膨胀）</span></div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Uncontrollable Variables</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">Output measures of model performance (e.g. profit)</span><span class="lang-cn">模型性能的输出度量（如利润）</span></div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Decision Variables</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Poor input data leads to incorrect model results</span><span class="lang-cn">劣质输入数据导致错误的模型结果</span></div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Result Variables</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">Inputs under direct management control (e.g. price)</span><span class="lang-cn">管理层直接控制的输入（如价格）</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -457,40 +685,17 @@
         const q2 = document.querySelector('input[name="q2"]:checked');
         if (q2 && parseInt(q2.value) === 1) score++;
         
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 1) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 1) score++;
-        
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
                 <span class="lang-cn">得分：${score} / 5</span>
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['maximum', '最大', '最大化', '极大值'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['constraints', '约束', '约束条件'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {

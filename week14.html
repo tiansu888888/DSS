@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>Evaluate system implementation and conversion strategies.</li><li>Define User Acceptance Testing (UAT) frameworks.</li><li>Identify post-implementation audit procedures.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>评估系统实施与切换策略方案。</li><li>定义用户验收测试 (UAT) 的考核框架。</li><li>识别系统交付部署后的审计评估流程。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,100 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. DSS Implementation Strategies</h3><p>System implementation moves the DSS from development to production. Conversion strategies include: **Direct Cutover** (instant switch), **Parallel Running** (running both concurrently), **Pilot Study** (test group deployment), and **Phased Rollout** (step-by-step).</p></div><div class='step'><h3>2. Evaluation Frameworks</h3><p>DSS evaluation measures system performance and business value. Key metrics include: User Acceptance Testing (UAT), user satisfaction, system utilization rates, decision accuracy, and Return on Investment (ROI).</p></div>
+                <div class='step'><h3>9.1 Implementation Strategy & System Conversion</h3><div><ul><li><b>Direct Cutover:</b> The old system is immediately stopped, and the new system is started. High risk if errors occur, but lowest cost and fastest implementation.</li><li><b>Parallel Running:</b> Both old and new systems run simultaneously for a period. Lowest risk as the old system serves as a backup, but highest cost and doubles user workload.</li><li><b>Phased Conversion:</b> Modules or features are introduced step-by-step (e.g., database tier first, then analytical modules).</li><li><b>Pilot Study:</b> The new system is fully implemented in one department or location first to test stability before global deployment.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Target Canada Failure</h4><ul><li>Target's Canadian expansion failed due to a direct cutover deployment of a new ERP/DSS system.</li><li>Undetected data entry errors caused major supply chain blockages, leaving shelves empty. Because they did not run a parallel system, they could not roll back, causing a $5.4B write-off.</li></ul><p><strong>Reference:</strong> <a href="https://www.canadianbusiness.com/features/target-canada-failed-retail-expansion-inside-story/" target="_blank">Target Canada Failed Retail Expansion Inside Story</a></p></div></div></div><div class='step'><h3>9.2 Implementation and System Evaluation</h3><div><ul><li><b>User Acceptance Testing (UAT):</b> A critical verification phase where business managers test the system against actual business scenarios to sign off on usability.</li><li><b>Evaluation Criteria:</b>  <ul>    <li><b>System Accuracy:</b> Verify that mathematical models and databases return precise results.</li>    <li><b>Response Time:</b> Measure query execution latency.</li>    <li><b>User Satisfaction:</b> Usability scores gathered from survey feedback.</li>    <li><b>Economic Value:</b> Calculate the actual cost-savings or profit gains.</li>  </ul></li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: FedEx UAT Processes</h4><ul><li>FedEx supply chain planners undergo weeks of rigorous <b>UAT testing</b> during pilot stages.</li><li>They manually verify that route recommendations match actual logistics schedules before certifying the system for production deployment.</li></ul><p><strong>Reference:</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/FedEx-Optimizes-Operations" target="_blank">FedEx Operations UAT Certification</a></p></div></div></div>
+            <div class="card">
+                <h2>Comparison of Conversion Strategies</h2>
+                <table>
+                    <tr>
+                        <th>Conversion Strategy</th>
+                        <th>Implementation Action</th>
+                        <th>Risk Level</th>
+                        <th>Cost Level</th>
+                        <th>Best For</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Direct Cutover</strong></td>
+                        <td>Immediately stops old system and runs new DSS.</td>
+                        <td>Extremely High</td>
+                        <td>Low</td>
+                        <td>Non-critical systems, simple database changes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Parallel Running</strong></td>
+                        <td>Runs old and new systems concurrently.</td>
+                        <td>Very Low</td>
+                        <td>Extremely High</td>
+                        <td>Critical banking or logistics systems</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Phased Rollout</strong></td>
+                        <td>Deploys new modules step-by-step.</td>
+                        <td>Low</td>
+                        <td>Moderate</td>
+                        <td>Large ERP or complex multipart DSS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pilot Study</strong></td>
+                        <td>Deploys system to one department first.</td>
+                        <td>Low</td>
+                        <td>Moderate</td>
+                        <td>Branch offices, localized retail networks</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>User Acceptance Testing (UAT)</h4>
+                    <p>UAT is the final gatekeeper verification before formal system acceptance. Test cases must be written by business users, verifying if the computational results and UI display meet specifications.</p>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. DSS 实施策略</h3><p>系统实施将 DSS 从开发阶段转移到实际生产中。转换策略包括：**直接切口**（立即切换）、**并行运行**（两者同时运行）、**试点研究**（测试组部署）和**分阶段推出**（逐步推进）。</p></div><div class='step'><h3>2. 系统评估框架</h3><p>DSS 评估用于衡量系统性能和业务价值。关键指标包括：用户验收测试 (UAT)、用户满意度、系统利用率、决策准确率和投资回报率 (ROI)。</p></div>
+                <div class='step'><h3>9.1 系统实施策略与系统切换</h3><div><ul><li><b>直接切换 (Direct Cutover)：</b> 立即停止旧系统，并启动新系统。如果发生错误风险极高，但成本最低且实施速度最快。</li><li><b>并行运行 (Parallel Running)：</b> 新旧系统同时运行一段时间。由于旧系统作为备份，风险最低，但成本最高且使用户的工作量翻倍。</li><li><b>分阶段转换 (Phased Conversion)：</b> 按步骤逐步引入系统模块或功能（例如，先部署数据库层，再部署分析模块）。</li><li><b>试点研究 (Pilot Study)：</b> 首先在一个部门或分支机构全面实施新系统以测试稳定性，然后再进行全局部署。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：塔吉特加拿大分公司 (Target Canada) 崩溃</h4><ul><li>Target 在加拿大扩张失败归因于对其全新的 ERP/DSS 系统进行了“直接切换”部署。</li><li>未被检测出的录入数据错误导致了严重的供应链堵塞，导致货架空空如也。由于没有运行并行系统，他们无法回滚，造成了 54 亿美元的损失。</li></ul><p><strong>参考链接：</strong> <a href="https://www.canadianbusiness.com/features/target-canada-failed-retail-expansion-inside-story/" target="_blank">Target 加拿大零售扩张失败的内幕故事</a></p></div></div></div><div class='step'><h3>9.2 系统实施与用户验收评估</h3><div><ul><li><b>用户验收测试 (UAT)：</b> 关键的验证阶段，业务经理根据实际业务场景对系统进行测试，以确认其易用性并签署验收意见。</li><li><b>评估标准体系：</b>  <ul>    <li><b>系统准确性：</b> 验证数学模型和数据库返回的结果是否精确无误。</li>    <li><b>响应时间：</b> 测量查询执行的延迟时间。</li>    <li><b>用户满意度：</b> 从调查反馈中收集的易用性评分。</li>    <li><b>经济价值：</b> 计算实际节省的成本或带来的利润增长。</li>  </ul></li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：联邦快递 (FedEx) 的 UAT 流程</h4><ul><li>联邦快递的供应链计划人员在试点阶段要进行为期数周的严格 <b>UAT 测试</b>。</li><li>他们手动核对路线推荐与实际物流班次是否一致，之后才签字批准将系统正式部署上线。</li></ul><p><strong>参考链接：</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/FedEx-Optimizes-Operations" target="_blank">联邦快递运营 UAT 认证</a></p></div></div></div>
+            <div class="card">
+                <h2>四种系统切换策略全面对比</h2>
+                <table>
+                    <tr>
+                        <th>切换部署策略</th>
+                        <th>具体执行动作</th>
+                        <th>系统风险度</th>
+                        <th>部署成本</th>
+                        <th>最佳应用时机</th>
+                    </tr>
+                    <tr>
+                        <td><strong>直接切换 (Direct)</strong></td>
+                        <td>立即停用旧系统，同时完全启用新 DSS。</td>
+                        <td>极高风险</td>
+                        <td>低成本</td>
+                        <td>非核心系统、简单数据库的小变动部署</td>
+                    </tr>
+                    <tr>
+                        <td><strong>并行运行 (Parallel)</strong></td>
+                        <td>新旧两套系统同时运行以比对结果。</td>
+                        <td>极低风险</td>
+                        <td>极高成本</td>
+                        <td>核心银行业务系统、高精度物流调度系统</td>
+                    </tr>
+                    <tr>
+                        <td><strong>分阶段引入 (Phased)</strong></td>
+                        <td>按系统模块分步逐步部署激活。</td>
+                        <td>较低风险</td>
+                        <td>中等成本</td>
+                        <td>大型企业 ERP 系统、复杂的模块化 DSS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>试点研究 (Pilot)</strong></td>
+                        <td>先在单个部门或分部试点运行该系统。</td>
+                        <td>较低风险</td>
+                        <td>中等成本</td>
+                        <td>多分店连锁零售网络、区域性企业部署</td>
+                    </tr>
+                </table>
+                <div class="highlight-box">
+                    <h4>用户验收测试 (UAT)</h4>
+                    <p>UAT 是系统交付投产前最关键的验证关卡。测试用例必须由具体的业务人员（而非开发人员）编写，用于验证系统的计算结果和界面显示是否符合业务规划。</p>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +441,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='60' width='120' height='80' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='110' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Development</text><rect x='240' y='60' width='120' height='80' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='300' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Implementation</text><rect x='430' y='60' width='120' height='80' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='490' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Evaluation</text><path d='M 170 100 L 240 100' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 360 100 L 430 100' stroke='#FF6B6B' stroke-width='2' fill='none'/></svg>
+                <svg width='100%' max-width='600' height='220' viewBox='0 0 600 220'><rect x='50' y='20' width='220' height='70' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='160' y='60' fill='#111111' font-family='Rajdhani' font-size='15' font-weight='bold' text-anchor='middle'>Old System</text><rect x='330' y='130' width='220' height='70' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='440' y='170' fill='#111111' font-family='Rajdhani' font-size='15' font-weight='bold' text-anchor='middle'>New System</text><path d='M 270 55 L 440 130' stroke='#FF6B6B' stroke-dasharray='4' stroke-width='3' fill='none'/><text x='370' y='85' fill='#FF6B6B' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Direct Cutover</text></svg>
             </div>
         </div>
 
@@ -242,8 +485,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">Presentation Tips: Explain the business problem first, show the Power BI or Excel DSS solution dashboard, and review the structural UML diagrams.</div>
-            <div class="lang-cn">演示技巧：首先解释业务问题痛点，展示 Power BI 或 Excel 决策系统仪表板，并复盘关键的 UML 结构图。</div>
+            <div class="lang-en">UAT stands for User Acceptance Testing. Note that direct cutover is the highest risk conversion strategy, whereas parallel running is the lowest risk.</div>
+            <div class="lang-cn">UAT 代表用户验收测试。注意，直接切换是风险最高的系统切换策略，而并行运行是风险最低的。</div>
         </div>
 
         <!-- Quiz Section -->
@@ -253,96 +496,90 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">Which system conversion strategy carries the highest risk of database failure?</span>
-                <span class="lang-cn">哪种系统转换策略带来的数据库故障风险最高？</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">Which conversion strategy runs both the old and new systems simultaneously?</span>
+                <span class="lang-cn">哪种系统切换策略同时运行新旧系统？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Parallel Run</span>
-                <span class="lang-cn">并行运行</span>
+                <span class="lang-en">Direct Cutover</span>
+                <span class="lang-cn">直接切换</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='1'>
-                <span class="lang-en">Direct Cutover</span>
-                <span class="lang-cn">直接切口 (Direct Cutover)</span>
+                <span class="lang-en">Parallel Running</span>
+                <span class="lang-cn">并行运行</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='2'>
-                <span class="lang-en">Phased Rollout</span>
-                <span class="lang-cn">分阶段推出</span>
+                <span class="lang-en">Phased Conversion</span>
+                <span class="lang-cn">分阶段转换</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">What is User Acceptance Testing (UAT) primarily designed to verify?</span>
-                <span class="lang-cn">用户验收测试 (UAT) 的主要设计目的是为了验证：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w14_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w14_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">The testing phase where business users manually certify the system is:</span>
+                <span class="lang-cn">业务用户手动对系统进行认证的测试阶段是：</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q1' value='0'>
-                <span class="lang-en">CPU execution speed</span>
-                <span class="lang-cn">CPU 执行速度</span>
+                <span class="lang-en">Unit Testing</span>
+                <span class="lang-cn">单元测试</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='1'>
-                <span class="lang-en">Whether the system meets the business requirements of the users</span>
-                <span class="lang-cn">系统是否满足用户的业务需求</span>
+                <span class="lang-en">Stress Testing</span>
+                <span class="lang-cn">压力测试</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='2'>
-                <span class="lang-en">Compiler syntax errors</span>
-                <span class="lang-cn">编译器语法错误</span>
+                <span class="lang-en">User Acceptance Testing (UAT)</span>
+                <span class="lang-cn">用户验收测试 (UAT)</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">A pilot study strategy involves:</span>
-                <span class="lang-cn">试点研究策略包括：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w14_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w14_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 3</span>
+                    <span class="lang-cn">正确选项：选项 3</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">Which conversion strategy carries the highest operational risk?</span>
+                <span class="lang-cn">哪种系统切换策略具有最高的运行风险？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q2' value='0'>
-                <span class="lang-en">Deleting database tables</span>
-                <span class="lang-cn">删除数据库表</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q2' value='1'>
-                <span class="lang-en">Deploying the DSS to a small test group or single department first</span>
-                <span class="lang-cn">先将 DSS 部署到一个小型测试组或单个部门</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q2' value='2'>
-                <span class="lang-en">Running no tests</span>
-                <span class="lang-cn">不进行任何测试</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">System evaluation focuses primarily on:</span>
-                <span class="lang-cn">系统评估主要关注于：</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
-                <span class="lang-en">Code line counts</span>
-                <span class="lang-cn">代码行数</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">Measuring system utilization, user satisfaction, and decision quality</span>
-                <span class="lang-cn">衡量系统利用率、用户满意度和决策质量</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">The background style colors</span>
-                <span class="lang-cn">背景样式颜色</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">Which conversion strategy deploys the system in successive stages?</span>
-                <span class="lang-cn">哪种转换策略分阶段逐步部署系统？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">Direct cutover</span>
+                <span class="lang-en">Direct Cutover</span>
                 <span class="lang-cn">直接切换</span>
             </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
-                <span class="lang-en">Phased rollout</span>
-                <span class="lang-cn">分阶段推出 (Phased rollout)</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Parallel run</span>
+                <input type='radio' name='q2' value='1'>
+                <span class="lang-en">Parallel Running</span>
                 <span class="lang-cn">并行运行</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q2' value='2'>
+                <span class="lang-en">Pilot Study</span>
+                <span class="lang-cn">试点研究</span>
             </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w14_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w14_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -352,25 +589,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en">Checking if a user entered a valid number before processing it is called Input <input type='text' id='blank0' class='blank-input' style='width:100px;'>.</span>
-            <span class="lang-cn">在处理输入之前检查用户输入的是否是有效数字被称为输入 <input type='text' id='blank_cn0' class='blank-input' style='width:100px;'>。</span>
-        </p><p>
-            <span class="lang-en">A Code <input type='text' id='blank1' class='blank-input' style='width:100px;'> is when peers evaluate your source code for quality and errors.</span>
-            <span class="lang-cn">同行对你的源代码质量和错误进行评估被称为代码 <input type='text' id='blank_cn1' class='blank-input' style='width:100px;'>。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -411,6 +630,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I can evaluate and choose the best system conversion strategy.</li><li><input type='checkbox'> I understand how to structure User Acceptance Testing for decision support.</li><li><input type='checkbox'> I know the metrics used to evaluate DSS business value (payback, satisfaction).</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我能评估并选择最适合的系统切换策略方案。</li><li><input type='checkbox'> 我理解如何为决策支持系统设计结构化的用户验收测试。</li><li><input type='checkbox'> 我知道用于评估 DSS 商业价值的常用指标（投资回报周期、用户满意度等）。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>Implementation Strategy & System Conversion:</strong> <ul><li><b>Direct Cutover:</b> The old system is immediately stopped, and the ne...</li><li><strong>Implementation and System Evaluation:</strong> <ul><li><b>User Acceptance Testing (UAT):</b> A critical verification phase wher...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>系统实施策略与系统切换:</strong> <ul><li><b>直接切换 (Direct Cutover)：</b> 立即停止旧系统，并启动新系统。如果发生错误风险极高，但成本最低且实施速度最快。</l...</li><li><strong>系统实施与用户验收评估:</strong> <ul><li><b>用户验收测试 (UAT)：</b> 关键的验证阶段，业务经理根据实际业务场景对系统进行测试，以确认其易用性并签署验收意见。</li><li...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">Good luck with your final presentations! Focus on showing the UAT results and system benefits.</p>
+                    <p class="lang-cn" style="display: none;">祝大家期末项目展示顺利！重点展示 UAT 测试结果以及系统带来的实际业务收益。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -422,19 +676,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="2" onclick="selectMatchCard(this)">Parallel Run</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Immediate switch to new system</span>
-            <span class="lang-cn">立即切换到新系统（高风险）</span>
-        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">Phased Rollout</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Running both systems simultaneously</span>
-            <span class="lang-cn">两个系统同时并行运行</span>
-        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Pilot Study</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Step-by-Step incremental deployment</span>
-            <span class="lang-cn">按模块或部门分步部署</span>
-        </div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Direct Cutover</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Test group deployment first</span>
-            <span class="lang-cn">先在一小群测试组中部署</span>
-        </div>
+                <div class="match-card" data-id="2" onclick="selectMatchCard(this)">Parallel Running</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">Immediate shutdown of old system and launch of new one</span><span class="lang-cn">立即关闭旧系统并启动新系统</span></div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">Pilot Study</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">Running both systems concurrently for a trial period</span><span class="lang-cn">在试运行期间同时运行新旧系统</span></div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">UAT</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Full system launch in one branch location first</span><span class="lang-cn">首先在一个分支机构全面上线系统</span></div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Direct Cutover</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">End-user manual testing to verify business usability</span><span class="lang-cn">最终用户手动测试以验证业务易用性</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -452,16 +694,10 @@
         if (q0 && parseInt(q0.value) === 1) score++;
         
         const q1 = document.querySelector('input[name="q1"]:checked');
-        if (q1 && parseInt(q1.value) === 1) score++;
+        if (q1 && parseInt(q1.value) === 2) score++;
         
         const q2 = document.querySelector('input[name="q2"]:checked');
-        if (q2 && parseInt(q2.value) === 1) score++;
-        
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 1) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 1) score++;
+        if (q2 && parseInt(q2.value) === 0) score++;
         
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
@@ -469,28 +705,11 @@
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['validation', '验证', '数据验证', '输入验证'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['review', '评审', '审查', '评估', '代码评审'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {

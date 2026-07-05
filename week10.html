@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>Outline the DSS development lifecycle.</li><li>Perform economic, technical, and organizational feasibility studies.</li><li>Document system scopes and user requirements.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>概述 DSS 系统开发生命周期框架。</li><li>进行经济、技术和组织可行性研究评估。</li><li>编写系统范围与用户需求规范说明书。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,82 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. Planning for DSS</h3><p>Planning for a Decision Support System involves scoping user requirements, conducting a feasibility study (economic, organizational, technical), and defining clear system boundaries to ensure alignment with business goals.</p></div><div class='step'><h3>2. User Requirements and Scopes</h3><p>Requirements gathering utilizes interviews and document analysis to model decision parameters. System scope definition outlines what the DSS will deliver, preventing scope creep during development phases.</p></div>
+                <div class='step'><h3>7.1 Planning for DSS & Feasibility Study</h3><div><ul><li><b>Scope Definition:</b> Establishing boundaries, business objectives, user counts, and identifying key decisions to support.</li><li><b>Feasibility Study Dimensions:</b>  <ul>    <li><b>Economic Feasibility:</b> Cost-benefit analysis comparing development cost against predicted operational profit and time savings (ROI).</li>    <li><b>Technical Feasibility:</b> Assessing if current hardware, server capacity, database tools, and software interfaces can support requirements.</li>    <li><b>Organizational Feasibility:</b> Evaluating user willingness, training needs, and business politics to ensure system adoption.</li>  </ul></li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Healthcare.gov Launch (2013)</h4><ul><li>The initial Healthcare.gov portal suffered severe technical and organizational planning oversights.</li><li>Poor requirements gathering and lack of scalability testing led to a total server crash upon public release.</li><li>This highlights the critical importance of a rigorous technical feasibility audit before deployment.</li></ul><p><strong>Reference:</strong> <a href="https://hbr.org/2013/10/the-healthcare-gov-failure-a-pm-retrospective" target="_blank">The Healthcare.gov Failure: A Retrospective</a></p></div></div></div>
+            <div class="card">
+                <h2>Feasibility Analysis Criteria</h2>
+                <table>
+                    <tr>
+                        <th>Feasibility Dimension</th>
+                        <th>Core Question</th>
+                        <th>Typical Metric</th>
+                        <th>Key Risk Vector</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Economic</strong></td>
+                        <td>Should we build it?</td>
+                        <td>Net Present Value (NPV), ROI, payback period</td>
+                        <td>Underestimating server and API operational costs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technical</strong></td>
+                        <td>Can we build it?</td>
+                        <td>Skills matrix check, hardware availability</td>
+                        <td>Using experimental library setups with no support</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Organizational</strong></td>
+                        <td>Will they use it?</td>
+                        <td>User satisfaction survey, process alignment</td>
+                        <td>Resistance from managers who prefer intuition over data</td>
+                    </tr>
+                </table>
+                <div class="key-terms">
+                    <div class="term-card">
+                        <strong>Project Scoping</strong>
+                        <p>Defining exactly what is included in the project boundaries, preventing scope creep during development.</p>
+                    </div>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. DSS 规划</h3><p>规划决策支持系统涉及确定用户需求范围、进行可行性研究（经济、组织、技术）以及界定清晰的系统边界，以确保与业务目标保持一致。</p></div><div class='step'><h3>2. 用户需求与系统范围</h3><p>需求收集利用访谈和文档分析来模拟决策参数。系统范围定义概述了 DSS 将交付的内容，从而防止在开发阶段发生范围蔓延。</p></div>
+                <div class='step'><h3>7.1 DSS 系统规划与可行性研究</h3><div><ul><li><b>范围定义 (Scope Definition)：</b> 确定系统边界、业务目标、用户数量，并确定要支持的关键决策。</li><li><b>三大可行性分析维度：</b>  <ul>    <li><b>经济可行性 (Economic)：</b> 进行成本效益分析，对比开发成本与预测的运营利润及时间节省（投资回报率分析）。</li>    <li><b>技术可行性 (Technical)：</b> 评估当前的硬件设备、服务器容量、数据库工具和软件接口是否能支持系统要求。</li>    <li><b>组织可行性 (Organizational)：</b> 评估用户的使用意愿、培训需求和业务政策，以确保系统得到采纳。</li>  </ul></li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：美国医保网站 (Healthcare.gov) 启动失败 (2013)</h4><ul><li>最初的 Healthcare.gov 网站在启动时经历了严重的技术和组织规划疏忽。</li><li>需求收集不善以及缺乏扩展性压力测试导致公开发布时服务器彻底崩溃。</li><li>这凸显了在部署前进行严格的技术可行性评估的至关重要性。</li></ul><p><strong>参考链接：</strong> <a href="https://hbr.org/2013/10/the-healthcare-gov-failure-a-pm-retrospective" target="_blank">Healthcare.gov 的失败回顾</a></p></div></div></div>
+            <div class="card">
+                <h2>系统可行性研究三维度</h2>
+                <table>
+                    <tr>
+                        <th>可行性评估维度</th>
+                        <th>核心思考问题</th>
+                        <th>常用分析指标</th>
+                        <th>关键风险点</th>
+                    </tr>
+                    <tr>
+                        <td><strong>经济可行性 (Economic)</strong></td>
+                        <td>我们是否应该做这项目？</td>
+                        <td>净现值 (NPV)、投资回报率 (ROI)、回本周期</td>
+                        <td>低估了服务器维护及 API 接口调用运营成本</td>
+                    </tr>
+                    <tr>
+                        <td><strong>技术可行性 (Technical)</strong></td>
+                        <td>我们是否具备开发的技术能力？</td>
+                        <td>技术团队技能矩阵评估、硬件资源可用性</td>
+                        <td>使用缺乏社区支持和成熟案例的实验性第三方库</td>
+                    </tr>
+                    <tr>
+                        <td><strong>组织可行性 (Organizational)</strong></td>
+                        <td>最终用户是否会积极使用该系统？</td>
+                        <td>用户满意度预期、业务工作流匹配度</td>
+                        <td>习惯于依靠直觉决策的管理者的抵触和不信任</td>
+                    </tr>
+                </table>
+                <div class="key-terms">
+                    <div class="term-card">
+                        <strong>项目范围界定</strong>
+                        <p>精准界定项目开发边界，防止在后续开发过程中发生范围蔓延 (Scope Creep)。</p>
+                    </div>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +423,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='50' width='140' height='100' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='120' y='110' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>1. Feasibility</text><rect x='230' y='50' width='140' height='100' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='300' y='110' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>2. Requirements</text><rect x='410' y='50' width='140' height='100' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='480' y='110' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>3. Scope</text><path d='M 190 100 L 230 100' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 370 100 L 410 100' stroke='#FF6B6B' stroke-width='2' fill='none'/></svg>
+                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><circle cx='120' cy='100' r='45' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='120' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Economic (ROI)</text><circle cx='300' cy='100' r='45' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='300' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Technical (Dev)</text><circle cx='480' cy='100' r='45' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='480' y='105' fill='#111111' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Organizational</text><path d='M 165 100 L 255 100' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 345 100 L 435 100' stroke='#FF6B6B' stroke-width='2' fill='none'/></svg>
             </div>
         </div>
 
@@ -242,8 +467,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">Never skip feasibility analysis in planning. Economic feasibility determines ROI, technical feasibility verifies if tools (like Power BI) can perform the required logic.</div>
-            <div class="lang-cn">在规划中切勿跳过可行性分析。经济可行性决定了投资回报率 (ROI)，技术可行性则验证了工具（如 Power BI）是否能够执行所需的逻辑。</div>
+            <div class="lang-en">Be prepared to identify the three feasibility dimensions: Economic (money/ROI), Technical (hardware/software/servers), and Organizational (people/politics/adoption).</div>
+            <div class="lang-cn">准备好识别三个可行性维度：经济可行性（资金/投资回报率）、技术可行性（硬件/软件/服务器）和组织可行性（人员/政策/采纳度）。</div>
         </div>
 
         <!-- Quiz Section -->
@@ -253,96 +478,90 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">Which study determines if a DSS project is affordable and practical?</span>
-                <span class="lang-cn">哪项研究可以确定 DSS 项目是否负担得起且切合实际？</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">Conducting a cost-benefit calculation to measure predicted ROI is part of:</span>
+                <span class="lang-cn">进行成本效益计算以衡量预测的投资回报率是哪项的组成部分？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Feasibility study</span>
-                <span class="lang-cn">可行性研究 (Feasibility study)</span>
+                <span class="lang-en">Technical Feasibility</span>
+                <span class="lang-cn">技术可行性</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='1'>
-                <span class="lang-en">Written test</span>
-                <span class="lang-cn">笔试</span>
+                <span class="lang-en">Economic Feasibility</span>
+                <span class="lang-cn">经济可行性</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='2'>
-                <span class="lang-en">OLAP roll-up</span>
-                <span class="lang-cn">OLAP 上卷</span>
+                <span class="lang-en">Organizational Feasibility</span>
+                <span class="lang-cn">组织可行性</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">Defining the 'scope' of a DSS determines:</span>
-                <span class="lang-cn">定义 DSS 的“范围”决定了：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w10_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w10_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">A feasibility study assessing if the server capacity can handle user queries is:</span>
+                <span class="lang-cn">评估服务器容量是否能处理用户查询的可行性研究是：</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q1' value='0'>
-                <span class="lang-en">The computer color palette</span>
-                <span class="lang-cn">计算机颜色面板</span>
+                <span class="lang-en">Technical Feasibility</span>
+                <span class="lang-cn">技术可行性</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='1'>
-                <span class="lang-en">What the system will and will not deliver</span>
-                <span class="lang-cn">系统将要交付和不交付的内容</span>
+                <span class="lang-en">Economic Feasibility</span>
+                <span class="lang-cn">经济可行性</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='2'>
-                <span class="lang-en">The compiler type</span>
-                <span class="lang-cn">编译器类型</span>
+                <span class="lang-en">Organizational Feasibility</span>
+                <span class="lang-cn">组织可行性</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">What is scope creep?</span>
-                <span class="lang-cn">什么是范围蔓延？</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w10_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w10_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">Defining the boundary and user count of a new decision support system is called:</span>
+                <span class="lang-cn">定义新决策支持系统的边界和用户数量被称为：</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q2' value='0'>
-                <span class="lang-en">Changing computer hardware</span>
-                <span class="lang-cn">更改计算机硬件</span>
+                <span class="lang-en">Scope Definition</span>
+                <span class="lang-cn">范围定义</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='1'>
-                <span class="lang-en">Uncontrolled additions to project requirements without resource updates</span>
-                <span class="lang-cn">在没有更新资源的情况下，不受控制地增加项目需求</span>
+                <span class="lang-en">Class diagramming</span>
+                <span class="lang-cn">类图建模</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='2'>
-                <span class="lang-en">Scanning database columns</span>
-                <span class="lang-cn">扫描数据库列</span>
+                <span class="lang-en">ETL transformation</span>
+                <span class="lang-cn">ETL 转换</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">Economic feasibility focuses primarily on:</span>
-                <span class="lang-cn">经济可行性主要侧重于：</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
-                <span class="lang-en">Software license versions</span>
-                <span class="lang-cn">软件许可版本</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">Cost-benefit analysis and ROI</span>
-                <span class="lang-cn">成本效益分析和投资回报率 (ROI)</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">Programming languages</span>
-                <span class="lang-cn">编程语言</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">Which is a major requirement gathering technique?</span>
-                <span class="lang-cn">以下哪项是主要的收集需求技术？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">Compiling code</span>
-                <span class="lang-cn">编译代码</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
-                <span class="lang-en">Interviews and observations</span>
-                <span class="lang-cn">访谈与观察</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Writing SQL insert values</span>
-                <span class="lang-cn">编写 SQL 插入值</span>
-            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w10_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w10_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -352,25 +571,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en">The process of checking whether a DSS project is practical and affordable is called a <input type='text' id='blank0' class='blank-input' style='width:100px;'> study.</span>
-            <span class="lang-cn">检查 DSS 项目是否实用且负担得起的过程被称为<input type='text' id='blank_cn0' class='blank-input' style='width:100px;'>研究。</span>
-        </p><p>
-            <span class="lang-en">Defining the scope of a DSS determines what the system will and will not <input type='text' id='blank1' class='blank-input' style='width:100px;'>.</span>
-            <span class="lang-cn">定义 DSS 的范围决定了系统会执行和不会<input type='text' id='blank_cn1' class='blank-input' style='width:100px;'>什么。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -411,6 +612,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I understand the planning phases for a Decision Support System project.</li><li><input type='checkbox'> I can define Economic, Technical, and Organizational feasibility studies.</li><li><input type='checkbox'> I know how to gather and write user requirements for decision modeling.</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我理解决策支持系统项目开发生命周期的各个阶段。</li><li><input type='checkbox'> 我能定义经济、技术和组织可行性研究分析。</li><li><input type='checkbox'> 我知道如何收集并编写用于决策建模的用户需求规范。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>Planning for DSS & Feasibility Study:</strong> <ul><li><b>Scope Definition:</b> Establishing boundaries, business objectives, u...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>DSS 系统规划与可行性研究:</strong> <ul><li><b>范围定义 (Scope Definition)：</b> 确定系统边界、业务目标、用户数量，并确定要支持的关键决策。</li><li><b...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">Start drafting your Group Project scope document this week. Feasibility is highly graded.</p>
+                    <p class="lang-cn" style="display: none;">本周开始拟定小组项目范围说明书。可行性分析部分占分较高。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -422,19 +658,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="4" onclick="selectMatchCard(this)">Scope Creep</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Identifies user business needs</span>
-            <span class="lang-cn">确定用户的业务需求</span>
-        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Requirements</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Defines system deliverables</span>
-            <span class="lang-cn">定义系统可交付成果</span>
-        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Scope</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Uncontrolled growth in scope</span>
-            <span class="lang-cn">范围不受控制地增长蔓延</span>
-        </div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Feasibility</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Determines project viability</span>
-            <span class="lang-cn">确定项目的可行性与生存能力</span>
-        </div>
+                <div class="match-card" data-id="4" onclick="selectMatchCard(this)">Organizational Feasibility</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">Assessing hardware, networks, and software capacity</span><span class="lang-cn">评估硬件、网络和软件承载力</span></div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Technical Feasibility</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">Cost-benefit analysis and ROI calculations</span><span class="lang-cn">成本效益分析与投资回报率计算</span></div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Economic Feasibility</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Evaluating user willingness and political acceptance</span><span class="lang-cn">评估用户意愿和组织政策接受度</span></div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Scope Definition</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">Establishing system boundaries, goals, and key decisions</span><span class="lang-cn">确定系统边界、目标和关键决策</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -449,19 +673,13 @@
             let score = 0;
             
         const q0 = document.querySelector('input[name="q0"]:checked');
-        if (q0 && parseInt(q0.value) === 0) score++;
+        if (q0 && parseInt(q0.value) === 1) score++;
         
         const q1 = document.querySelector('input[name="q1"]:checked');
-        if (q1 && parseInt(q1.value) === 1) score++;
+        if (q1 && parseInt(q1.value) === 0) score++;
         
         const q2 = document.querySelector('input[name="q2"]:checked');
-        if (q2 && parseInt(q2.value) === 1) score++;
-        
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 1) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 1) score++;
+        if (q2 && parseInt(q2.value) === 0) score++;
         
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
@@ -469,28 +687,11 @@
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['feasibility', '可行性', '可行性研究'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['do', '做', '执行', '提供'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {

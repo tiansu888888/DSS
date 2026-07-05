@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>Define the core Decision Support System concepts.</li><li>Explain the components of a Business Intelligence framework.</li><li>Analyze the business utility of BI applications.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>定义决策支持系统 (DSS) 的核心概念。</li><li>解释商业智能 (BI) 框架的各个组件。</li><li>分析商业智能应用的商业价值。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,90 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. The DSS Concept</h3><p>A Decision Support System (DSS) is an interactive, flexible computer-based information system designed to help managers solve semi-structured or unstructured decision problems by utilizing data, mathematical models, and an intuitive user interface.</p></div><div class='step'><h3>2. Business Intelligence Framework</h3><p>A Business Intelligence (BI) framework has four major components: the **Data Warehouse** (central repository), **Business Analytics** (queries, reporting, data mining), **Business Performance Management (BPM)** (portfolio scoring), and the **User Interface** (interactive dashboards).</p></div>
+                <div class='step'><h3>1.4 The Concept of Decision Support Systems</h3><div><ul><li><b>DSS Definition:</b> An interactive, flexible, and adaptable computer-based information system specifically designed to support the solution of a non-structured management problem.</li><li><b>Key Characteristics:</b> High adaptability, user-friendly graphical interface, flexible modeling capabilities, and supports both semi-structured and unstructured decision tasks.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: FedEx</h4><ul><li>FedEx developed a Route Optimization DSS to calculate complex, unstructured package delivery pathways.</li><li>The system adapts dynamically to daily changes in weather, traffic congestion, and package volume.</li></ul><p><strong>Reference:</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/FedEx-Optimizes-Operations" target="_blank">FedEx Route Optimization Success</a></p></div></div></div><div class='step'><h3>1.5 A Framework for Business Intelligence</h3><div><ul><li><b>BI Definition:</b> An umbrella term that combines architectures, tools, databases, analytical tools, applications, and methodologies.</li><li><b>Core BI Components:</b>  <ul>    <li><b>Data Warehouse:</b> The source database containing consolidated historical data.</li>    <li><b>Business Analytics:</b> Tools for mining, reporting, and online analysis (OLAP).</li>    <li><b>Business Performance Management (BPM):</b> Executive monitoring dashboards and KPIs.</li>    <li><b>User Interface:</b> Visual interactive dashboards.</li>  </ul></li><li><b>DSS vs. BI Comparison:</b> DSS is typically analyst-focused, construction-oriented, and handles individual decisions, whereas BI is enterprise-wide, executive-focused, and reporting-driven.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Amazon</h4><ul><li>Amazon implements an enterprise-wide BI framework that feeds transaction data into huge data lakes.</li><li>Analytics models then automatically display daily sales KPIs on corporate performance dashboards.</li></ul><p><strong>Reference:</strong> <a href="https://www.forbes.com/sites/bernardmarr/2016/03/14/big-data-at-amazon-how-of-artificial-intelligence-is-used-to-sell-everything/" target="_blank">Amazon AI and Big Data Analytics</a></p></div></div></div>
+            <div class="card">
+                <h2>The Business Intelligence (BI) Framework</h2>
+                <table>
+                    <tr>
+                        <th>Component</th>
+                        <th>Role in Framework</th>
+                        <th>Technical Elements</th>
+                        <th>Business Value</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Warehouse</strong></td>
+                        <td>Central Repository</td>
+                        <td>Database tables, ETL pipelines, metadata</td>
+                        <td>Provides a 'single source of truth' for business data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Business Analytics</strong></td>
+                        <td>Data Analysis</td>
+                        <td>Data mining, forecasting, statistical modeling</td>
+                        <td>Identifies trends, patterns, and anomalies in sales or operations</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Performance Mgmt</strong></td>
+                        <td>Strategic Alignment</td>
+                        <td>KPI dashboards, balanced scorecards</td>
+                        <td>Monitors corporate performance against target goals</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Interface</strong></td>
+                        <td>Interactive Visualization</td>
+                        <td>Web dashboards, interactive charts</td>
+                        <td>Allows users to easily slice, filter, and view reports</td>
+                    </tr>
+                </table>
+                <div class="example-box">
+                    <h4><i class="fas fa-lightbulb"></i> Real-World BI Example: Retail Performance</h4>
+                    <p>A global supermarket uses a BI system. <strong>Data Warehouse:</strong> integrates transactional database logs from thousands of checkouts. <strong>Analytics:</strong> detects that beer and diapers are often purchased together on Friday evenings. <strong>Dashboard:</strong> alerts branch managers to stock these items adjacent to each other, resulting in a 15% sales increase.</p>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. 决策支持系统 (DSS) 概念</h3><p>决策支持系统 (DSS) 是一种交互式、灵活的、基于计算机的信息系统，旨在通过利用数据、数学模型和直观的用户界面，帮助管理人员解决半结构化或非结构化的决策问题。</p></div><div class='step'><h3>2. 商业智能 (BI) 框架</h3><p>商业智能 (BI) 框架有四个主要组成部分：**数据仓库**（核心库）、**商业分析**（查询、报表、数据挖掘）、**业务绩效管理 (BPM)**（组合评分）和**用户界面**（交互式仪表板）。</p></div>
+                <div class='step'><h3>1.4 决策支持系统 (DSS) 概念</h3><div><ul><li><b>DSS 定义：</b> 交互式、灵活且适应性强的基于计算机的信息系统，专门设计用于支持非结构化管理问题的解决方案。</li><li><b>核心特征：</b> 高度适应性、用户友好的图形界面、灵活的建模能力，支持半结构化和非结构化决策任务。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：联邦快递 (FedEx)</h4><ul><li>联邦快递开发了路线优化 DSS，用于计算复杂的、非结构化的包裹递送路径。</li><li>该系统可根据每天的天气、交通拥堵和包裹量的变化进行动态调整。</li></ul><p><strong>参考链接：</strong> <a href="https://www.informs.org/Impact/O.R.-Success-Stories/FedEx-Optimizes-Operations" target="_blank">联邦快递路线优化成功案例</a></p></div></div></div><div class='step'><h3>1.5 商业智能 (BI) 框架</h3><div><ul><li><b>BI 定义：</b> 结合了架构、工具、数据库、分析工具、应用软件和方法论的综合性术语。</li><li><b>核心 BI 组件：</b>  <ul>    <li><b>数据仓库 (DW)：</b> 包含整合历史数据的源数据库。</li>    <li><b>业务分析 (Analytics)：</b> 用于数据挖掘、报表生成和联机分析 (OLAP) 的工具。</li>    <li><b>业务绩效管理 (BPM)：</b> 执行层监控仪表板与关键绩效指标 (KPI)。</li>    <li><b>用户界面 (UI)：</b> 可视化的互动式控制面板。</li>  </ul></li><li><b>DSS 与 BI 的对比：</b> DSS 通常侧重于分析师、面向系统构建、处理单项决策；而 BI 则是企业范围的、侧重于高管、以报表和关键指标驱动。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：亚马逊 (Amazon)</h4><ul><li>亚马逊实施了企业范围的 BI 框架，将交易数据输入庞大的数据湖。</li><li>分析模型随后会自动在公司业绩仪表板上显示每日销售 KPI。</li></ul><p><strong>参考链接：</strong> <a href="https://www.forbes.com/sites/bernardmarr/2016/03/14/big-data-at-amazon-how-of-artificial-intelligence-is-used-to-sell-everything/" target="_blank">亚马逊人工智能与大数据分析</a></p></div></div></div>
+            <div class="card">
+                <h2>商业智能 (BI) 系统框架</h2>
+                <table>
+                    <tr>
+                        <th>核心组件</th>
+                        <th>框架角色</th>
+                        <th>技术元素</th>
+                        <th>商业价值</th>
+                    </tr>
+                    <tr>
+                        <td><strong>数据仓库</strong></td>
+                        <td>中央数据存储库</td>
+                        <td>数据库表、ETL 流水线、元数据</td>
+                        <td>为业务数据提供“单事实来源”</td>
+                    </tr>
+                    <tr>
+                        <td><strong>商业分析</strong></td>
+                        <td>数据深入分析</td>
+                        <td>数据挖掘、预测分析、统计建模</td>
+                        <td>识别销售或运营中的趋势、模式和异常值</td>
+                    </tr>
+                    <tr>
+                        <td><strong>绩效管理</strong></td>
+                        <td>战略目标对齐</td>
+                        <td>KPI 仪表板、平衡计分卡</td>
+                        <td>监控企业实际绩效是否达到预设目标</td>
+                    </tr>
+                    <tr>
+                        <td><strong>用户界面</strong></td>
+                        <td>交互式可视化</td>
+                        <td>Web 仪表板、交互式图表</td>
+                        <td>允许用户轻松切片、过滤并查看报表</td>
+                    </tr>
+                </table>
+                <div class="example-box">
+                    <h4><i class="fas fa-lightbulb"></i> 真实 BI 案例：零售业绩优化</h4>
+                    <p>某全球连锁超市使用 BI 系统。 <strong>数据仓库：</strong> 整合数千个收银台的交易数据库日志。 <strong>商业分析：</strong> 发现周五晚上啤酒和尿布经常一起被购买。 <strong>仪表板：</strong> 警示门店经理将这些商品相邻摆放，使销售额提升了 15%。</p>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +431,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='30' y='60' width='100' height='70' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='80' y='100' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Data Sources</text><rect x='180' y='60' width='100' height='70' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='230' y='100' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>ETL</text><rect x='330' y='60' width='100' height='70' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='380' y='100' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Data Warehouse</text><rect x='480' y='60' width='100' height='70' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='530' y='100' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Dashboards</text><path d='M 130 95 L 180 95' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 280 95 L 330 95' stroke='#FF6B6B' stroke-width='2' fill='none'/><path d='M 430 95 L 480 95' stroke='#1E3A8A' stroke-width='2' fill='none'/></svg>
+                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='30' y='60' width='110' height='80' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='85' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>1. Data Source</text><rect x='170' y='60' width='110' height='80' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='225' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>2. Warehouse</text><rect x='310' y='60' width='110' height='80' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='365' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>3. Analytics</text><rect x='450' y='60' width='110' height='80' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='505' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>4. Dashboard</text><path d='M 140 100 L 170 100' stroke='#1E3A8A' stroke-width='2' fill='none'/><path d='M 280 100 L 310 100' stroke='#FF6B6B' stroke-width='2' fill='none'/><path d='M 420 100 L 450 100' stroke='#1E3A8A' stroke-width='2' fill='none'/></svg>
             </div>
         </div>
 
@@ -247,8 +480,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">While DSS targets specific decision tasks for individual managers, BI has a broader, enterprise-wide focus prioritizing query, reporting, and historical trend analysis.</div>
-            <div class="lang-cn">DSS 针对单个管理人员的特定决策任务，而 BI 则具有更广泛、企业级的关注度，优先考虑查询、报表和历史趋势分析。</div>
+            <div class="lang-en">Focus on understanding the four components of BI (DW, Analytics, BPM, UI) and how they differ from traditional DSS.</div>
+            <div class="lang-cn">重点理解 BI 的四个组成部分（数据仓库、业务分析、业务绩效管理、用户界面）以及它们与传统 DSS 的区别。</div>
         </div>
 
         <!-- Quiz Section -->
@@ -258,96 +491,94 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">What is the primary focus of Business Intelligence (BI)?</span>
-                <span class="lang-cn">商业智能 (BI) 的主要侧重点是什么？</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">Which of the following is NOT a core component of a BI framework?</span>
+                <span class="lang-cn">以下哪项不是 BI 框架的核心组件？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Individual software coding</span>
-                <span class="lang-cn">个人软件编程</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q0' value='1'>
-                <span class="lang-en">Enterprise-wide query, reporting, and dashboarding</span>
-                <span class="lang-cn">全企业级的查询、报表和仪表板展示</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q0' value='2'>
-                <span class="lang-en">Operating computer hardware</span>
-                <span class="lang-cn">操作计算机硬件</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">The core data storage repository in a BI framework is:</span>
-                <span class="lang-cn">BI 框架中的核心数据存储库是：</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q1' value='0'>
                 <span class="lang-en">Data Warehouse</span>
                 <span class="lang-cn">数据仓库</span>
             </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='1'>
+                <span class="lang-en">Business Analytics</span>
+                <span class="lang-cn">业务分析</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='2'>
+                <span class="lang-en">Operating System</span>
+                <span class="lang-cn">操作系统</span>
+            </label><label class='quiz-label'>
+                <input type='radio' name='q0' value='3'>
+                <span class="lang-en">User Interface</span>
+                <span class="lang-cn">用户界面</span>
+            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w2_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w2_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 3</span>
+                    <span class="lang-cn">正确选项：选项 3</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">DSS focuses primarily on support for:</span>
+                <span class="lang-cn">DSS 主要侧重于支持：</span>
+            </b></p>
+            <label class='quiz-label'>
+                <input type='radio' name='q1' value='0'>
+                <span class="lang-en">Structured, repetitive decisions</span>
+                <span class="lang-cn">结构化、重复性的决策</span>
+            </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='1'>
-                <span class="lang-en">Local Hard Drive</span>
-                <span class="lang-cn">本地硬盘驱动器</span>
+                <span class="lang-en">Semi-structured and unstructured decisions</span>
+                <span class="lang-cn">半结构化和非结构化决策</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='2'>
-                <span class="lang-en">Scanner buffer</span>
-                <span class="lang-cn">Scanner 缓冲区</span>
+                <span class="lang-en">Automated data entry only</span>
+                <span class="lang-cn">仅限自动数据输入</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">How does DSS primarily differ from BI?</span>
-                <span class="lang-cn">DSS 与 BI 的主要区别在于：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w2_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w2_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">A Business Performance Management (BPM) component in BI contains:</span>
+                <span class="lang-cn">BI 中的业务绩效管理 (BPM) 组件包含：</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q2' value='0'>
-                <span class="lang-en">DSS does not use computer code</span>
-                <span class="lang-cn">DSS 不使用计算机代码</span>
+                <span class="lang-en">KPI monitors and dashboards</span>
+                <span class="lang-cn">KPI 监控和仪表板</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='1'>
-                <span class="lang-en">DSS is usually built for specific decision scenarios and modeling</span>
-                <span class="lang-cn">DSS 通常针对特定的决策场景和模型构建</span>
+                <span class="lang-en">Raw transactional logs</span>
+                <span class="lang-cn">原始交易日志</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='2'>
-                <span class="lang-en">BI cannot connect to databases</span>
-                <span class="lang-cn">BI 无法连接数据库</span>
+                <span class="lang-en">Unencrypted passwords</span>
+                <span class="lang-cn">未加密的密码</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">What does ETL stand for in Business Intelligence?</span>
-                <span class="lang-cn">在商业智能中，ETL 代表什么？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
-                <span class="lang-en">Enter, Test, Launch</span>
-                <span class="lang-cn">输入、测试、发布</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">Extract, Transform, Load</span>
-                <span class="lang-cn">提取、转换、加载</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">Evaluation, Technology, Logic</span>
-                <span class="lang-cn">评估、技术、逻辑</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">Which BI component displays charts and key performance indicators?</span>
-                <span class="lang-cn">哪个 BI 组件用于展示图表和关键绩效指标 (KPI)？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">The CPU</span>
-                <span class="lang-cn">CPU</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
-                <span class="lang-en">Interactive User Interface (Dashboard)</span>
-                <span class="lang-cn">交互式用户界面（仪表板）</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Model Base</span>
-                <span class="lang-cn">模型库</span>
-            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w2_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w2_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -357,25 +588,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en">The process of moving data from source systems to a data warehouse is called <input type='text' id='blank0' class='blank-input' style='width:100px;'>.</span>
-            <span class="lang-cn">将数据从源系统移至数据仓库的过程称为<input type='text' id='blank_cn0' class='blank-input' style='width:100px;'>。</span>
-        </p><p>
-            <span class="lang-en">While BI is enterprise-wide, <input type='text' id='blank1' class='blank-input' style='width:100px;'> is typically built for specific decision scenarios.</span>
-            <span class="lang-cn">BI 侧重于企业级范围，而<input type='text' id='blank_cn1' class='blank-input' style='width:100px;'>通常是针对特定决策场景构建的。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -416,6 +629,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I can define DSS concepts and how they differ from MIS.</li><li><input type='checkbox'> I understand the four components of the Business Intelligence framework.</li><li><input type='checkbox'> I can explain how BI helps organizations make data-driven decisions.</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我能定义 DSS 概念以及它与 MIS 的区别。</li><li><input type='checkbox'> 我理解商业智能框架的四个组成部分。</li><li><input type='checkbox'> 我能解释 BI 如何帮助企业做出数据驱动型决策。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>The Concept of Decision Support Systems:</strong> <ul><li><b>DSS Definition:</b> An interactive, flexible, and adaptable computer-...</li><li><strong>A Framework for Business Intelligence:</strong> <ul><li><b>BI Definition:</b> An umbrella term that combines architectures, tool...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>决策支持系统 (DSS) 概念:</strong> <ul><li><b>DSS 定义：</b> 交互式、灵活且适应性强的基于计算机的信息系统，专门设计用于支持非结构化管理问题的解决方案。</li><li><b>...</li><li><strong>商业智能 (BI) 框架:</strong> <ul><li><b>BI 定义：</b> 结合了架构、工具、数据库、分析工具、应用软件和方法论的综合性术语。</li><li><b>核心 BI 组件：</b>...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">Remember that BI is enterprise-wide, while DSS is typically built for specific decision scenarios.</p>
+                    <p class="lang-cn" style="display: none;">记住 BI 是企业级的，而 DSS 通常是为特定的决策场景构建的。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -427,19 +675,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="2" onclick="selectMatchCard(this)">Data Warehouse</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Extracting hidden patterns from data</span>
-            <span class="lang-cn">从数据中提取隐藏模式</span>
-        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Dashboard</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Central repository for enterprise data</span>
-            <span class="lang-cn">企业数据的核心存储库</span>
-        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">Data Mining</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Extract, Transform, Load process</span>
-            <span class="lang-cn">提取、转换、加载过程</span>
-        </div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">ETL</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Visual reporting interface showing KPIs</span>
-            <span class="lang-cn">显示 KPI 的可视化报表界面</span>
-        </div>
+                <div class="match-card" data-id="2" onclick="selectMatchCard(this)">Business Analytics</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Dashboard visualization for corporate metrics</span><span class="lang-cn">公司指标的仪表板可视化</span></div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">BPM</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">Tools for OLAP, data mining, and interactive reporting</span><span class="lang-cn">用于 OLAP、数据挖掘和交互式报告的工具</span></div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">User Interface</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">Historical repository of integrated corporate data</span><span class="lang-cn">整合公司数据的历史存储库</span></div><div class="match-card" data-id="1" onclick="selectMatchCard(this)">Data Warehouse</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">Performance monitoring and executive KPIs</span><span class="lang-cn">业绩监控和高管 KPI</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -454,19 +690,13 @@
             let score = 0;
             
         const q0 = document.querySelector('input[name="q0"]:checked');
-        if (q0 && parseInt(q0.value) === 1) score++;
+        if (q0 && parseInt(q0.value) === 2) score++;
         
         const q1 = document.querySelector('input[name="q1"]:checked');
-        if (q1 && parseInt(q1.value) === 0) score++;
+        if (q1 && parseInt(q1.value) === 1) score++;
         
         const q2 = document.querySelector('input[name="q2"]:checked');
-        if (q2 && parseInt(q2.value) === 1) score++;
-        
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 1) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 1) score++;
+        if (q2 && parseInt(q2.value) === 0) score++;
         
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
@@ -474,28 +704,11 @@
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['etl', '提取转换加载', '数据转换提取'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['dss', '决策支持', '决策支持系统'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {

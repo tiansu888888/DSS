@@ -115,14 +115,14 @@
         /* Quiz */
         .quiz-q { margin-bottom: 25px; }
         .quiz-label { display: block; padding: 12px 16px; cursor: pointer; transition: all 0.4s var(--spring); border-radius: 12px; border: 1px solid transparent; font-weight: 600; font-size: 1.1rem;}
-        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px);}
+        .quiz-label:hover { background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); transform: translateX(5px); }
         
         /* Coding */
         .code-editor { background: rgba(0,0,0,0.8); color: #F8F9FA; padding: 20px; border-radius: var(--radius-md); font-family: 'JetBrains Mono', monospace; line-height: 1.8; margin-top: 10px; font-size: 1rem; border: 1px solid rgba(255,255,255,0.2); box-shadow: inset 0 2px 10px rgba(0,0,0,0.5); white-space: pre-wrap; }
         .blank-input { border: none; border-bottom: 2px solid var(--pastel-mint); background: transparent; color: var(--ink); font-family: inherit; font-size: 1.1rem; text-align: center; outline: none; transition: all 0.4s var(--spring); font-weight: 700;}
-        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px;}
-        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint);}
-        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink);}
+        .blank-input:focus { border-bottom: 2px solid var(--pastel-lavender); background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .correct-ans { color: #0f5132; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(176, 234, 205, 0.6); border-radius: 12px; border: 1px solid var(--pastel-mint); }
+        .wrong-ans { color: #842029; font-weight: 700; margin-top: 15px; display: inline-block; padding: 10px 16px; background: rgba(255, 209, 220, 0.6); border-radius: 12px; border: 1px solid var(--pastel-pink); }
         
         /* Tips Section override */
         .card[style*="border-left"] { border-left: none !important; position: relative; overflow: hidden; background: linear-gradient(135deg, rgba(176, 234, 205, 0.3), rgba(255, 255, 255, 0.4)); }
@@ -145,6 +145,142 @@
         .match-card:hover { transform: translateY(-3px); background: rgba(255, 255, 255, 0.7); }
         .match-card.selected { border-color: var(--pastel-lavender); background: var(--pastel-pink); }
         .match-card.matched { border-color: var(--pastel-mint); background: var(--pastel-mint); opacity: 0.7; pointer-events: none; }
+
+        /* High contrast styles for tables, highlights, key terms grid, revision checklists */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        th, td {
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+        th {
+            background: linear-gradient(135deg, var(--pastel-lavender), var(--pastel-pink));
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        tr:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(195, 177, 225, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-lavender);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .highlight-box h4 {
+            color: var(--ink);
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(176, 234, 205, 0.2), rgba(255, 255, 255, 0.4));
+            border-left: 6px solid var(--pastel-mint);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            color: var(--ink);
+        }
+        .example-box h4 {
+            color: #0f5132;
+            margin: 0 0 10px 0;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .key-terms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .term-card {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--pastel-lavender);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: all 0.3s var(--spring);
+            color: var(--ink);
+        }
+        .term-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+        .term-card strong {
+            color: var(--ink);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .revision-checklist {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .revision-checklist li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+        .revision-checklist input[type="checkbox"] {
+            transform: scale(1.3);
+            cursor: pointer;
+            accent-color: var(--pastel-lavender);
+        }
+
+        .show-answer {
+            color: #5a3791;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: underline;
+            display: inline-block;
+            margin-top: 10px;
+            transition: color 0.3s;
+        }
+        .show-answer:hover {
+            color: var(--pastel-pink);
+        }
+        .answer {
+            display: none;
+            margin-top: 12px;
+            padding: 15px;
+            background: rgba(176, 234, 205, 0.35);
+            border: 1px solid var(--pastel-mint);
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #0f5132;
+        }
 
         /* Translation CSS Rules */
         .lang-cn { display: none !important; }
@@ -177,6 +313,23 @@
     </div>
 
     <div class="container">
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-bullseye"></i> Learning Objectives</span>
+                <span class="lang-cn"><i class="fas fa-bullseye"></i> 学习目标</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px;">
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8;">
+                    <li>Perform What-If analysis and Scenario Manager setups.</li><li>Differentiate What-If from Goal Seeking.</li><li>Explain Data Mining concepts and Model Base Management System features.</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.15rem; font-weight: 600; line-height: 1.8; display: none;">
+                    <li>执行 What-If 分析与方案管理器配置。</li><li>区分 What-If 分析与目标求解 (Goal Seek)。</li><li>解释数据挖掘概念与模型库管理系统 (MBMS) 的特征。</li>
+                </ul>
+            </div>
+        </div>
+    
+
         <!-- Notes Section -->
         <div class="card">
             <h2>
@@ -184,10 +337,84 @@
                 <span class="lang-cn">分步指南</span>
             </h2>
             <div class="lang-en">
-                <div class='step'><h3>1. What-If Analysis</h3><p>What-If analysis is a structured technique evaluating how changes in input variables affect outcomes. Excel offers several tools: **Scenario Manager** (compares groups of inputs) and **Data Tables** (displays multiple outputs side-by-side).</p></div><div class='step'><h3>2. Goal Seeking</h3><p>While What-If analysis starts with changing inputs to observe outputs, **Goal Seeking** works in reverse. It calculates the necessary input value required to achieve a predefined, specific target output value.</p></div>
+                <div class='step'><h3>5.4 Data Mining Concepts</h3><div><ul><li><b>Data Mining Definition:</b> The process of identifying valid, novel, potentially useful, and ultimately understandable patterns in structured and unstructured datasets.</li><li><b>Core Applications:</b>  <ul>    <li><b>Market Basket Analysis:</b> Identifying purchase affinities (e.g., customers who buy Bread also buy Butter).</li>    <li><b>Customer Churn Prediction:</b> Modeling customer behaviors to predict when they will cancel a service.</li>    <li><b>Fraud Detection:</b> Analyzing transaction variances to detect stolen credit cards.</li>  </ul></li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Capital One</h4><ul><li>Capital One uses data mining algorithms to analyze transactional velocity and geographic location.</li><li>If card purchase anomalies are detected (e.g., gas purchase in London 10 mins after dining in NY), the card is frozen immediately.</li></ul><p><strong>Reference:</strong> <a href="https://www.computerworld.com/article/2573210/capital-one-s-risk-based-pricing-strategy.html" target="_blank">Capital One Data Analytics Strategy</a></p></div></div></div><div class='step'><h3>5.5 Model Base Management System (MBMS)</h3><div><ul><li><b>MBMS Functions:</b> Coordinates model execution, model storage, updates models dynamically, and allows linking of different models.</li><li><b>Goal Seek Optimization:</b> A backwards-calculation analytical tool. User specifies a desired final result (target), and the system calculates the necessary input value (e.g., finding interest rate needed to hit a target monthly payment).</li><li><b>What-If Scenario Analysis:</b> A forwards-calculation analytical tool. User changes input variables (e.g., product cost rises by 10%), and the system calculates the resulting shift in total profit.</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> Real-world Case: Tesla</h4><ul><li>Tesla planners run <b>What-If simulations</b> on supply chain models to observe total cost changes if raw lithium pricing fluctuates.</li><li>They use <b>Goal Seek</b> to find the exact battery cell production efficiency required to sell the Model 3 at a target retail price.</li></ul><p><strong>Reference:</strong> <a href="https://www.tesla.com/ns_videos/2026-tesla-impact-report.pdf" target="_blank">Tesla Impact & Operations Report</a></p></div></div></div>
+            <div class="card">
+                <h2>What-If Analysis vs. Goal Seeking</h2>
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>What-If Analysis (Scenario Manager)</th>
+                        <th>Goal Seeking</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Flow Direction</strong></td>
+                        <td>Forward Analysis: Input &rarr; Output</td>
+                        <td>Backward Analysis: Target &rarr; Input</td>
+                    </tr>
+                    <tr>
+                        <td><strong>User Operation</strong></td>
+                        <td>User changes values of input cells manually or via scenarios.</td>
+                        <td>User sets target output cell value, solver changes inputs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Variables Limit</strong></td>
+                        <td>Can vary multiple inputs concurrently.</td>
+                        <td>Restricted to solving one input variable.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Typical Business Query</strong></td>
+                        <td>What will profit be if marketing cost increases by 20%?</td>
+                        <td>What price should we set to achieve exactly $10k net profit?</td>
+                    </tr>
+                </table>
+                <div class="key-terms">
+                    <div class="term-card">
+                        <strong>Model Base Management (MBMS)</strong>
+                        <p>A software component that catalogs, builds, stores, and executes various computational models without requiring user code modification.</p>
+                    </div>
+                </div>
+            </div>
+        
             </div>
             <div class="lang-cn">
-                <div class='step'><h3>1. 敏感性分析 (What-If)</h3><p>敏感性/情景分析 (What-If) 是一种评估输入变量变化如何影响输出结果的结构化技术。Excel 提供了几种工具：**方案管理器**（比较成组的输入）和**数据表**（并排显示多个输出）。</p></div><div class='step'><h3>2. 目标求解 (Goal Seeking)</h3><p>情景分析是从改变输入开始以观察输出，而**目标求解 (Goal Seeking)** 的工作原理则相反。它计算实现预设的特定目标输出值所需的输入值。</p></div>
+                <div class='step'><h3>5.4 数据挖掘概念</h3><div><ul><li><b>数据挖掘定义：</b> 在结构化和非结构化数据集中识别有效、新颖、潜在有用且最终可理解的模式的过程。</li><li><b>核心应用场景：</b>  <ul>    <li><b>购物篮分析 (Market Basket Analysis)：</b> 识别购买关联性（例如，购买面包的客户也倾向于购买黄油）。</li>    <li><b>客户流失预测 (Churn Prediction)：</b> 对客户行为进行建模，以预测他们何时会取消服务。</li>    <li><b>欺诈检测 (Fraud Detection)：</b> 分析交易波动和异常，以检测被盗刷的信用卡。</li>  </ul></li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：第一资本 (Capital One)</h4><ul><li>Capital One 使用数据挖掘算法来分析交易速度和地理位置。</li><li>如果检测到信用卡刷卡异常（例如，在纽约用餐 10 分钟后在伦敦购买汽油），该卡将立即被冻结。</li></ul><p><strong>参考链接：</strong> <a href="https://www.computerworld.com/article/2573210/capital-one-s-risk-based-pricing-strategy.html" target="_blank">Capital One 数据分析战略</a></p></div></div></div><div class='step'><h3>5.5 模型库管理系统 (MBMS) & 决策分析</h3><div><ul><li><b>MBMS 功能：</b> 协调模型运行、存储模型、动态更新模型，并允许将不同的模型进行串联。</li><li><b>目标求解 (Goal Seek)：</b> 逆向计算分析工具。用户指定一个期望的最终结果（目标），系统计算出达到此结果所需的输入值（例如，计算达到每月目标还款额所需的利率）。</li><li><b>What-If 情景分析：</b> 正向计算分析工具。用户改变输入变量的值（例如，产品成本上涨 10%），系统计算出最终总利润的相应变化。</li></ul><div class="example-box"><h4><i class="fas fa-building"></i> 真实企业案例：特斯拉 (Tesla)</h4><ul><li>特斯拉计划人员对供应链模型运行 <b>What-If 模拟</b>，以观察如果原材料锂价格波动时总成本的变化。</li><li>他们使用 <b>目标求解 (Goal Seek)</b> 来计算电池单体生产效率必须达到的具体值，以便按目标零售价销售 Model 3。</li></ul><p><strong>参考链接：</strong> <a href="https://www.tesla.com/ns_videos/2026-tesla-impact-report.pdf" target="_blank">特斯拉影响与运营报告</a></p></div></div></div>
+            <div class="card">
+                <h2>What-If 分析与目标求解对比</h2>
+                <table>
+                    <tr>
+                        <th>特性维度</th>
+                        <th>What-If 分析（方案管理器）</th>
+                        <th>目标求解 (Goal Seek)</th>
+                    </tr>
+                    <tr>
+                        <td><strong>分析流方向</strong></td>
+                        <td>正向分析：改变输入 &rarr; 观察输出</td>
+                        <td>逆向分析：设定目标 &rarr; 计算输入</td>
+                    </tr>
+                    <tr>
+                        <td><strong>用户操作方式</strong></td>
+                        <td>用户手动或通过方案管理器修改输入单元格的值。</td>
+                        <td>用户指定输出的目标数值，求解器自动推算输入值。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>变量限制</strong></td>
+                        <td>可以同时变动多个输入参数变量。</td>
+                        <td>通常局限于求解单个输入自变量。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>业务提问示例</strong></td>
+                        <td>如果营销费用增加 20%，净利润将如何变化？</td>
+                        <td>要达到 1 万美元净利润，我们需要将售价定在多少？</td>
+                    </tr>
+                </table>
+                <div class="key-terms">
+                    <div class="term-card">
+                        <strong>模型库管理系统 (MBMS)</strong>
+                        <p>负责编目、构建、存储和执行各种计算模型的软件组件，用户无需修改底层代码即可运行模型。</p>
+                    </div>
+                </div>
+            </div>
+        
             </div>
         </div>
 
@@ -198,7 +425,7 @@
                 <span class="lang-cn">概念可视化</span>
             </h2>
             <div style="background: rgba(255,255,255,0.5); border-radius: 8px; padding: 20px; text-align: center; border: 1px solid rgba(255,255,255,0.8);">
-                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='60' width='140' height='80' rx='10' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='120' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Input Variable (A1)</text><rect x='410' y='60' width='140' height='80' rx='10' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='480' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Target Output (100)</text><path d='M 190 85 L 410 85' stroke='#1E3A8A' stroke-width='2' fill='none' marker-end='url(#arrow)'/><text x='300' y='75' fill='#111111' font-family='Rajdhani' font-size='12' text-anchor='middle'>What-If (Forward)</text><path d='M 410 115 L 190 115' stroke='#FF6B6B' stroke-width='2' fill='none' stroke-dasharray='5,5'/><text x='300' y='135' fill='#111111' font-family='Rajdhani' font-size='12' text-anchor='middle'>Goal Seek (Reverse)</text></svg>
+                <svg width='100%' max-width='600' height='200' viewBox='0 0 600 200'><rect x='50' y='60' width='130' height='80' rx='5' fill='#FFF' stroke='#1E3A8A' stroke-width='2'/><text x='115' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Inputs (X)</text><rect x='410' y='60' width='130' height='80' rx='5' fill='#FFF' stroke='#FF6B6B' stroke-width='2'/><text x='475' y='105' fill='#111111' font-family='Rajdhani' font-size='16' font-weight='bold' text-anchor='middle'>Results (Y)</text><path d='M 180 85 L 410 85' stroke='#1E3A8A' stroke-width='3' fill='none'/><text x='295' y='75' fill='#1E3A8A' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>What-If (Forwards)</text><path d='M 410 115 L 180 115' stroke='#FF6B6B' stroke-dasharray='4' stroke-width='3' fill='none'/><text x='295' y='135' fill='#FF6B6B' font-family='Rajdhani' font-size='14' font-weight='bold' text-anchor='middle'>Goal Seek (Backwards)</text></svg>
             </div>
         </div>
 
@@ -237,8 +464,8 @@
                 <span class="lang-en">Tips</span>
                 <span class="lang-cn">提示</span>
             </h2>
-            <div class="lang-en">Goal Seek is a single-variable solver. If your problem requires changing multiple inputs under specific constraints, you must upgrade and use Excel Solver instead.</div>
-            <div class="lang-cn">Goal Seek 是单变量求解器。如果你的问题需要在特定约束下改变多个输入，则必须升级并使用 Excel Solver 求解器。</div>
+            <div class="lang-en">Goal Seek is BACKWARDS (starts with target result), while What-If is FORWARDS (starts with input change). Differentiating this is highly critical for exam questions.</div>
+            <div class="lang-cn">目标求解是逆向计算（从目标结果开始），而 What-If 是正向计算（从输入变化开始）。区分这一点对考试题目非常关键。</div>
         </div>
 
         <!-- Quiz Section -->
@@ -248,96 +475,90 @@
                 <span class="lang-cn">知识自测</span>
             </h2>
             <div id="quiz-container">
-                <div class='quiz-q'>
-            <p><b>1. 
-                <span class="lang-en">Which Excel tool calculates the input value needed to achieve a specific target output?</span>
-                <span class="lang-cn">哪种 Excel 工具能够计算实现特定目标输出所需的输入值？</span>
+                <div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>1. 
+                <span class="lang-en">Which analytics tool starts with a target result and works backward to find the input?</span>
+                <span class="lang-cn">哪种分析工具从目标结果开始，逆向计算以寻找输入？</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q0' value='0'>
-                <span class="lang-en">Solver</span>
-                <span class="lang-cn">规划求解</span>
+                <span class="lang-en">What-If Analysis</span>
+                <span class="lang-cn">What-If 分析</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='1'>
                 <span class="lang-en">Goal Seek</span>
-                <span class="lang-cn">单变量求解 (Goal Seek)</span>
+                <span class="lang-cn">目标求解 (Goal Seek)</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q0' value='2'>
-                <span class="lang-en">Data Table</span>
-                <span class="lang-cn">数据表</span>
+                <span class="lang-en">Trend Projection</span>
+                <span class="lang-cn">趋势预测</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>2. 
-                <span class="lang-en">What-If analysis is best described as:</span>
-                <span class="lang-cn">敏感性分析 (What-If) 最合适的描述是：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w8_q0')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w8_q0" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>2. 
+                <span class="lang-en">The process of finding transaction patterns in credit cards is called:</span>
+                <span class="lang-cn">在信用卡中查找交易模式的过程被称为：</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q1' value='0'>
-                <span class="lang-en">Finding errors in syntax</span>
-                <span class="lang-cn">查找语法错误</span>
+                <span class="lang-en">Database normalization</span>
+                <span class="lang-cn">数据库规范化</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='1'>
-                <span class="lang-en">Observing changes in outputs when input values are varied</span>
-                <span class="lang-cn">在输入值变化时观察输出的变化</span>
+                <span class="lang-en">Data Mining</span>
+                <span class="lang-cn">数据挖掘 (Data Mining)</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q1' value='2'>
-                <span class="lang-en">Compiling code</span>
-                <span class="lang-cn">编译代码</span>
+                <span class="lang-en">File compression</span>
+                <span class="lang-cn">文件压缩</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>3. 
-                <span class="lang-en">To compare multiple complete sets of inputs (e.g. Best case vs Worst case), you should use:</span>
-                <span class="lang-cn">要比较多套完整的输入数据（例如最好情况与最坏情况），应使用：</span>
+            <span class="show-answer" onclick="toggleAnswer('ans_w8_q1')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w8_q1" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 2</span>
+                    <span class="lang-cn">正确选项：选项 2</span>
+                </strong>
+            </div>
+        </div><div class='quiz-q' style="margin-bottom: 30px;">
+            <p style="font-size: 1.15rem; font-weight: 700;"><b>3. 
+                <span class="lang-en">What-If analysis is classified as a:</span>
+                <span class="lang-cn">What-If 分析被分类为：</span>
             </b></p>
             <label class='quiz-label'>
                 <input type='radio' name='q2' value='0'>
-                <span class="lang-en">Scenario Manager</span>
-                <span class="lang-cn">方案管理器 (Scenario Manager)</span>
+                <span class="lang-en">Forwards calculation method</span>
+                <span class="lang-cn">正向计算方法</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='1'>
-                <span class="lang-en">Goal Seek</span>
-                <span class="lang-cn">Goal Seek</span>
+                <span class="lang-en">Backwards calculation method</span>
+                <span class="lang-cn">逆向计算方法</span>
             </label><label class='quiz-label'>
                 <input type='radio' name='q2' value='2'>
-                <span class="lang-en">Format Specifier</span>
-                <span class="lang-cn">格式说明符</span>
+                <span class="lang-en">Random allocation method</span>
+                <span class="lang-cn">随机分配方法</span>
             </label>
-        </div><div class='quiz-q'>
-            <p><b>4. 
-                <span class="lang-en">How many variables can Excel's standard Goal Seek tool change at one time?</span>
-                <span class="lang-cn">Excel 的标准 Goal Seek 工具一次可以更改多少个变量？</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q3' value='0'>
-                <span class="lang-en">Only one</span>
-                <span class="lang-cn">只能更改一个</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='1'>
-                <span class="lang-en">Up to three</span>
-                <span class="lang-cn">最多三个</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q3' value='2'>
-                <span class="lang-en">Unlimited</span>
-                <span class="lang-cn">无限制</span>
-            </label>
-        </div><div class='quiz-q'>
-            <p><b>5. 
-                <span class="lang-en">Data Tables in Excel show:</span>
-                <span class="lang-cn">Excel 中的数据表显示：</span>
-            </b></p>
-            <label class='quiz-label'>
-                <input type='radio' name='q4' value='0'>
-                <span class="lang-en">The database connection string</span>
-                <span class="lang-cn">数据库连接字符串</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='1'>
-                <span class="lang-en">Output results for multiple variations of one or two inputs</span>
-                <span class="lang-cn">一两个输入变量在多种变化下的输出结果</span>
-            </label><label class='quiz-label'>
-                <input type='radio' name='q4' value='2'>
-                <span class="lang-en">Only text data</span>
-                <span class="lang-cn">仅文本数据</span>
-            </label>
+            <span class="show-answer" onclick="toggleAnswer('ans_w8_q2')">
+                <span class="lang-en">Show Explanation</span>
+                <span class="lang-cn">显示解析</span>
+            </span>
+            <div id="ans_w8_q2" class="answer">
+                <strong>
+                    <span class="lang-en">Correct Answer: Option 1</span>
+                    <span class="lang-cn">正确选项：选项 1</span>
+                </strong>
+            </div>
         </div>
                 <button class="btn" onclick="checkQuiz()">
                     <span class="lang-en">Submit Answers</span>
@@ -347,25 +568,7 @@
             </div>
         </div>
 
-        <!-- Fill in the Blanks -->
-        <div class="card">
-            <h2>
-                <span class="lang-en">Fill in the Blanks</span>
-                <span class="lang-cn">填空练习</span>
-            </h2>
-            <p>
-            <span class="lang-en"><input type='text' id='blank0' class='blank-input' style='width:100px;'>-seeking is an Excel tool that finds the input needed to get a specific target output.</span>
-            <span class="lang-cn"><input type='text' id='blank_cn0' class='blank-input' style='width:100px;'>-seeking 是一个 Excel 工具，它能寻找实现特定目标输出所需的输入。</span>
-        </p><p>
-            <span class="lang-en">What-If analysis evaluates how changes in <input type='text' id='blank1' class='blank-input' style='width:100px;'> variables affect output variables.</span>
-            <span class="lang-cn">情景分析评估了 <input type='text' id='blank_cn1' class='blank-input' style='width:100px;'> 变量的变化如何影响输出变量。</span>
-        </p>
-            <button class="btn" onclick="checkBlanks()">
-                <span class="lang-en">Check Answers</span>
-                <span class="lang-cn">检查答案</span>
-            </button>
-            <div id="blanks-result"></div>
-        </div>
+
 
         <!-- Coding Activities -->
         <div class="card">
@@ -406,6 +609,41 @@
         </div>
         </div>
 
+        
+        <div class="card">
+            <h2>
+                <span class="lang-en"><i class="fas fa-book-reader"></i> Revision Guide</span>
+                <span class="lang-cn"><i class="fas fa-book-reader"></i> 复习指南</span>
+            </h2>
+            <div class="card-body" style="padding-top: 15px; color: var(--ink);">
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px;">Revision Checklist:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 10px; display: none;">复习清单：</h4>
+                <ul class="revision-checklist lang-en">
+                    <li><input type='checkbox'> I can define forward What-If analysis and Scenario comparisons.</li><li><input type='checkbox'> I can execute Goal Seeking to find single variable targets in Excel.</li><li><input type='checkbox'> I understand the function of a Model Base Management System (MBMS).</li>
+                </ul>
+                <ul class="revision-checklist lang-cn" style="display: none;">
+                    <li><input type='checkbox'> 我能定义正向 What-If 分析与情景比较。</li><li><input type='checkbox'> 我能在 Excel 中执行目标求解以查找单变量目标。</li><li><input type='checkbox'> 我理解模型库管理系统 (MBMS) 的核心功能。</li>
+                </ul>
+                
+                <h4 class="lang-en" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px;">Key Concepts to Remember:</h4>
+                <h4 class="lang-cn" style="font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin: 25px 0 10px; display: none;">核心概念复习：</h4>
+                <ul class="lang-en" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <li><strong>Data Mining Concepts:</strong> <ul><li><b>Data Mining Definition:</b> The process of identifying valid, novel, ...</li><li><strong>Model Base Management System (MBMS):</strong> <ul><li><b>MBMS Functions:</b> Coordinates model execution, model storage, updat...</li>
+                </ul>
+                <ul class="lang-cn" style="margin-left: 20px; font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; display: none;">
+                    <li><strong>数据挖掘概念:</strong> <ul><li><b>数据挖掘定义：</b> 在结构化和非结构化数据集中识别有效、新颖、潜在有用且最终可理解的模式的过程。</li><li><b>核心应用场景：...</li><li><strong>模型库管理系统 (MBMS) & 决策分析:</strong> <ul><li><b>MBMS 功能：</b> 协调模型运行、存储模型、动态更新模型，并允许将不同的模型进行串联。</li><li><b>目标求解 (Goal ...</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h4 class="lang-en">Study Tips</h4>
+                    <h4 class="lang-cn" style="display: none;">学习建议</h4>
+                    <p class="lang-en">Practice building Excel Scenario Summary reports to compare base, best, and worst cases.</p>
+                    <p class="lang-cn" style="display: none;">练习在 Excel 中生成方案总结报告，并排对比基准、最好和最坏情景。</p>
+                </div>
+            </div>
+        </div>
+    
+
         <!-- Matching Game -->
         <div class="card">
             <h2>
@@ -417,19 +655,7 @@
                 <span class="lang-cn">将左侧的术语与右侧的定义进行配对。</span>
             </p>
             <div class="match-grid">
-                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Goal Seek</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)">
-            <span class="lang-en">Analyzes behavior under changing parameters</span>
-            <span class="lang-cn">分析参数改变下的行为表现</span>
-        </div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Data Table</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)">
-            <span class="lang-en">Displays input/output matrix mapping</span>
-            <span class="lang-cn">显示输入/输出 matrix 映射关系</span>
-        </div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">What-If</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)">
-            <span class="lang-en">Solves for one input to hit target</span>
-            <span class="lang-cn">求解单个输入以达到目标值</span>
-        </div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">Scenario Manager</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)">
-            <span class="lang-en">Compares static scenario cases</span>
-            <span class="lang-cn">比较静态的情景案例</span>
-        </div>
+                <div class="match-card" data-id="1" onclick="selectMatchCard(this)">Goal Seek</div><div class="match-card" data-target="4" onclick="selectMatchCard(this)"><span class="lang-en">Subsystem that coordinates and executes decision models</span><span class="lang-cn">协调和执行决策模型的子系统</span></div><div class="match-card" data-id="3" onclick="selectMatchCard(this)">Data Mining</div><div class="match-card" data-target="3" onclick="selectMatchCard(this)"><span class="lang-en">Identifying novel patterns in large data warehouses</span><span class="lang-cn">在大型数据仓库中识别新颖的模式</span></div><div class="match-card" data-id="4" onclick="selectMatchCard(this)">MBMS</div><div class="match-card" data-target="1" onclick="selectMatchCard(this)"><span class="lang-en">Backwards calculation to find input variable for a target output</span><span class="lang-cn">逆向计算以查找目标输出的输入变量</span></div><div class="match-card" data-id="2" onclick="selectMatchCard(this)">What-If</div><div class="match-card" data-target="2" onclick="selectMatchCard(this)"><span class="lang-en">Forwards calculation to find result variable for an input shift</span><span class="lang-cn">正向计算以查找输入变化的结果变量</span></div>
             </div>
             <div id="match-game-res" style="margin-top: 20px; font-weight: bold; color: green;"></div>
         </div>
@@ -452,40 +678,17 @@
         const q2 = document.querySelector('input[name="q2"]:checked');
         if (q2 && parseInt(q2.value) === 0) score++;
         
-        const q3 = document.querySelector('input[name="q3"]:checked');
-        if (q3 && parseInt(q3.value) === 0) score++;
-        
-        const q4 = document.querySelector('input[name="q4"]:checked');
-        if (q4 && parseInt(q4.value) === 1) score++;
-        
             document.getElementById('quiz-result').innerHTML = `<span class='correct-ans'>
                 <span class="lang-en">You scored: ${score} / 5</span>
                 <span class="lang-cn">得分：${score} / 5</span>
             </span>`;
         }
 
-        function checkBlanks() {
-            
-        const b0 = (document.getElementById('blank0').value || document.getElementById('blank_cn0').value).toLowerCase().trim();
-        const answers0 = ['goal', '目标', '目标求解', '单变量求解'];
-        if(answers0.includes(b0)) {
-            document.getElementById('blank0').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank0').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn0').style.borderBottomColor = '#C70039';
-        }
-        
-        const b1 = (document.getElementById('blank1').value || document.getElementById('blank_cn1').value).toLowerCase().trim();
-        const answers1 = ['input', '输入', '输入变量'];
-        if(answers1.includes(b1)) {
-            document.getElementById('blank1').style.borderBottomColor = '#2E8B57';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#2E8B57';
-        } else {
-            document.getElementById('blank1').style.borderBottomColor = '#C70039';
-            document.getElementById('blank_cn1').style.borderBottomColor = '#C70039';
-        }
-        
+
+
+                function toggleAnswer(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
         }
 
         function showCodeAns(id) {
