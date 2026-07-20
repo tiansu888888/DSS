@@ -1,0 +1,37 @@
+====================================================================
+DBSS2643 DECISION SUPPORT SYSTEMS
+GOOGLE LOOKER STUDIO DATASET & CALCULATED FIELDS SCHEMA
+====================================================================
+
+1. CONNECT DATA SOURCE:
+   - Data Source File: DBSS2643_Enterprise_BI_Dataset.csv
+   - Dimensions: Region, Product_Category, Sales_Rep, Date
+   - Metrics: Gross_Revenue_MYR, Net_Profit_MYR, Units_Sold, Customer_Satisfaction_Score
+
+2. CALCULATED FIELD FORMULAS FOR LOOKER STUDIO:
+
+   Field Name: Profitability Margin (%)
+   Formula: SUM(Net_Profit_MYR) / SUM(Gross_Revenue_MYR)
+
+   Field Name: Average Unit Price (MYR)
+   Formula: AVG(Unit_Price_MYR)
+
+   Field Name: Performance Category
+   Formula: CASE 
+               WHEN Net_Profit_MYR > 20000 THEN "High Profit Contribution" 
+               WHEN Net_Profit_MYR > 10000 THEN "Moderate Profit Contribution" 
+               ELSE "Low Margin Item" 
+            END
+
+   Field Name: Regional CSAT Status
+   Formula: CASE 
+               WHEN Customer_Satisfaction_Score >= 4 THEN "High CSAT (>= 4.0)" 
+               ELSE "Needs Service Review" 
+            END
+
+3. DASHBOARD WIDGET SETUP:
+   - Scorecard 1: SUM(Gross_Revenue_MYR) with Currency formatting (MYR)
+   - Scorecard 2: Profitability Margin (%)
+   - Geo / Regional Bar Chart: Dimension = Region, Metric = SUM(Net_Profit_MYR)
+   - Stacked Column Chart: Dimension = Product_Category, Breakdown = Region, Metric = SUM(Gross_Revenue_MYR)
+   - Scatter Plot: X = Units_Sold, Y = Net_Profit_MYR, Color = Product_Category

@@ -1,0 +1,36 @@
+====================================================================
+DBSS2643 DECISION SUPPORT SYSTEMS
+POWER BI DAX MEASURES LIBRARY (EXECUTIVE DECISION DASHBOARD)
+====================================================================
+
+// 1. Total Gross Revenue (MYR)
+Total Gross Revenue = 
+SUM(DBSS2643_Enterprise_BI_Dataset[Gross_Revenue_MYR])
+
+// 2. Total Net Profit (MYR)
+Total Net Profit = 
+SUM(DBSS2643_Enterprise_BI_Dataset[Net_Profit_MYR])
+
+// 3. Overall Profit Margin (%)
+Profit Margin % = 
+DIVIDE([Total Net Profit], [Total Gross Revenue], 0)
+
+// 4. Average Customer Satisfaction Score
+Avg CSAT Score = 
+AVERAGE(DBSS2643_Enterprise_BI_Dataset[Customer_Satisfaction_Score])
+
+// 5. Total Units Sold
+Total Units Sold = 
+SUM(DBSS2643_Enterprise_BI_Dataset[Units_Sold])
+
+// 6. Target Revenue Compliance KPI (Target: MYR 1,500,000)
+Target Compliance % = 
+DIVIDE([Total Gross Revenue], 1500000, 0)
+
+// 7. Executive Decision Status Alert
+Executive Decision Alert = 
+IF(
+    [Profit Margin %] >= 0.35 && [Avg CSAT Score] >= 4.0, 
+    "OPTIMAL PERFORMANCE: Expansion Approved", 
+    IF([Profit Margin %] >= 0.20, "STABLE: Audit Cost Structure", "CRITICAL WARNING: Margin Compression")
+)

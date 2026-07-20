@@ -1,0 +1,151 @@
+Transaction_ID,Date,Region,Product_Category,Sales_Rep,Units_Sold,Unit_Price_MYR,Discount_Pct,Gross_Revenue_MYR,Cost_MYR,Net_Profit_MYR,Customer_Satisfaction_Score
+TXN-1000,2026-01-01,Kuala Lumpur,Enterprise DSS Software,Ahmad Razak,5,6493.56,0.0,32467.8,20163.48,12304.32,5
+TXN-1001,2026-01-02,Penang,Cloud BI Analytics,Tan Wei Ming,21,9456.99,0.15,168807.27,99217.57,69589.7,5
+TXN-1002,2026-01-03,Johor Bahru,AI Knowledge Management,Saraswathy A/P Nathan,16,5499.18,0.0,87986.88,37630.59,50356.29,3
+TXN-1003,2026-01-04,Kuching,Data Warehouse Appliance,Jessica Lee,16,2643.61,0.15,35953.1,20487.77,15465.33,3
+TXN-1004,2026-01-05,Kota Kinabalu,Enterprise DSS Software,Chong Kai Xiang,14,5643.91,0.1,71113.27,42759.27,28354.0,5
+TXN-1005,2026-01-07,Kuala Lumpur,Cloud BI Analytics,Ahmad Razak,18,10471.47,0.1,169637.81,71657.77,97980.04,5
+TXN-1006,2026-01-08,Penang,AI Knowledge Management,Tan Wei Ming,11,6095.02,0.05,63692.96,39433.5,24259.46,5
+TXN-1007,2026-01-09,Johor Bahru,Data Warehouse Appliance,Saraswathy A/P Nathan,24,9717.79,0.0,233226.96,142722.9,90504.06,4
+TXN-1008,2026-01-10,Kuching,Enterprise DSS Software,Jessica Lee,13,8263.41,0.0,107424.33,53679.22,53745.11,5
+TXN-1009,2026-01-11,Kota Kinabalu,Cloud BI Analytics,Chong Kai Xiang,19,8730.69,0.0,165883.11,83996.71,81886.4,5
+TXN-1010,2026-01-13,Kuala Lumpur,AI Knowledge Management,Ahmad Razak,17,7476.86,0.1,114395.96,69909.59,44486.37,5
+TXN-1011,2026-01-14,Penang,Data Warehouse Appliance,Tan Wei Ming,17,8911.87,0.0,151501.79,82398.65,69103.14,3
+TXN-1012,2026-01-15,Johor Bahru,Enterprise DSS Software,Saraswathy A/P Nathan,3,14534.07,0.0,43602.21,25259.93,18342.28,4
+TXN-1013,2026-01-16,Kuching,Cloud BI Analytics,Jessica Lee,17,4280.16,0.05,69124.58,42332.39,26792.19,3
+TXN-1014,2026-01-17,Kota Kinabalu,AI Knowledge Management,Chong Kai Xiang,22,11258.84,0.15,210540.31,121825.11,88715.2,5
+TXN-1015,2026-01-19,Kuala Lumpur,Data Warehouse Appliance,Ahmad Razak,10,9497.45,0.1,85477.05,45904.35,39572.7,5
+TXN-1016,2026-01-20,Penang,Enterprise DSS Software,Tan Wei Ming,18,11229.04,0.15,171804.31,87322.41,84481.9,4
+TXN-1017,2026-01-21,Johor Bahru,Cloud BI Analytics,Saraswathy A/P Nathan,10,2615.96,0.05,24851.62,14014.09,10837.53,5
+TXN-1018,2026-01-22,Kuching,AI Knowledge Management,Jessica Lee,16,12544.34,0.15,170603.02,83592.74,87010.28,3
+TXN-1019,2026-01-23,Kota Kinabalu,Data Warehouse Appliance,Chong Kai Xiang,10,11158.1,0.15,94843.85,50060.17,44783.68,4
+TXN-1020,2026-01-25,Kuala Lumpur,Enterprise DSS Software,Ahmad Razak,15,9472.98,0.0,142094.7,86372.37,55722.33,4
+TXN-1021,2026-01-26,Penang,Cloud BI Analytics,Tan Wei Ming,16,13960.15,0.0,223362.4,113828.33,109534.07,5
+TXN-1022,2026-01-27,Johor Bahru,AI Knowledge Management,Saraswathy A/P Nathan,18,5735.39,0.05,98075.17,62946.31,35128.86,5
+TXN-1023,2026-01-28,Kuching,Data Warehouse Appliance,Jessica Lee,17,14251.72,0.1,218051.32,136459.99,81591.33,4
+TXN-1024,2026-01-29,Kota Kinabalu,Enterprise DSS Software,Chong Kai Xiang,5,4932.33,0.15,20962.4,9151.97,11810.43,3
+TXN-1025,2026-01-31,Kuala Lumpur,Cloud BI Analytics,Ahmad Razak,4,2502.67,0.0,10010.68,5531.24,4479.44,3
+TXN-1026,2026-02-01,Penang,AI Knowledge Management,Tan Wei Ming,9,4010.24,0.0,36092.16,21220.88,14871.28,4
+TXN-1027,2026-02-02,Johor Bahru,Data Warehouse Appliance,Saraswathy A/P Nathan,23,11970.77,0.1,247794.94,108705.22,139089.72,4
+TXN-1028,2026-02-03,Kuching,Enterprise DSS Software,Jessica Lee,23,9788.32,0.15,191361.66,109542.91,81818.75,3
+TXN-1029,2026-02-04,Kota Kinabalu,Cloud BI Analytics,Chong Kai Xiang,19,5286.6,0.05,95423.13,61029.71,34393.42,5
+TXN-1030,2026-02-06,Kuala Lumpur,AI Knowledge Management,Ahmad Razak,18,6133.5,0.15,93842.55,53221.74,40620.81,3
+TXN-1031,2026-02-07,Penang,Data Warehouse Appliance,Tan Wei Ming,20,6325.05,0.15,107525.85,53505.06,54020.79,3
+TXN-1032,2026-02-08,Johor Bahru,Enterprise DSS Software,Saraswathy A/P Nathan,18,12586.35,0.15,192571.15,77708.81,114862.34,3
+TXN-1033,2026-02-09,Kuching,Cloud BI Analytics,Jessica Lee,14,13597.13,0.0,190359.82,115824.42,74535.4,5
+TXN-1034,2026-02-10,Kota Kinabalu,AI Knowledge Management,Chong Kai Xiang,13,14181.8,0.0,184363.4,74924.47,109438.93,4
+TXN-1035,2026-02-12,Kuala Lumpur,Data Warehouse Appliance,Ahmad Razak,12,11034.93,0.15,112556.29,54197.06,58359.23,3
+TXN-1036,2026-02-13,Penang,Enterprise DSS Software,Tan Wei Ming,17,14359.78,0.05,231910.45,101686.39,130224.06,5
+TXN-1037,2026-02-14,Johor Bahru,Cloud BI Analytics,Saraswathy A/P Nathan,8,7920.09,0.1,57024.65,29350.83,27673.82,3
+TXN-1038,2026-02-15,Kuching,AI Knowledge Management,Jessica Lee,23,11386.03,0.15,222596.89,90939.33,131657.56,5
+TXN-1039,2026-02-16,Kota Kinabalu,Data Warehouse Appliance,Chong Kai Xiang,7,3065.46,0.0,21458.22,11007.11,10451.11,5
+TXN-1040,2026-02-18,Kuala Lumpur,Enterprise DSS Software,Ahmad Razak,8,8548.01,0.0,68384.08,29561.41,38822.67,5
+TXN-1041,2026-02-19,Penang,Cloud BI Analytics,Tan Wei Ming,8,12317.61,0.05,93613.84,41199.23,52414.61,3
+TXN-1042,2026-02-20,Johor Bahru,AI Knowledge Management,Saraswathy A/P Nathan,14,5910.09,0.15,70330.07,43394.46,26935.61,4
+TXN-1043,2026-02-21,Kuching,Data Warehouse Appliance,Jessica Lee,11,4839.98,0.05,50577.79,23562.22,27015.57,4
+TXN-1044,2026-02-22,Kota Kinabalu,Enterprise DSS Software,Chong Kai Xiang,15,6095.88,0.05,86866.29,41821.54,45044.75,4
+TXN-1045,2026-02-24,Kuala Lumpur,Cloud BI Analytics,Ahmad Razak,16,4001.32,0.1,57619.01,34804.08,22814.93,3
+TXN-1046,2026-02-25,Penang,AI Knowledge Management,Tan Wei Ming,9,2561.32,0.0,23051.88,14284.22,8767.66,5
+TXN-1047,2026-02-26,Johor Bahru,Data Warehouse Appliance,Saraswathy A/P Nathan,12,7600.03,0.05,86640.34,55475.78,31164.56,4
+TXN-1048,2026-02-27,Kuching,Enterprise DSS Software,Jessica Lee,7,6896.27,0.05,45860.2,19601.72,26258.48,5
+TXN-1049,2026-02-28,Kota Kinabalu,Cloud BI Analytics,Chong Kai Xiang,10,9447.5,0.05,89751.25,48686.35,41064.9,5
+TXN-1050,2026-03-02,Kuala Lumpur,AI Knowledge Management,Ahmad Razak,10,10878.84,0.05,103348.98,43960.93,59388.05,4
+TXN-1051,2026-03-03,Penang,Data Warehouse Appliance,Tan Wei Ming,5,14435.95,0.05,68570.76,29246.04,39324.72,3
+TXN-1052,2026-03-04,Johor Bahru,Enterprise DSS Software,Saraswathy A/P Nathan,13,11529.48,0.05,142389.08,79949.49,62439.59,3
+TXN-1053,2026-03-05,Kuching,Cloud BI Analytics,Jessica Lee,18,6419.39,0.0,115549.02,54626.84,60922.18,4
+TXN-1054,2026-03-06,Kota Kinabalu,AI Knowledge Management,Chong Kai Xiang,7,5760.73,0.0,40325.11,16269.88,24055.23,4
+TXN-1055,2026-03-08,Kuala Lumpur,Data Warehouse Appliance,Ahmad Razak,15,14567.91,0.0,218518.65,92676.49,125842.16,3
+TXN-1056,2026-03-09,Penang,Enterprise DSS Software,Tan Wei Ming,11,4037.75,0.1,39973.72,19137.16,20836.56,4
+TXN-1057,2026-03-10,Johor Bahru,Cloud BI Analytics,Saraswathy A/P Nathan,21,10321.6,0.0,216753.6,136811.84,79941.76,4
+TXN-1058,2026-03-11,Kuching,AI Knowledge Management,Jessica Lee,21,5195.45,0.15,92738.78,46975.07,45763.71,5
+TXN-1059,2026-03-12,Kota Kinabalu,Data Warehouse Appliance,Chong Kai Xiang,5,11080.79,0.1,49863.56,24795.24,25068.32,4
+TXN-1060,2026-03-14,Kuala Lumpur,Enterprise DSS Software,Ahmad Razak,3,11692.34,0.15,29815.47,18473.8,11341.67,4
+TXN-1061,2026-03-15,Penang,Cloud BI Analytics,Tan Wei Ming,24,6631.85,0.0,159164.4,75481.41,83682.99,4
+TXN-1062,2026-03-16,Johor Bahru,AI Knowledge Management,Saraswathy A/P Nathan,12,9820.08,0.0,117840.96,63108.45,54732.51,4
+TXN-1063,2026-03-17,Kuching,Data Warehouse Appliance,Jessica Lee,8,9510.79,0.0,76086.32,33518.39,42567.93,3
+TXN-1064,2026-03-18,Kota Kinabalu,Enterprise DSS Software,Chong Kai Xiang,5,2966.48,0.1,13349.16,7331.87,6017.29,5
+TXN-1065,2026-03-20,Kuala Lumpur,Cloud BI Analytics,Ahmad Razak,11,2859.93,0.05,29886.27,14614.17,15272.1,4
+TXN-1066,2026-03-21,Penang,AI Knowledge Management,Tan Wei Ming,14,5491.32,0.15,65346.71,36963.25,28383.46,3
+TXN-1067,2026-03-22,Johor Bahru,Data Warehouse Appliance,Saraswathy A/P Nathan,7,9286.59,0.15,55255.21,34384.57,20870.64,3
+TXN-1068,2026-03-23,Kuching,Enterprise DSS Software,Jessica Lee,9,2792.02,0.1,22615.36,12105.72,10509.64,4
+TXN-1069,2026-03-24,Kota Kinabalu,Cloud BI Analytics,Chong Kai Xiang,10,14480.99,0.05,137569.4,87501.97,50067.43,5
+TXN-1070,2026-03-26,Kuala Lumpur,AI Knowledge Management,Ahmad Razak,4,12994.42,0.0,51977.68,29240.22,22737.46,5
+TXN-1071,2026-03-27,Penang,Data Warehouse Appliance,Tan Wei Ming,10,6758.91,0.1,60830.19,25187.59,35642.6,3
+TXN-1072,2026-03-28,Johor Bahru,Enterprise DSS Software,Saraswathy A/P Nathan,22,14726.61,0.15,275387.61,114168.61,161219.0,3
+TXN-1073,2026-03-29,Kuching,Cloud BI Analytics,Jessica Lee,23,8857.75,0.05,193541.84,122281.17,71260.67,4
+TXN-1074,2026-03-30,Kota Kinabalu,AI Knowledge Management,Chong Kai Xiang,24,14702.14,0.05,335208.79,181146.01,154062.78,4
+TXN-1075,2026-04-01,Kuala Lumpur,Data Warehouse Appliance,Ahmad Razak,12,13265.16,0.1,143263.73,70167.31,73096.42,5
+TXN-1076,2026-04-02,Penang,Enterprise DSS Software,Tan Wei Ming,16,9359.94,0.15,127295.18,79464.73,47830.45,5
+TXN-1077,2026-04-03,Johor Bahru,Cloud BI Analytics,Saraswathy A/P Nathan,20,6402.42,0.05,121645.98,67757.32,53888.66,3
+TXN-1078,2026-04-04,Kuching,AI Knowledge Management,Jessica Lee,17,13672.47,0.1,209188.79,126232.57,82956.22,5
+TXN-1079,2026-04-05,Kota Kinabalu,Data Warehouse Appliance,Chong Kai Xiang,24,7604.09,0.0,182498.16,102158.65,80339.51,3
+TXN-1080,2026-04-07,Kuala Lumpur,Enterprise DSS Software,Ahmad Razak,11,7159.92,0.1,70883.21,30798.06,40085.15,5
+TXN-1081,2026-04-08,Penang,Cloud BI Analytics,Tan Wei Ming,5,14985.14,0.0,74925.7,39961.91,34963.79,5
+TXN-1082,2026-04-09,Johor Bahru,AI Knowledge Management,Saraswathy A/P Nathan,20,6333.88,0.0,126677.6,80932.5,45745.1,4
+TXN-1083,2026-04-10,Kuching,Data Warehouse Appliance,Jessica Lee,19,14539.29,0.05,262434.18,168296.46,94137.72,3
+TXN-1084,2026-04-11,Kota Kinabalu,Enterprise DSS Software,Chong Kai Xiang,4,4273.65,0.15,14530.41,7024.04,7506.37,4
+TXN-1085,2026-04-13,Kuala Lumpur,Cloud BI Analytics,Ahmad Razak,11,3019.86,0.05,31557.54,13902.76,17654.78,4
+TXN-1086,2026-04-14,Penang,AI Knowledge Management,Tan Wei Ming,11,9264.57,0.1,91719.24,39760.4,51958.84,4
+TXN-1087,2026-04-15,Johor Bahru,Data Warehouse Appliance,Saraswathy A/P Nathan,8,14701.48,0.0,117611.84,71958.13,45653.71,5
+TXN-1088,2026-04-16,Kuching,Enterprise DSS Software,Jessica Lee,17,14240.22,0.1,217875.37,131385.84,86489.53,5
+TXN-1089,2026-04-17,Kota Kinabalu,Cloud BI Analytics,Chong Kai Xiang,7,11524.75,0.0,80673.25,35891.99,44781.26,5
+TXN-1090,2026-04-19,Kuala Lumpur,AI Knowledge Management,Ahmad Razak,6,4549.22,0.0,27295.32,14432.35,12862.97,5
+TXN-1091,2026-04-20,Penang,Data Warehouse Appliance,Tan Wei Ming,22,12085.17,0.1,239286.37,99519.23,139767.14,4
+TXN-1092,2026-04-21,Johor Bahru,Enterprise DSS Software,Saraswathy A/P Nathan,8,9151.65,0.05,69552.54,30021.04,39531.5,4
+TXN-1093,2026-04-22,Kuching,Cloud BI Analytics,Jessica Lee,17,3842.42,0.0,65321.14,32353.54,32967.6,5
+TXN-1094,2026-04-23,Kota Kinabalu,AI Knowledge Management,Chong Kai Xiang,11,10594.32,0.1,104883.77,54392.22,50491.55,4
+TXN-1095,2026-04-25,Kuala Lumpur,Data Warehouse Appliance,Ahmad Razak,5,9444.91,0.05,44863.32,27239.25,17624.07,5
+TXN-1096,2026-04-26,Penang,Enterprise DSS Software,Tan Wei Ming,16,13971.1,0.1,201183.84,84625.44,116558.4,3
+TXN-1097,2026-04-27,Johor Bahru,Cloud BI Analytics,Saraswathy A/P Nathan,17,12224.52,0.1,187035.16,110037.1,76998.06,3
+TXN-1098,2026-04-28,Kuching,AI Knowledge Management,Jessica Lee,7,6562.53,0.1,41343.94,19872.93,21471.01,5
+TXN-1099,2026-04-29,Kota Kinabalu,Data Warehouse Appliance,Chong Kai Xiang,23,13215.64,0.15,258365.76,123607.5,134758.26,3
+TXN-1100,2026-05-01,Kuala Lumpur,Enterprise DSS Software,Ahmad Razak,16,5252.13,0.1,75630.67,44599.88,31030.79,4
+TXN-1101,2026-05-02,Penang,Cloud BI Analytics,Tan Wei Ming,15,12895.26,0.15,164414.57,74515.79,89898.78,4
+TXN-1102,2026-05-03,Johor Bahru,AI Knowledge Management,Saraswathy A/P Nathan,25,9582.12,0.05,227575.35,115568.2,112007.15,4
+TXN-1103,2026-05-04,Kuching,Data Warehouse Appliance,Jessica Lee,5,6500.43,0.15,27626.83,12871.5,14755.33,5
+TXN-1104,2026-05-05,Kota Kinabalu,Enterprise DSS Software,Chong Kai Xiang,22,5852.21,0.1,115873.76,74514.06,41359.7,5
+TXN-1105,2026-05-07,Kuala Lumpur,Cloud BI Analytics,Ahmad Razak,5,5848.88,0.15,24857.74,13878.03,10979.71,4
+TXN-1106,2026-05-08,Penang,AI Knowledge Management,Tan Wei Ming,2,9371.68,0.1,16869.02,9590.53,7278.49,4
+TXN-1107,2026-05-09,Johor Bahru,Data Warehouse Appliance,Saraswathy A/P Nathan,5,10989.69,0.15,46706.18,29291.1,17415.08,5
+TXN-1108,2026-05-10,Kuching,Enterprise DSS Software,Jessica Lee,23,12054.62,0.05,263393.45,133305.82,130087.63,5
+TXN-1109,2026-05-11,Kota Kinabalu,Cloud BI Analytics,Chong Kai Xiang,12,3250.39,0.15,33153.98,19266.08,13887.9,3
+TXN-1110,2026-05-13,Kuala Lumpur,AI Knowledge Management,Ahmad Razak,10,9486.52,0.1,85378.68,36939.07,48439.61,5
+TXN-1111,2026-05-14,Penang,Data Warehouse Appliance,Tan Wei Ming,22,10146.4,0.15,189737.68,116277.48,73460.2,4
+TXN-1112,2026-05-15,Johor Bahru,Enterprise DSS Software,Saraswathy A/P Nathan,12,2646.93,0.05,30175.0,16869.86,13305.14,5
+TXN-1113,2026-05-16,Kuching,Cloud BI Analytics,Jessica Lee,10,6582.67,0.05,62535.36,37376.52,25158.84,5
+TXN-1114,2026-05-17,Kota Kinabalu,AI Knowledge Management,Chong Kai Xiang,10,10285.32,0.1,92567.88,38855.09,53712.79,5
+TXN-1115,2026-05-19,Kuala Lumpur,Data Warehouse Appliance,Ahmad Razak,8,9237.02,0.0,73896.16,47710.8,26185.36,3
+TXN-1116,2026-05-20,Penang,Enterprise DSS Software,Tan Wei Ming,12,14653.91,0.15,149469.88,67499.51,81970.37,5
+TXN-1117,2026-05-21,Johor Bahru,Cloud BI Analytics,Saraswathy A/P Nathan,7,11318.95,0.0,79232.65,42936.68,36295.97,5
+TXN-1118,2026-05-22,Kuching,AI Knowledge Management,Jessica Lee,18,11014.25,0.05,188343.67,80425.38,107918.29,4
+TXN-1119,2026-05-23,Kota Kinabalu,Data Warehouse Appliance,Chong Kai Xiang,15,3055.99,0.05,43547.86,28179.81,15368.05,4
+TXN-1120,2026-05-25,Kuala Lumpur,Enterprise DSS Software,Ahmad Razak,23,10788.14,0.1,223314.5,108721.37,114593.13,5
+TXN-1121,2026-05-26,Penang,Cloud BI Analytics,Tan Wei Ming,17,5691.87,0.1,87085.61,53099.6,33986.01,3
+TXN-1122,2026-05-27,Johor Bahru,AI Knowledge Management,Saraswathy A/P Nathan,22,8625.06,0.0,189751.32,98702.9,91048.42,4
+TXN-1123,2026-05-28,Kuching,Data Warehouse Appliance,Jessica Lee,10,12956.47,0.15,110129.99,49523.64,60606.35,4
+TXN-1124,2026-05-29,Kota Kinabalu,Enterprise DSS Software,Chong Kai Xiang,18,13028.09,0.15,199329.78,94884.34,104445.44,5
+TXN-1125,2026-05-31,Kuala Lumpur,Cloud BI Analytics,Ahmad Razak,3,12686.75,0.0,38060.25,22131.0,15929.25,5
+TXN-1126,2026-06-01,Penang,AI Knowledge Management,Tan Wei Ming,23,8862.01,0.1,183443.61,118368.47,65075.14,5
+TXN-1127,2026-06-02,Johor Bahru,Data Warehouse Appliance,Saraswathy A/P Nathan,4,13163.12,0.1,47387.23,24750.76,22636.47,5
+TXN-1128,2026-06-03,Kuching,Enterprise DSS Software,Jessica Lee,12,7000.99,0.0,84011.88,54373.67,29638.21,3
+TXN-1129,2026-06-04,Kota Kinabalu,Cloud BI Analytics,Chong Kai Xiang,10,14549.43,0.15,123670.15,68962.85,54707.3,5
+TXN-1130,2026-06-06,Kuala Lumpur,AI Knowledge Management,Ahmad Razak,8,2860.95,0.05,21743.22,9837.01,11906.21,5
+TXN-1131,2026-06-07,Penang,Data Warehouse Appliance,Tan Wei Ming,18,4081.07,0.05,69786.3,41726.65,28059.65,4
+TXN-1132,2026-06-08,Johor Bahru,Enterprise DSS Software,Saraswathy A/P Nathan,24,8607.29,0.1,185917.46,91273.66,94643.8,5
+TXN-1133,2026-06-09,Kuching,Cloud BI Analytics,Jessica Lee,14,9158.79,0.05,121811.91,53353.4,68458.51,5
+TXN-1134,2026-06-10,Kota Kinabalu,AI Knowledge Management,Chong Kai Xiang,24,14746.88,0.05,336228.86,145524.62,190704.24,5
+TXN-1135,2026-06-12,Kuala Lumpur,Data Warehouse Appliance,Ahmad Razak,20,3263.47,0.0,65269.4,30682.61,34586.79,4
+TXN-1136,2026-06-13,Penang,Enterprise DSS Software,Tan Wei Ming,7,4239.86,0.1,26711.12,11539.13,15171.99,3
+TXN-1137,2026-06-14,Johor Bahru,Cloud BI Analytics,Saraswathy A/P Nathan,7,11162.26,0.05,74229.03,42309.18,31919.85,4
+TXN-1138,2026-06-15,Kuching,AI Knowledge Management,Jessica Lee,22,10284.99,0.0,226269.78,107514.81,118754.97,5
+TXN-1139,2026-06-16,Kota Kinabalu,Data Warehouse Appliance,Chong Kai Xiang,13,13600.32,0.0,176804.16,91303.43,85500.73,5
+TXN-1140,2026-06-18,Kuala Lumpur,Enterprise DSS Software,Ahmad Razak,15,4437.72,0.1,59909.22,26145.07,33764.15,5
+TXN-1141,2026-06-19,Penang,Cloud BI Analytics,Tan Wei Ming,3,8385.47,0.0,25156.41,10657.87,14498.54,5
+TXN-1142,2026-06-20,Johor Bahru,AI Knowledge Management,Saraswathy A/P Nathan,24,11230.86,0.1,242586.58,116973.53,125613.05,3
+TXN-1143,2026-06-21,Kuching,Data Warehouse Appliance,Jessica Lee,7,8790.79,0.0,61535.53,31119.14,30416.39,4
+TXN-1144,2026-06-22,Kota Kinabalu,Enterprise DSS Software,Chong Kai Xiang,8,12913.81,0.05,98144.96,45174.18,52970.78,5
+TXN-1145,2026-06-24,Kuala Lumpur,Cloud BI Analytics,Ahmad Razak,17,5158.92,0.05,83316.56,44488.16,38828.4,4
+TXN-1146,2026-06-25,Penang,AI Knowledge Management,Tan Wei Ming,25,7789.72,0.1,175268.7,101000.45,74268.25,4
+TXN-1147,2026-06-26,Johor Bahru,Data Warehouse Appliance,Saraswathy A/P Nathan,22,11730.11,0.15,219353.06,92773.38,126579.68,3
+TXN-1148,2026-06-27,Kuching,Enterprise DSS Software,Jessica Lee,25,4943.08,0.0,123577.0,60365.37,63211.63,5
+TXN-1149,2026-06-28,Kota Kinabalu,Cloud BI Analytics,Chong Kai Xiang,21,11098.89,0.0,233076.69,103260.07,129816.62,5
