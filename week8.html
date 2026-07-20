@@ -458,6 +458,82 @@
     </div>
     
 
+        <!-- Practical Decision Support Suite: Excel Goal Seek, Scenario Manager & Python Data Mining -->
+        <div class="card" style="border: 2px solid var(--pastel-mint);">
+            <h2>
+                <span class="lang-en">📊 Practical Decision Support Suite (Week 8)</span>
+                <span class="lang-cn">📊 实用决策支持套件（第 8 周）</span>
+            </h2>
+
+            <!-- 1. Excel Goal Seek & Scenario Manager -->
+            <div class="step" style="background: rgba(255,255,255,0.5);">
+                <h3>📗 Excel Goal Seek & What-If Scenario Manager</h3>
+                <div class="lang-en">
+                    <p>Master Goal Seek and Scenario Manager for business decision modeling:</p>
+                    <ul>
+                        <li><b>Goal Seek Execution:</b> <b>Data Tab → What-If Analysis → Goal Seek</b>.
+                            <ul>
+                                <li>Set cell: <code>$I$4</code> (Net Operating Profit) To value: <code>100000</code>.</li>
+                                <li>By changing cell: <code>$F$4</code> (Target Sales Units). Excel calculates the exact sales volume needed!</li>
+                            </ul>
+                        </li>
+                        <li><b>Scenario Manager:</b> Create 3 Scenarios (Best Case: Price = RM 1,500; Base Case: Price = RM 1,200; Worst Case: Price = RM 900) to generate an executive Summary Table.</li>
+                    </ul>
+                </div>
+                <div class="lang-cn">
+                    <p>掌握用于商业决策建模的目标寻求 (Goal Seek) 和方案管理器 (Scenario Manager)：</p>
+                    <ul>
+                        <li><b>目标寻求操作步骤：</b> <b>数据选项卡 → What-If 分析 → 目标寻求</b>。
+                            <ul>
+                                <li>设置单元格：<code>$I$4</code>（营业净利润） 目标值：<code>100000</code>。</li>
+                                <li>通过更改单元格：<code>$F$4</code>（目标销售数量）。Excel 会自动反算出所需的精确销售量！</li>
+                            </ul>
+                        </li>
+                        <li><b>方案管理器：</b> 创建 3 种方案（最佳情况：单价 = RM 1,500；基准情况：单价 = RM 1,200；最坏情况：单价 = RM 900），并生成高管总结报告。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 2. Python Decision Tree Data Mining -->
+            <div class="step" style="background: rgba(255,255,255,0.5);">
+                <h3>🐍 Python Scikit-Learn Decision Tree Data Classifier</h3>
+                <div class="lang-en">
+                    <p>Run this Python script to train a decision tree classifier on customer metrics to predict enterprise software renewal likelihood:</p>
+                </div>
+                <div class="lang-cn">
+                    <p>运行此 Python 脚本，在客户指标上训练决策树分类器，以预测企业软件续约概率：</p>
+                </div>
+                <button class="btn" onclick="showCodeAns('w8-py')">
+                    <span class="lang-en">Show Python Decision Tree Code</span>
+                    <span class="lang-cn">显示 Python 决策树代码</span>
+                </button>
+                <div class="code-editor" id="code-ans-w8-py" style="display:none;">from sklearn.tree import DecisionTreeClassifier
+import numpy as np
+
+# Feature Matrix X: [Tenure_Months, Support_Tickets, CSAT_Score]
+X = np.array([
+    [24, 1, 4.8],
+    [6,  8, 2.1],
+    [36, 2, 4.5],
+    [12, 5, 3.2],
+    [18, 0, 4.9]
+])
+
+# Target Y: 1 = Renew, 0 = Churn
+y = np.array([1, 0, 1, 0, 1])
+
+clf = DecisionTreeClassifier(max_depth=3, random_state=42)
+clf.fit(X, y)
+
+# Predict new prospective enterprise client: [20 months tenure, 2 tickets, 4.2 CSAT]
+new_client = [[20, 2, 4.2]]
+pred = clf.predict(new_client)
+
+print("=== DATA MINING DECISION OUTCOME ===")
+print(f"Predicted Status: {'RENEWAL LIKELY (1)' if pred[0] == 1 else 'CHURN RISK (0)'}")</div>
+            </div>
+        </div>
+
         <!-- Tips Section -->
         <div class="card" style="border-left: 5px solid #10B981;">
             <h2>

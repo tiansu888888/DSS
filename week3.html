@@ -470,6 +470,37 @@
     </div>
     
 
+        
+        <!-- Practical Decision Support Suite: Week 3 -->
+        <div class="card" style="border: 2px solid var(--pastel-mint);">
+            <h2>
+                <span class="lang-en">📊 Practical Decision Support Suite (Week 3)</span>
+                <span class="lang-cn">📊 实用决策支持套件（第 3 周）</span>
+            </h2>
+            <div class="step" style="background: rgba(255,255,255,0.5);">
+                <h3>📗 Excel Weighted Decision Matrix (Simon's Choice Phase)</h3>
+                <p>Evaluate multiple business alternatives using weighted decision scoring:</p>
+                <div class="code-editor">Weighted Score = SUMPRODUCT(Criteria_Weights, Alternative_Ratings)
+Excel Formula: =SUMPRODUCT($B$4:$B$7, C4:C7)</div>
+            </div>
+            <div class="step" style="background: rgba(255,255,255,0.5);">
+                <h3>🐍 Python Simon's Decision Phase Simulator</h3>
+                <button class="btn" onclick="showCodeAns('w3-py')">Show Python Simulator Code</button>
+                <div class="code-editor" id="code-ans-w3-py" style="display:none;"># 1. Intelligence Phase: Identify problem
+problem = {"metric": "Customer Churn", "current_value": 0.18, "threshold": 0.10}
+
+# 2. Design Phase: Formulate options
+options = {
+    "Option A: Loyalty Discount": {"cost": 50000, "expected_churn": 0.08},
+    "Option B: AI Service Bot":  {"cost": 120000, "expected_churn": 0.05}
+}
+
+# 3. Choice Phase: Select optimal option based on cost-efficiency
+best_opt = min(options.items(), key=lambda x: x[1]["cost"] / (problem["current_value"] - x[1]["expected_churn"]))
+print(f"RECOMMENDED OPTION: {best_opt[0]}")</div>
+            </div>
+        </div>
+    
         <!-- Tips Section -->
         <div class="card" style="border-left: 5px solid #10B981;">
             <h2>

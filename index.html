@@ -140,23 +140,107 @@
 <body>
 
     <div class="hero">
+        <div style="display:inline-block; background: var(--glass-bg); padding: 6px 18px; border-radius: 20px; border: 1px solid var(--glass-border); font-weight: 700; font-size: 0.95rem; margin-bottom: 10px;">
+            DBIS | July 2026 Session | KIC MQA SANTUN (CLIP Infused)
+        </div>
         <h1>
             <span class="lang-en">DBSS2643: Decision Support Systems</span>
             <span class="lang-cn">DBSS2643: 决策支持系统</span>
         </h1>
         <p>
-            <span class="lang-en">Interactive Weekly Study Hub</span>
-            <span class="lang-cn">每周互动式学习中心</span>
+            <span class="lang-en">Interactive Weekly Learning & Practical Decision Support Hub</span>
+            <span class="lang-cn">每周互动式学习与实用决策支持中心</span>
         </p>
         <button class="btn lang-btn" onclick="toggleLanguage()">🌐 EN / 中文</button>
         <div class="hero-img-container">
             <img src="assets/macaron_dss.png" alt="Macaron DSS Concept">
         </div>
-        <div style="margin-top:20px;">
+        <div style="margin-top:20px; display:flex; justify-content:center; gap:15px; flex-wrap:wrap;">
             <a href="DSS-Note.html" class="btn" style="text-decoration:none;">
-                <span class="lang-en">Go to Comprehensive Review SPA</span>
-                <span class="lang-cn">进入综合复习笔记本 SPA</span>
+                <span class="lang-en">📚 Go to Comprehensive Revision SPA</span>
+                <span class="lang-cn">📚 进入综合复习笔记本 SPA</span>
             </a>
+        </div>
+    </div>
+
+    <!-- Assessment Breakdown & Course Overview -->
+    <div style="max-width: 1200px; margin: 0 auto 30px auto; padding: 0 20px;">
+        <div class="card" style="margin-bottom: 25px;">
+            <h2>
+                <span class="lang-en">Course Overview & Continuous Assessments</span>
+                <span class="lang-cn">课程概述与平时评估</span>
+            </h2>
+            <div class="lang-en">
+                <p>Welcome to the DBSS2643 Decision Support Systems Hub. This portal provides interactive study notes, dynamic model visualizers, UML diagramming guides, and hands-on <strong>Practical Decision Support Suites</strong> using Excel Formulas, Power BI DAX, Google Looker Studio, and Python optimization solvers.</p>
+            </div>
+            <div class="lang-cn">
+                <p>欢迎来到 DBSS2643 决策支持系统学习中心。本主页提供互动式学习讲义、动态模型可视化、UML 建模指南、以及基于 Excel 公式、Power BI DAX、Google Looker Studio 和 Python 求解器的<strong>实用决策支持套件</strong>。</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: rgba(255,255,255,0.6); padding: 15px; border-radius: 16px; border-top: 4px solid var(--pastel-pink); text-align: center;">
+                    <h4 style="margin: 0 0 5px 0;">Case Study Report</h4>
+                    <div style="font-size: 1.5rem; font-weight: 800;">10%</div>
+                    <small>Week 4 (CLO3)</small>
+                </div>
+                <div style="background: rgba(255,255,255,0.6); padding: 15px; border-radius: 16px; border-top: 4px solid var(--pastel-blue); text-align: center;">
+                    <h4 style="margin: 0 0 5px 0;">Written Test</h4>
+                    <div style="font-size: 1.5rem; font-weight: 800;">20%</div>
+                    <small>Week 6 (CLO1 - Ch 1-4)</small>
+                </div>
+                <div style="background: rgba(255,255,255,0.6); padding: 15px; border-radius: 16px; border-top: 4px solid var(--pastel-lavender); text-align: center;">
+                    <h4 style="margin: 0 0 5px 0;">Group Project Report</h4>
+                    <div style="font-size: 1.5rem; font-weight: 800;">20%</div>
+                    <small>Week 13 (CLO2)</small>
+                </div>
+                <div style="background: rgba(255,255,255,0.6); padding: 15px; border-radius: 16px; border-top: 4px solid var(--pastel-mint); text-align: center;">
+                    <h4 style="margin: 0 0 5px 0;">Project Presentation</h4>
+                    <div style="font-size: 1.5rem; font-weight: 800;">10%</div>
+                    <small>Week 14 (CLO2)</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Download Raw Materials Suite Card -->
+        <div class="card" style="border: 2px solid var(--pastel-mint); background: rgba(255,255,255,0.65);">
+            <h2>
+                <span class="lang-en">📦 Raw Materials & Datasets Suite (Excel, Power BI, Looker)</span>
+                <span class="lang-cn">📦 原始素材与数据集套件（Excel、Power BI、Looker）</span>
+            </h2>
+            <p style="font-weight: 600;">
+                <span class="lang-en">Download ready-to-use template workbooks, sample CSV datasets, DAX libraries, and Looker Studio schemas for practical decision support exercises:</span>
+                <span class="lang-cn">下载现成的 Excel 决策模板工作簿、示例 CSV 数据集、DAX 公式库和 Looker Studio Schema，直接开始决策支持实操：</span>
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: rgba(255,255,255,0.8); padding: 18px; border-radius: 16px; border: 1px solid var(--glass-border);">
+                    <h3 style="margin-top:0; font-size:1.1rem;">📗 Master Excel Decision Workbook</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 12px;">Live formulas for What-If Analysis, Excel Solver LP, Decision Tree EMV, and Capital Budgeting NPV/IRR.</p>
+                    <a href="raw_materials/DBSS2643_Decision_Support_Master_Template.xlsx" download class="btn" style="padding: 8px 16px; font-size: 0.95rem; text-decoration:none; display:inline-block;">
+                        <span class="lang-en">📥 Download .XLSX Template</span>
+                        <span class="lang-cn">📥 下载 Excel 模板 (.xlsx)</span>
+                    </a>
+                </div>
+                <div style="background: rgba(255,255,255,0.8); padding: 18px; border-radius: 16px; border: 1px solid var(--glass-border);">
+                    <h3 style="margin-top:0; font-size:1.1rem;">📊 Power BI BI & DW Datasets</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 12px;">150-row BI Transaction CSV + 100-row DW ETL Log CSV + DAX measures library.</p>
+                    <a href="raw_materials/DBSS2643_Enterprise_BI_Dataset.csv" download class="btn" style="padding: 8px 14px; font-size: 0.9rem; text-decoration:none; display:inline-block;">
+                        <span class="lang-en">📥 BI Dataset (.CSV)</span>
+                        <span class="lang-cn">📥 BI 数据集 (.csv)</span>
+                    </a>
+                    <a href="raw_materials/DBSS2643_PowerBI_DAX_Measures.txt" target="_blank" class="btn" style="padding: 8px 14px; font-size: 0.9rem; text-decoration:none; display:inline-block; margin-left: 5px;">
+                        <span class="lang-en">📄 DAX Library</span>
+                        <span class="lang-cn">📄 DAX 代码库</span>
+                    </a>
+                </div>
+                <div style="background: rgba(255,255,255,0.8); padding: 18px; border-radius: 16px; border: 1px solid var(--glass-border);">
+                    <h3 style="margin-top:0; font-size:1.1rem;">📈 Google Looker Studio Guide</h3>
+                    <p style="font-size: 0.9rem; margin-bottom: 12px;">Data source schema, calculated field expressions (`CASE WHEN`), and dashboard layout setup.</p>
+                    <a href="raw_materials/DBSS2643_Looker_Studio_Guide.txt" target="_blank" class="btn" style="padding: 8px 16px; font-size: 0.95rem; text-decoration:none; display:inline-block;">
+                        <span class="lang-en">📄 View Schema Guide</span>
+                        <span class="lang-cn">📄 查看 Looker 指南</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -386,7 +470,7 @@
         </a>
     </div>
 
-    <script {num}>
+    <script>
         function toggleLanguage() {
             document.body.classList.toggle('cn-active');
         }

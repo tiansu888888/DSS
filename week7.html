@@ -465,6 +465,84 @@
     </div>
     
 
+        <!-- Practical Decision Support Suite: Excel Solver LP, Power BI, Python SciPy -->
+        <div class="card" style="border: 2px solid var(--pastel-lavender);">
+            <h2>
+                <span class="lang-en">📊 Practical Decision Support Suite (Week 7)</span>
+                <span class="lang-cn">📊 实用决策支持套件（第 7 周）</span>
+            </h2>
+
+            <!-- 1. Excel Solver Linear Programming -->
+            <div class="step" style="background: rgba(255,255,255,0.5);">
+                <h3>📗 Excel Solver Add-In Setup for Linear Programming (LP)</h3>
+                <div class="lang-en">
+                    <p>Learn how to formulate and solve a product-mix optimization decision in Excel:</p>
+                    <ol>
+                        <li>Enable Excel Solver Add-in: <b>File → Options → Add-Ins → Manage Excel Add-ins → Check "Solver Add-in"</b>.</li>
+                        <li>Set up Objective Cell: <code>=SUMPRODUCT(Unit_Profits, Decision_Variables)</code>.</li>
+                        <li>Open Solver (Data Tab → Solver):
+                            <ul>
+                                <li>Set Objective Cell: <code>$G$7</code> To: <b>Max</b>.</li>
+                                <li>By Changing Variable Cells: <code>$F$4:$F$6</code>.</li>
+                                <li>Subject to Constraints: <code>$C$4:$C$6 <= $E$4:$E$6</code> (Dev Hours & Server Limits).</li>
+                                <li>Select Solving Method: <b>Simplex LP</b>. Click <b>Solve</b>.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                <div class="lang-cn">
+                    <p>学习如何在 Excel 中构建并求解产品组合优化决策：</p>
+                    <ol>
+                        <li>启用 Excel Solver 插件：<b>文件 → 选项 → 加载项 → 管理 Excel 加载项 → 勾选“规划求解加载项 (Solver Add-in)”</b>。</li>
+                        <li>设置目标单元格：<code>=SUMPRODUCT(单位利润, 决策变量)</code>。</li>
+                        <li>打开规划求解（数据选项卡 → 规划求解）：
+                            <ul>
+                                <li>设置目标单元格：<code>$G$7</code> 目标为：<b>最大值 (Max)</b>。</li>
+                                <li>通过更改变量单元格：<code>$F$4:$F$6</code>。</li>
+                                <li>遵守约束条件：<code>$C$4:$C$6 <= $E$4:$E$6</code>（工时与服务器上限）。</li>
+                                <li>选择求解方法：<b>单纯形 LP (Simplex LP)</b>。点击<b>求解</b>。</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 2. Python SciPy Linear Programming -->
+            <div class="step" style="background: rgba(255,255,255,0.5);">
+                <h3>🐍 Python SciPy Optimization Decision Engine</h3>
+                <div class="lang-en">
+                    <p>Run this Python script to optimize DSS product licensing allocation under resource constraints:</p>
+                </div>
+                <div class="lang-cn">
+                    <p>运行此 Python 脚本，以在资源约束下优化 DSS 产品许可分配：</p>
+                </div>
+                <button class="btn" onclick="showCodeAns('w7-py')">
+                    <span class="lang-en">Show Python Optimization Code</span>
+                    <span class="lang-cn">显示 Python 优化代码</span>
+                </button>
+                <div class="code-editor" id="code-ans-w7-py" style="display:none;">import scipy.optimize as opt
+
+# Objective: Maximize Profit Z = 1500*x1 + 3200*x2 + 6800*x3
+c = [-1500, -3200, -6800]  # Minimized negative c for max profit
+
+# Constraints matrix A * x <= b
+# Row 1: 10*x1 + 25*x2 + 50*x3 <= 500  (Dev Hours)
+# Row 2: 2*x1  + 5*x2  + 12*x3 <= 100  (Server Units)
+A = [[10, 25, 50], [2, 5, 12]]
+b = [500, 100]
+
+bounds = [(0, 50), (0, 30), (0, 15)]
+
+res = opt.linprog(c, A_ub=A, b_ub=b, bounds=bounds, method='highs')
+
+print("=== OPTIMAL DECISION OUTPUT ===")
+print(f"Standard DSS Licenses  (x1): {round(res.x[0])} units")
+print(f"Premium BI Suites     (x2): {round(res.x[1])} units")
+print(f"Custom Enterprise AI  (x3): {round(res.x[2])} units")
+print(f"Maximized Profit          : MYR {-res.fun:,.2f}")</div>
+            </div>
+        </div>
+
         <!-- Tips Section -->
         <div class="card" style="border-left: 5px solid #10B981;">
             <h2>
